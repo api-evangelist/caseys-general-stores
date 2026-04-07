@@ -1,7 +1,12 @@
 aid: caseys-general-stores
-url: https://raw.githubusercontent.com/api-evangelist/caseys-general-stores/refs/heads/main/apis.yml
+url: 
+  https://raw.githubusercontent.com/api-evangelist/caseys-general-stores/refs/heads/main/apis.yml
 modified: '2026-03-21'
 apis: []
 common:
   - type: Website
     url: https://www.caseys-general-stores.com
+description: >-
+  Casey's General Stores is one of the largest convenience store chains in the United
+  States, operating stores selling fuel, food, and other convenience items primarily
+  in small midwestern communities.
