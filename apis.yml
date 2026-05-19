@@ -26,6 +26,8 @@ description: >-
   documented; partner and supplier integrations are managed privately.
 apis: []
 common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/caseys
   - type: Website
     url: https://www.caseys.com
   - type: About
