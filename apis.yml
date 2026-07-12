@@ -26,6 +26,8 @@ description: >-
   documented; partner and supplier integrations are managed privately.
 apis: []
 common:
+  - type: DomainSecurity
+    url: security/caseys-general-stores-domain-security.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/caseys
   - type: Website
