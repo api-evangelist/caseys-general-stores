@@ -1,0 +1,384 @@
+openapi: 3.0.1
+info:
+  title: TaxApi
+  description: This is the OpenAPI Document on Azure Functions
+  version: '1.0'
+servers:
+- url: https://esl.caseys.io/taxapi
+paths:
+  /Taxes:
+    post:
+      summary: getTaxes
+      operationId: getTaxes
+      requestBody:
+        description: The tax request.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/getTaxRequestModel'
+            example:
+              taxes:
+              - uniqueIdentifier: string
+                itemUpc: string
+                taxCollected: 0
+                storeNumber: 0
+                saleDate: string
+      responses:
+        '200':
+          description: The OK response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getTaxResponseModel'
+              example:
+                items:
+                - uniqueIdentifier: string
+                  itemUpc: string
+                  storeNumber: 0
+                  saleDate: string
+                  taxes:
+                  - taxId: 0
+                    taxCode: string
+                    taxRate: 0
+                    taxAmount: 0
+        '400':
+          description: The bad request response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/validationProblemDetails'
+              example:
+                errors: {}
+                type: string
+                title: string
+                status: 0
+                detail: string
+                instance: string
+                extensions: {}
+        '500':
+          description: The error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/problemDetails'
+              example:
+                type: string
+                title: string
+                status: 0
+                detail: string
+                instance: string
+                extensions: {}
+  /stores/{storeNumber}/tax-strategies:
+    get:
+      summary: getTaxStrategies
+      operationId: getTaxStrategies
+      parameters:
+      - name: storeNumber
+        in: path
+        description: The store to get tax strategies for.
+        required: true
+        schema:
+          type: integer
+      - name: isActive
+        in: query
+        description: A flag used to filter tax strategies based on their status. When set to true, the endpoint
+          returns active tax strategies. When set to false, it returns inactive tax strategies.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: The OK response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/taxStrategyResponseModel'
+              example:
+              - data:
+                - taxBracketId: 0
+                  taxBracketDescription: string
+                  taxId: 0
+                  isActive: true
+  /stores/{storeNumber}/tax-levels:
+    get:
+      summary: getTaxLevels
+      operationId: getTaxLevels
+      parameters:
+      - name: storeNumber
+        in: path
+        description: The store to get tax levels for.
+        required: true
+        schema:
+          type: integer
+      - name: includeInactive
+        in: query
+        description: A flag used to include inactive tax levels. When set to true, the endpoint returns active and
+          inactive tax levels. When set to false, it only returns active tax levels.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: The OK response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/taxLevelResponseModel'
+              example:
+              - taxId: string
+                storeNumber: 0
+                description: string
+                rate: 0
+                isActive: true
+  /stores/{storeNumber}/compound-taxes:
+    get:
+      summary: getCompoundTaxes
+      operationId: getCompoundTaxes
+      parameters:
+      - name: storeNumber
+        in: path
+        description: The store to get compound taxes for.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: The OK response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/compoundTaxResponseModel'
+              example:
+              - data:
+                - storeNumber: 0
+                  jurisdiction: string
+                  rate: 0
+                  applicationOrder: 0
+                  appliedToTaxID: 0
+                  compoundTaxID: 0
+  /openapi/V3.json:
+    get:
+      summary: Get OpenApi Specification
+      description: Gets the OpenApi specification in V3.json format with the parameters .
+      operationId: getOpenApiSpec
+      responses:
+        '200':
+          description: ''
+components:
+  schemas:
+    compoundTax:
+      type: object
+      properties:
+        storeNumber:
+          type: integer
+          description: The store identifier.
+          format: int32
+        jurisdiction:
+          type: string
+          description: 'The tax jurisdiction (ex: OT, OC). This is not guaranteed to be unique.'
+        rate:
+          type: number
+          description: The rate of the compound tax.
+          format: double
+        applicationOrder:
+          type: integer
+          description: The order in which the compound tax is applied.
+          format: int32
+        appliedToTaxID:
+          type: integer
+          description: The identifier of the tax to which this compound tax is applied.
+          format: int32
+        compoundTaxID:
+          type: integer
+          description: The identifier of the compound tax.
+          format: int32
+    compoundTaxResponseModel:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/compoundTax'
+          description: The data collection.
+    getTaxRequestModel:
+      type: object
+      properties:
+        taxes:
+          type: array
+          items:
+            $ref: '#/components/schemas/taxRequestModel'
+          description: List of items to get tax information for.
+    getTaxResponseModel:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/itemResponseModel'
+          description: List of returned tax information broken out by jurisdiction.
+    itemResponseModel:
+      type: object
+      properties:
+        uniqueIdentifier:
+          type: string
+          description: The identifier provided by the request.
+          format: uuid
+        itemUpc:
+          type: string
+        storeNumber:
+          type: integer
+          description: A valid PriceBook store number.
+          format: int32
+        saleDate:
+          type: string
+          description: The date the item was sold.
+          format: date-time
+        taxes:
+          type: array
+          items:
+            $ref: '#/components/schemas/taxResponseModel'
+    list_string:
+      type: array
+      items:
+        type: string
+    problemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+        instance:
+          type: string
+        extensions:
+          type: object
+          additionalProperties:
+            type: object
+    taxLevelResponseModel:
+      type: object
+      properties:
+        taxId:
+          type: string
+          description: The identifier of the tax information.
+        storeNumber:
+          type: integer
+          description: The store identifier.
+          format: int32
+        description:
+          type: string
+          description: The definition of the tax level.
+        rate:
+          type: number
+          description: The rate of taxes.
+          format: double
+        isActive:
+          type: boolean
+          description: A flag to determine if the tax level is active or inactive.
+    taxRequestModel:
+      type: object
+      properties:
+        uniqueIdentifier:
+          type: string
+          description: Used to make each item unique even if they share the same upc.
+          format: uuid
+        itemUpc:
+          type: string
+        taxCollected:
+          type: number
+          description: The full amount of tax collected for the item.
+          format: double
+        storeNumber:
+          type: integer
+          format: int32
+        saleDate:
+          type: string
+          description: The date the item was sold.
+          format: date-time
+    taxResponseModel:
+      type: object
+      properties:
+        taxId:
+          type: integer
+          description: The identifier of the tax jurisdiction.
+          format: int32
+        taxCode:
+          type: string
+          description: 'The tax jurisdiction (ex: ST, CO, LO). This is not guaranteed to be unique.'
+        taxRate:
+          type: number
+          description: The tax percentage for the jurisdiction; represented as a decimal between 0 and 1.
+          format: double
+        taxAmount:
+          type: number
+          description: The portion of tax that goes to the jurisdiction.
+          format: double
+    taxStrategy:
+      type: object
+      properties:
+        taxBracketId:
+          type: integer
+          description: The identifier of the tax strategy information.
+          format: int32
+        taxBracketDescription:
+          type: string
+          description: The definition of the tax strategy.
+        taxId:
+          type: integer
+          description: The ids of associated tax types
+          format: int32
+        isActive:
+          type: boolean
+          description: A flag to determine if the tax strategy is active or inactive.
+    taxStrategyResponseModel:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/taxStrategy'
+          description: The data collection.
+    validationProblemDetails:
+      type: object
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/list_string'
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+        instance:
+          type: string
+        extensions:
+          type: object
+          additionalProperties:
+            type: object
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+security:
+- apiKeyHeader: []
+- apiKeyQuery: []

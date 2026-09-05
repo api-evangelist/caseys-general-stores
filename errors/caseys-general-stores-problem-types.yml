@@ -1,0 +1,77 @@
+generated: '2026-09-05'
+method: derived
+source: openapi/ (21 documents, 158 operations) — 4xx/5xx responses; enriched from the response schemas
+  and examples declared in those documents
+format: bespoke — three distinct error envelopes; NOT rfc9457
+envelopes:
+- name: apiError
+  media_type: application/json
+  shape:
+    code: integer — status code of the error
+    message: string — message that describes the error
+  used_by: 19 of 21 APIs (81 error responses)
+- name: problemDetails / validationProblemDetails
+  media_type: application/json
+  shape:
+    type: string
+    title: string
+    status: integer (nullable)
+    detail: string
+    instance: string
+    extensions: object
+    errors: object of field -> [messages] (validationProblemDetails only)
+  used_by: SupplierApi, StoreMessagingApi (5 error responses)
+  note: RFC 7807 member set served under application/json rather than application/problem+json.
+- name: statusReturn
+  media_type: application/json
+  shape:
+    timestamp: date-time
+    result: integer enum 0-12
+    message: string
+  used_by: CasApi, CasGatewayApi POS document ingestion (18 responses)
+  note: The result enum values 0-12 are declared but NOT documented — an integrator cannot map a result
+    code to a meaning from the contract alone. This is the single biggest error-semantics gap in the estate.
+problem_types:
+- status: 400
+  title: Bad Request
+  occurrences: 25
+  remediation: Validation failure on the request body or query parameters. ItsmApi declares worked bad-request
+    examples (createIncidentBadRequestExample, updateIncidentBadRequestExample, addAttachmentBadRequestExample);
+    other APIs return apiError.
+- status: 401
+  title: Unauthorized
+  occurrences: 4
+  remediation: 'Missing or invalid APIM subscription key. Observed live on https://esl.caseys.io/fuelpriceapi/heartbeat:
+    {"statusCode":401,"message":"Unauthorized. Access token is missing or invalid."} — note the gateway
+    envelope ({statusCode,message}) differs again from all three documented envelopes.'
+  method: probed
+  probed: '2026-09-05'
+- status: 403
+  title: Forbidden
+  occurrences: 4
+  remediation: Subscription key is valid but not entitled to the requested API product.
+- status: 404
+  title: Not Found
+  occurrences: 25
+  remediation: Store number, document id, incident or item not found. Gateway-level 404s return {"statusCode":404,"message":"Resource
+    not found"}.
+- status: 413
+  title: Payload Too Large
+  occurrences: 3
+  remediation: POS journal/report document exceeds the accepted size. Declared on CasApi/CasGatewayApi
+    document ingestion only.
+- status: 500
+  title: Internal Server Error
+  occurrences: 67
+  remediation: Retry with backoff; quote the x-correlation-id sent on the request.
+- status: 503
+  title: Service Unavailable
+  occurrences: 3
+  remediation: Declared on heartbeat operations when a dependency health check fails.
+coverage:
+  operations: 158
+  operations_with_4xx: 5
+  error_responses_declared: 131
+  note: 156 of 158 operations declare a 2xx; 67 declare a 500; only 25 declare a 400 and only 4 declare
+    a 401 — the majority of operations document no authentication failure at all even though every one
+    of them requires a subscription key.

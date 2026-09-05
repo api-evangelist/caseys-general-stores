@@ -1,0 +1,11 @@
+generated: '2026-09-05'
+method: searched
+source: registry.npmjs.org search, PyPI, NuGet, Maven Central, RubyGems, pkg.go.dev, crates.io, Packagist
+  + the developer portal (2026-09-05)
+package_count: 0
+packages: []
+note: 'No first-party client library exists for any of the 21 APIs. The npm search for "caseys" returns
+  only @caseys-npm/hear-say, a macOS text-to-speech wrapper published by an unrelated individual (maintainer
+  casey.spain@gmail.com, repo github.com/caseys/hear-say) — explicitly NOT Casey''s General Stores, and
+  not recorded as a package for this provider. The developer portal publishes no SDK section. No SDKs
+  pointer is emitted: sdk_count is a genuine zero.'

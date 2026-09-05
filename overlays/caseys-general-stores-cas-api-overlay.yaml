@@ -1,0 +1,41 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist overlay for CasApi
+  version: 1.0.0
+extends: openapi/caseys-general-stores-cas-api-openapi.yml
+x-generated: '2026-09-05'
+x-method: derived
+x-source: openapi/caseys-general-stores-cas-api-openapi.yml + conventions/caseys-general-stores-conventions.yml
+  + errors/caseys-general-stores-problem-types.yml + lifecycle/caseys-general-stores-lifecycle.yml
+actions:
+- target: $.info
+  description: Record the provenance of this contract and the cross-cutting semantics API Evangelist measured
+    across the estate.
+  update:
+    x-api-evangelist-source: https://developer.esl.caseys.io/mapi/apis/<apiId>?export=true&format=openapi+json&api-version=2022-08-01
+    x-api-evangelist-harvested: '2026-09-05'
+    x-gateway: Azure API Management, https://esl.caseys.io
+    x-error-envelope-note: Errors are served as application/json, never application/problem+json. See
+      errors/caseys-general-stores-problem-types.yml.
+    x-rate-limit-note: No rate limit is documented and none is observable on live responses. See rate-limits/caseys-general-stores-rate-limits.yml.
+- target: $.components.securitySchemes['apiKeyHeader']
+  description: Say where the key comes from — the spec declares the header but not how to obtain a value
+    for it.
+  update:
+    description: Azure API Management subscription key. Request one per API from the Casey's developer
+      portal at https://developer.esl.caseys.io/ (sign-in required). Each API is fronted by its own APIM
+      product, so a key for one API does not authorise another.
+- target: $.paths['/report'].post
+  description: Record the agent-safety properties of this write, which the contract does not state.
+  update:
+    x-idempotency: none
+    x-reversible: false
+    x-agent-note: No Idempotency-Key mechanism and no reversal operation is published for this write.
+      A retry after a timeout may duplicate the effect and it cannot be undone through the API.
+- target: $.paths['/journal'].post
+  description: Record the agent-safety properties of this write, which the contract does not state.
+  update:
+    x-idempotency: none
+    x-reversible: false
+    x-agent-note: No Idempotency-Key mechanism and no reversal operation is published for this write.
+      A retry after a timeout may duplicate the effect and it cannot be undone through the API.

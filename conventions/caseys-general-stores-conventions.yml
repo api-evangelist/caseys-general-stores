@@ -1,0 +1,117 @@
+generated: '2026-09-05'
+method: derived
+source: openapi/ (21 documents, 158 operations) + https://developer.esl.caseys.io/ home page + live probes
+  of https://esl.caseys.io (2026-09-05)
+summary: Casey's exposes 21 REST APIs and 8 GraphQL endpoints through one Azure API Management gateway
+  at esl.caseys.io. Every call is authorised by an APIM subscription key. The estate is read-heavy; the
+  write surface is POS document ingestion, ITSM incidents, tank-level readings, store messaging and store-agent
+  registration.
+authentication:
+  style: api_key
+  header: Ocp-Apim-Subscription-Key
+  query_alternative: subscription-key
+  note: 'Azure API Management subscription key, one product per API (23 products published, all with subscriptionRequired:
+    true and approvalRequired: false). A key is requested per API from the developer portal.'
+  see: authentication/caseys-general-stores-authentication.yml
+pagination:
+  style: offset
+  params:
+  - limit
+  - offset
+  also_seen:
+  - Limit
+  - Offset
+  operations: 24
+  response_fields: tankLevelGetEndpointPaginatedResultsV1 is the only schema that names itself paginated;
+    the store reads return bare arrays with no total/next envelope.
+  note: Casing is inconsistent across the estate — StoreApi/OldStoreApi use limit/offset, TankLevelApi
+    and ItemApi use Limit/Offset. A client cannot use one pagination helper across the gateway.
+request_tracing:
+  supported: true
+  header: x-correlation-id
+  operations: 12
+  note: Declared as a request header on CasApi, CasGatewayApi and ItsmApi operations. Not declared on
+    the other 18 APIs, and no response correlation header is documented.
+domain_headers:
+  headers:
+  - openretailing-organization-id
+  - openretailing-store-location-id
+  operations: 7
+  note: Conexxus Open Retailing identifiers required on every POS report/journal operation.
+  see: conformance/caseys-general-stores-conformance.yml
+versioning:
+  style: path segment (/v0 /v1 /v2)
+  see: lifecycle/caseys-general-stores-lifecycle.yml
+error_envelope:
+  shapes:
+  - apiError {code,message}
+  - problemDetails / validationProblemDetails (RFC 7807 members, application/json)
+  - statusReturn {timestamp,result,message}
+  - gateway {statusCode,message}
+  media_type: application/json (never application/problem+json)
+  see: errors/caseys-general-stores-problem-types.yml
+rate_limit_signaling:
+  documented: false
+  headers: []
+  status_on_exhaustion: null
+  note: No rate limit is documented and no RateLimit-*, X-RateLimit-* or Retry-After header was observed
+    on live anonymous responses from https://esl.caseys.io (401 and 404 responses carry only Content-Type,
+    Content-Length and Date). Azure APIM can enforce quotas via policy, but nothing in the published contract
+    or the anonymously readable catalogue states one.
+  see: rate-limits/caseys-general-stores-rate-limits.yml
+idempotency:
+  coverage: none
+  documented: false
+  header: null
+  note: Zero matches for "idempoten" across all 21 OpenAPI documents. None of the 14 genuinely mutating
+    operations declares an Idempotency-Key header or any replay-protection mechanism.
+  agent_risk: A retry after a timeout on POST /journal, POST /report or POST /v1/tanklevel/addlevels can
+    duplicate a POS journal document or a tank reading; POST /v1/incidents can open a duplicate ITSM incident.
+    There is no documented safe replay primitive on any write in this estate.
+reversibility:
+  grade: none
+  write_operations: 14
+  reversal_operations: []
+  note: No cancel, void, refund, reverse, undo, rollback, restore or delete operation exists anywhere
+    in the 158 published operations — the estate declares 134 GET, 23 POST and 1 PUT, and not a single
+    DELETE. POST /journal/reconciliation on CasGatewayApi is a reconciliation submission, not a reversal,
+    and the contract does not describe it as one. Nothing states a correction window for a submitted POS
+    document, an added tank level, or a created incident.
+  not_asserted: No reversal window is claimed here because Casey's publishes none. An integrator must
+    treat every write in this estate as final.
+  write_operations_note: 24 POST/PUT operations are declared, but 8 of them are the GraphQL endpoints
+    and 2 are POST-shaped reads (getFuelPricesByStoreNumbers, getTaxes), leaving 14 genuinely mutating
+    operations.
+dry_run_mode:
+  supported: false
+  note: No dry-run, preview or validate-only parameter is declared on any operation. A UAT environment
+    exists instead — see sandbox/.
+field_selection:
+  supported: partial
+  note: The 8 GraphQL endpoints provide arbitrary field selection; the REST surface offers filter parameters
+    (ItemStatuses, PreferredItemsOnly, propertyStatus, storeBrand, Classification) but no sparse-fieldsets
+    or expand parameter.
+query_interfaces:
+- style: rest
+  base_url: https://esl.caseys.io/<api-path>
+  apis: 21
+  operations: 158
+- style: graphql
+  endpoints:
+  - https://esl.caseys.io/digitalproductionplannerapi/graphql
+  - https://esl.caseys.io/itemapi/graphql
+  - https://esl.caseys.io/kitchensupplyorderingapi/graphql
+  - https://esl.caseys.io/powerinventoryapi/graphql
+  - https://esl.caseys.io/productionplannerapi/graphql
+  - https://esl.caseys.io/shelflabelprintapi/graphql
+  - https://esl.caseys.io/supplierapi/graphql
+  - https://esl.caseys.io/vendorcheckinapi/graphql
+  introspection: gated
+  note: POST {"query":"{__schema{queryType{name}}}"} to https://esl.caseys.io/itemapi/graphql returned
+    HTTP 401 {"statusCode":401,"message":"Unauthorized. Access token is missing or invalid."} on 2026-09-05.
+    The SDL requires an authenticated introspection call and is NOT captured in this repo — no graphql/
+    artifact is written rather than a guessed schema.
+self_describing:
+  note: 18 of the 21 APIs expose their own OpenAPI at GET /openapi/V3.json (or /swagger/v1/swagger.json
+    on StoreNumberApi). Anonymously readable for casapi, casgatewayapi, itemapi, taxapi and supplierapi;
+    404 or 500 for the rest.

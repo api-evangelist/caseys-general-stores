@@ -1,0 +1,728 @@
+openapi: 3.0.1
+info:
+  title: ItsmApi
+  description: An API to manage incidents in ITSM tool.
+  version: '1.0'
+servers:
+- url: https://esl.caseys.io/itsmapi
+paths:
+  /v1/incidents:
+    post:
+      tags:
+      - incident
+      summary: v1 Creates an incident's data.
+      description: Creates the data for a specific incident.
+      operationId: createIncident
+      requestBody:
+        description: Data used to create the specified incident.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createIncidentParameterModel'
+            example:
+              incidentId: string
+              operation: string
+              origin: string
+              target: string
+              externalId: string
+              location: string
+              summary: string
+              description: string
+              category: string
+              subcategory: string
+              assignmentGroup: string
+              comment:
+                id: string
+                origin: string
+                externalId: string
+                comment: string
+                postedBy: string
+                postedOn: string
+              priority: string
+              techOnSite: true
+              status: string
+              lastUpdated: string
+              assignedTo:
+                id: string
+                displayName: string
+                email: string
+              requestedBy:
+                id: string
+                displayName: string
+                email: string
+      responses:
+        '200':
+          description: The status of the create operation. 200 if successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createIncidentParameterModel'
+              example:
+                incidentId: string
+                operation: string
+                origin: string
+                target: string
+                externalId: string
+                location: string
+                summary: string
+                description: string
+                category: string
+                subcategory: string
+                assignmentGroup: string
+                comment:
+                  id: string
+                  origin: string
+                  externalId: string
+                  comment: string
+                  postedBy: string
+                  postedOn: string
+                priority: string
+                techOnSite: true
+                status: string
+                lastUpdated: string
+                assignedTo:
+                  id: string
+                  displayName: string
+                  email: string
+                requestedBy:
+                  id: string
+                  displayName: string
+                  email: string
+        '400':
+          description: Create operation failed with bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createIncidentBadRequestExample'
+              example:
+                examples: {}
+        '401':
+          description: The status of the unauthorized. 401 if unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createIncidentParameterModel'
+              example:
+                incidentId: string
+                operation: string
+                origin: string
+                target: string
+                externalId: string
+                location: string
+                summary: string
+                description: string
+                category: string
+                subcategory: string
+                assignmentGroup: string
+                comment:
+                  id: string
+                  origin: string
+                  externalId: string
+                  comment: string
+                  postedBy: string
+                  postedOn: string
+                priority: string
+                techOnSite: true
+                status: string
+                lastUpdated: string
+                assignedTo:
+                  id: string
+                  displayName: string
+                  email: string
+                requestedBy:
+                  id: string
+                  displayName: string
+                  email: string
+        '500':
+          description: Create operation failed with internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createIncidentBadRequestExample'
+              example:
+                examples: {}
+    put:
+      tags:
+      - incident
+      summary: v1 Updates an incident's data.
+      description: Updates the data for a specific incident.
+      operationId: updateIncidentById
+      requestBody:
+        description: Data used to update the specified incident.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateIncidentParameterModel'
+            example:
+              incidentId: string
+              operation: string
+              origin: string
+              target: string
+              externalId: string
+              location: string
+              summary: string
+              description: string
+              category: string
+              subcategory: string
+              assignmentGroup: string
+              comment:
+                id: string
+                origin: string
+                externalId: string
+                comment: string
+                postedBy: string
+                postedOn: string
+              priority: string
+              techOnSite: true
+              status: string
+              lastUpdated: string
+              assignedTo:
+                id: string
+                displayName: string
+                email: string
+              requestedBy:
+                id: string
+                displayName: string
+                email: string
+      responses:
+        '200':
+          description: The status of the update operation. 200 if successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/updateIncidentParameterModel'
+              example:
+                incidentId: string
+                operation: string
+                origin: string
+                target: string
+                externalId: string
+                location: string
+                summary: string
+                description: string
+                category: string
+                subcategory: string
+                assignmentGroup: string
+                comment:
+                  id: string
+                  origin: string
+                  externalId: string
+                  comment: string
+                  postedBy: string
+                  postedOn: string
+                priority: string
+                techOnSite: true
+                status: string
+                lastUpdated: string
+                assignedTo:
+                  id: string
+                  displayName: string
+                  email: string
+                requestedBy:
+                  id: string
+                  displayName: string
+                  email: string
+        '400':
+          description: Update operation failed with bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/updateIncidentBadRequestExample'
+              example:
+                examples: {}
+        '401':
+          description: The status of the unauthorized. 401 if unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/updateIncidentParameterModel'
+              example:
+                incidentId: string
+                operation: string
+                origin: string
+                target: string
+                externalId: string
+                location: string
+                summary: string
+                description: string
+                category: string
+                subcategory: string
+                assignmentGroup: string
+                comment:
+                  id: string
+                  origin: string
+                  externalId: string
+                  comment: string
+                  postedBy: string
+                  postedOn: string
+                priority: string
+                techOnSite: true
+                status: string
+                lastUpdated: string
+                assignedTo:
+                  id: string
+                  displayName: string
+                  email: string
+                requestedBy:
+                  id: string
+                  displayName: string
+                  email: string
+        '500':
+          description: Update operation failed with internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/updateIncidentBadRequestExample'
+              example:
+                examples: {}
+  /v1/heartbeat:
+    get:
+      tags:
+      - heartbeat
+      summary: v1 Gets the health of the API
+      description: Interrogates the state of the API and its dependencies to return the API health.
+      operationId: getHeartbeatV1
+      responses:
+        '200':
+          description: The status of the APIs health. Healthy if all dependency health checks pass. Unhealthy if
+            any dependency's health check fails, or if an exception occurs.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/heartbeatReport'
+              example:
+                status: string
+        '401':
+          description: The status of the unauthorized. 401 if unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/heartbeatReport'
+              example:
+                status: string
+  /v1/incidents/attachments:
+    post:
+      tags:
+      - incident
+      summary: v1 Add an attachment to an existing incident
+      description: Add an attachment to a specific incident.
+      operationId: addAttachment
+      requestBody:
+        description: Data used to add an attachment to specified incident.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/attachmentParameterModel'
+            example:
+              incidentId: string
+              origin: string
+              target: string
+              operation: string
+              externalId: string
+              attachmentId: string
+              fileName: string
+              fileLocation: string
+              fileType: string
+              contentType: string
+      responses:
+        '200':
+          description: The status of the add attachment operation. 200 if successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/attachmentParameterModel'
+              example:
+                incidentId: string
+                origin: string
+                target: string
+                operation: string
+                externalId: string
+                attachmentId: string
+                fileName: string
+                fileLocation: string
+                fileType: string
+                contentType: string
+        '400':
+          description: Add attachment operation failed with bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/addAttachmentBadRequestExample'
+              example:
+                examples: {}
+        '401':
+          description: The status of the unauthorized. 401 if unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/attachmentParameterModel'
+              example:
+                incidentId: string
+                origin: string
+                target: string
+                operation: string
+                externalId: string
+                attachmentId: string
+                fileName: string
+                fileLocation: string
+                fileType: string
+                contentType: string
+        '500':
+          description: Add attachment operation failed with internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/addAttachmentBadRequestExample'
+              example:
+                examples: {}
+  /openapi/V3.json:
+    get:
+      summary: Get OpenApi Specification
+      description: Gets the OpenApi specification in V3.json format with the parameters .
+      operationId: getOpenApiSpec
+      responses:
+        '200':
+          description: ''
+components:
+  schemas:
+    addAttachmentBadRequestExample:
+      type: object
+      properties:
+        examples:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/openApiExample'
+    assignedToModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Assigned to user id.
+        displayName:
+          type: string
+          description: Assigned to user display name.
+        email:
+          type: string
+          description: Assigned to user email id.
+      description: Assigned to User details.
+    attachmentParameterModel:
+      required:
+      - incidentId
+      - origin
+      - target
+      - operation
+      - attachmentId
+      - fileName
+      type: object
+      properties:
+        incidentId:
+          minLength: 1
+          type: string
+          description: The unique identifier of the incident to get data about.
+        origin:
+          minLength: 1
+          type: string
+          description: The origin of the incident.
+        target:
+          minLength: 1
+          type: string
+          description: The origin of the incident.
+        operation:
+          minLength: 1
+          type: string
+          description: Operation indicates create or update
+        externalId:
+          type: string
+          description: Unique Correlation Id of incident.
+        attachmentId:
+          minLength: 1
+          type: string
+          description: Unique Id of attachment of incident.
+        fileName:
+          minLength: 1
+          type: string
+          description: Attachment file name
+        fileLocation:
+          type: string
+          description: Attachment file location
+        fileType:
+          type: string
+          description: Attachment file type
+        contentType:
+          type: string
+          description: Attachment content type
+    commentModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: comment id.
+        origin:
+          type: string
+          description: The origin of the incident.
+        externalId:
+          type: string
+          description: Unique Correlation Id of incident.
+        comment:
+          type: string
+          description: Comment added in the incident.
+        postedBy:
+          type: string
+          description: Comment posted by.
+        postedOn:
+          type: string
+          description: Comment posted on.
+      description: The Comment of incident.
+    createIncidentBadRequestExample:
+      type: object
+      properties:
+        examples:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/openApiExample'
+    createIncidentParameterModel:
+      required:
+      - incidentId
+      - operation
+      - origin
+      - target
+      - summary
+      - description
+      - assignmentGroup
+      - status
+      - requestedBy
+      type: object
+      properties:
+        incidentId:
+          minLength: 1
+          type: string
+          description: The unique identifier of the incident to get data about.
+        operation:
+          minLength: 1
+          type: string
+          description: Operation indicates create or update
+        origin:
+          minLength: 1
+          type: string
+          description: The origin of the incident.
+        target:
+          minLength: 1
+          type: string
+          description: The target of the incident.
+        externalId:
+          type: string
+          description: Unique Correlation Id of incident.
+        location:
+          type: string
+          description: Location of incident.
+        summary:
+          minLength: 1
+          type: string
+          description: The summary of the incident.
+        description:
+          minLength: 1
+          type: string
+          description: The description of the incident.
+        category:
+          type: string
+          description: The category of incident.
+        subcategory:
+          type: string
+          description: The subcategory of incident.
+        assignmentGroup:
+          minLength: 1
+          type: string
+          description: The assignment group of incident.
+        comment:
+          $ref: '#/components/schemas/commentModel'
+        priority:
+          type: string
+          description: The priority of the incident.
+        techOnSite:
+          type: boolean
+          description: The TechOnSite of incident.
+        status:
+          minLength: 1
+          type: string
+          description: Status of incident.
+        lastUpdated:
+          type: string
+          description: Last Update of incident.
+        assignedTo:
+          $ref: '#/components/schemas/assignedToModel'
+        requestedBy:
+          $ref: '#/components/schemas/requestedByModel'
+    heartbeatReport:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Description of the current status of dependencies of the API.
+    iOpenApiAny:
+      type: object
+      properties:
+        anyType:
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          type: integer
+          format: int32
+          default: 0
+    iOpenApiExtension:
+      type: object
+    openApiExample:
+      type: object
+      properties:
+        summary:
+          type: string
+        description:
+          type: string
+        value:
+          $ref: '#/components/schemas/iOpenApiAny'
+        externalValue:
+          type: string
+        extensions:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/iOpenApiExtension'
+        reference:
+          $ref: '#/components/schemas/openApiReference'
+        unresolvedReference:
+          type: boolean
+    openApiReference:
+      type: object
+      properties:
+        externalResource:
+          type: string
+        type:
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          - 7
+          - 8
+          - 9
+          type: integer
+          format: int32
+          default: 0
+          nullable: true
+        id:
+          type: string
+        isExternal:
+          type: boolean
+        isLocal:
+          type: boolean
+        referenceV3:
+          type: string
+        referenceV2:
+          type: string
+    requestedByModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Requested by user id.
+        displayName:
+          type: string
+          description: Requested by user display name.
+        email:
+          type: string
+          description: Requested by user email id.
+      description: Requested User details.
+    updateIncidentBadRequestExample:
+      type: object
+      properties:
+        examples:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/openApiExample'
+    updateIncidentParameterModel:
+      required:
+      - incidentId
+      - operation
+      - origin
+      - target
+      - summary
+      - description
+      - assignmentGroup
+      - status
+      - requestedBy
+      type: object
+      properties:
+        incidentId:
+          minLength: 1
+          type: string
+          description: The unique identifier of the incident to get data about.
+        operation:
+          minLength: 1
+          type: string
+          description: Operation indicates create or update
+        origin:
+          minLength: 1
+          type: string
+          description: The origin of the incident.
+        target:
+          minLength: 1
+          type: string
+          description: The target of the incident.
+        externalId:
+          type: string
+          description: Unique Correlation Id of incident.
+        location:
+          type: string
+          description: Location of incident.
+        summary:
+          minLength: 1
+          type: string
+          description: The summary of the incident.
+        description:
+          minLength: 1
+          type: string
+          description: The description of the incident.
+        category:
+          type: string
+          description: The category of incident.
+        subcategory:
+          type: string
+          description: The subcategory of incident.
+        assignmentGroup:
+          minLength: 1
+          type: string
+          description: The assignment group of incident.
+        comment:
+          $ref: '#/components/schemas/commentModel'
+        priority:
+          type: string
+          description: The priority of the incident.
+        techOnSite:
+          type: boolean
+          description: The TechOnSite of incident.
+        status:
+          minLength: 1
+          type: string
+          description: Status of incident.
+        lastUpdated:
+          type: string
+          description: Last Update of incident.
+        assignedTo:
+          $ref: '#/components/schemas/assignedToModel'
+        requestedBy:
+          $ref: '#/components/schemas/requestedByModel'
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+security:
+- apiKeyHeader: []
+- apiKeyQuery: []

@@ -1,0 +1,166 @@
+generated: '2026-09-05'
+method: derived
+source: openapi/ (21 documents) + the anonymous Azure API Management catalogue at https://developer.esl.caseys.io/mapi/apis?api-version=2022-08-01
+  (probed 2026-09-05)
+versioning:
+  scheme: path-segment major version (/v0, /v1, /v2) inside each API, plus Azure API Management API revisions
+  observed:
+  - v0 (deprecated)
+  - v1
+  - v2
+  note: Version is carried in the path and mirrored in operationId suffixes (getStoreByIdV0 / getStoreByIdV1).
+    CasApi and CasGatewayApi additionally state that the API major version mirrors the major version of
+    the implemented Conexxus POS Activity Reporting API standard.
+  revisions:
+    mechanism: Azure APIM API revisions
+    observed_count: 112
+    note: The catalogue exposes 133 API entries, of which 21 are current and 112 are named revisions of
+      the form CasApi;rev=Automated-Pipeline-188644 — evidence of an automated release pipeline publishing
+      revisions, but not a human-readable changelog.
+deprecation:
+  policy_published: false
+  sunset_header: false
+  rfc8594: false
+  signal: OpenAPI tag "deprecated" plus operation summaries naming the replacement operation
+  deprecated_operation_count: 24
+  note: 24 operations are marked deprecated in the contract — the entire v0 surface of StoreApi and its
+    OldStoreApi twin. No Sunset or Deprecation response header, no retirement date, and no written deprecation
+    policy is published anywhere, so an integrator can see WHAT is deprecated but not WHEN it goes away.
+    StoreMessagingApi additionally deprecates POST /print/tickets and POST /v1/register in prose, pointing
+    at v1/stores/{storeNumber}/messages and v2/stores/{storeNumber}/register respectively.
+deprecated_operations:
+- spec: openapi/caseys-general-stores-old-store-api-openapi.yml
+  method: GET
+  path: /brands
+  operationId: getBrandsV0
+  reason: v0 Gets a list of store branding styles [DEPRECATED]
+- spec: openapi/caseys-general-stores-old-store-api-openapi.yml
+  method: GET
+  path: /organizational/districts/{districtId}
+  operationId: getDistrictByIdV0
+  reason: v0 Gets a district's data [DEPRECATED]
+- spec: openapi/caseys-general-stores-old-store-api-openapi.yml
+  method: GET
+  path: /organizational/districts
+  operationId: getDistrictsV0
+  reason: v0 Gets a list of districts [DEPRECATED]
+- spec: openapi/caseys-general-stores-old-store-api-openapi.yml
+  method: GET
+  path: /organizational/divisions/{divisionId}
+  operationId: getDivisionByIdV0
+  reason: v0 Gets a division's information [DEPRECATED]
+- spec: openapi/caseys-general-stores-old-store-api-openapi.yml
+  method: GET
+  path: /organizational/divisions
+  operationId: getDivisionsV0
+  reason: v0 Gets a list of divisions [DEPRECATED]
+- spec: openapi/caseys-general-stores-old-store-api-openapi.yml
+  method: GET
+  path: /store/{storeNumber}/organizational
+  operationId: getStoreOrganizationByIdV0
+  reason: v0 Gets a store's organizational hierarchy [DEPRECATED]
+- spec: openapi/caseys-general-stores-old-store-api-openapi.yml
+  method: GET
+  path: /organizational/regions/{regionId}
+  operationId: getRegionByIdV0
+  reason: v0 Gets a region's data [DEPRECATED]
+- spec: openapi/caseys-general-stores-old-store-api-openapi.yml
+  method: GET
+  path: /organizational/regions
+  operationId: getRegionsV0
+  reason: v0 Gets a list of regions [DEPRECATED]
+- spec: openapi/caseys-general-stores-old-store-api-openapi.yml
+  method: GET
+  path: /store/{storeNumber}
+  operationId: getStoreByIdV0
+  reason: v0 Gets a store's data [DEPRECATED]
+- spec: openapi/caseys-general-stores-old-store-api-openapi.yml
+  method: GET
+  path: /store/{storeNumber}/hours
+  operationId: getHoursByStoreV0
+  reason: v0 Gets a store's hours [DEPRECATED]
+- spec: openapi/caseys-general-stores-old-store-api-openapi.yml
+  method: GET
+  path: /store/hours
+  operationId: getAllStoreHoursV0
+  reason: v0 Gets all store hours for a list of paginated stores [DEPRECATED]
+- spec: openapi/caseys-general-stores-old-store-api-openapi.yml
+  method: GET
+  path: /store
+  operationId: getAllStoresV0
+  reason: v0 Gets store data for a list of paginated stores [DEPRECATED]
+- spec: openapi/caseys-general-stores-store-api-openapi.yml
+  method: GET
+  path: /brands
+  operationId: getBrandsV0
+  reason: v0 Gets a list of store branding styles [DEPRECATED]
+- spec: openapi/caseys-general-stores-store-api-openapi.yml
+  method: GET
+  path: /organizational/districts/{districtId}
+  operationId: getDistrictByIdV0
+  reason: v0 Gets a district's data [DEPRECATED]
+- spec: openapi/caseys-general-stores-store-api-openapi.yml
+  method: GET
+  path: /organizational/districts
+  operationId: getDistrictsV0
+  reason: v0 Gets a list of districts [DEPRECATED]
+- spec: openapi/caseys-general-stores-store-api-openapi.yml
+  method: GET
+  path: /organizational/divisions/{divisionId}
+  operationId: getDivisionByIdV0
+  reason: v0 Gets a division's information [DEPRECATED]
+- spec: openapi/caseys-general-stores-store-api-openapi.yml
+  method: GET
+  path: /organizational/divisions
+  operationId: getDivisionsV0
+  reason: v0 Gets a list of divisions [DEPRECATED]
+- spec: openapi/caseys-general-stores-store-api-openapi.yml
+  method: GET
+  path: /store/{storeNumber}/organizational
+  operationId: getStoreOrganizationByIdV0
+  reason: v0 Gets a store's organizational hierarchy [DEPRECATED]
+- spec: openapi/caseys-general-stores-store-api-openapi.yml
+  method: GET
+  path: /organizational/regions/{regionId}
+  operationId: getRegionByIdV0
+  reason: v0 Gets a region's data [DEPRECATED]
+- spec: openapi/caseys-general-stores-store-api-openapi.yml
+  method: GET
+  path: /organizational/regions
+  operationId: getRegionsV0
+  reason: v0 Gets a list of regions [DEPRECATED]
+- spec: openapi/caseys-general-stores-store-api-openapi.yml
+  method: GET
+  path: /store/{storeNumber}
+  operationId: getStoreByIdV0
+  reason: v0 Gets a store's data [DEPRECATED]
+- spec: openapi/caseys-general-stores-store-api-openapi.yml
+  method: GET
+  path: /store/{storeNumber}/hours
+  operationId: getHoursByStoreV0
+  reason: v0 Gets a store's hours [DEPRECATED]
+- spec: openapi/caseys-general-stores-store-api-openapi.yml
+  method: GET
+  path: /store/hours
+  operationId: getAllStoreHoursV0
+  reason: v0 Gets all store hours for a list of paginated stores [DEPRECATED]
+- spec: openapi/caseys-general-stores-store-api-openapi.yml
+  method: GET
+  path: /store
+  operationId: getAllStoresV0
+  reason: v0 Gets store data for a list of paginated stores [DEPRECATED]
+status_page:
+  published: false
+  evidence: status.caseys.com does not resolve (2026-09-05). Each API instead ships its own GET /heartbeat
+    or GET /v1/heartbeat health operation, which requires a subscription key (401 anonymously).
+  heartbeat_operations: 22
+changelog:
+  published: gated
+  evidence: https://developer.esl.caseys.io/api-changelog is listed in the portal sitemap.xml (HTTP 200)
+    but returns the portal 404 page anonymously — the page exists and is restricted to signed-in developers.
+  note: 'No ChangeLog pointer is emitted: the page is not publicly readable, so a pointer would assert
+    a surface an unauthenticated integrator cannot reach.'
+sla:
+  published: false
+  evidence: No SLA, uptime commitment or support-response target is published on the developer portal
+    home page or anywhere on caseys.com that was reachable.

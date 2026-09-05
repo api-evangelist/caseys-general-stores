@@ -1,0 +1,39 @@
+generated: '2026-09-05'
+method: probed
+source: https://developer.esl.caseys.io/mapi/products?api-version=2022-08-01 (anonymous Azure APIM product
+  catalogue, probed 2026-09-05)
+plan_count: 0
+plans: []
+note: 'Casey''s publishes no pricing and no commercial plans. The gateway exposes 23 Azure APIM products
+  — one "<ApiName> Default" product per API — every one of them with subscriptionRequired: true, approvalRequired:
+  false, state: published, no subscriptions limit, and an EMPTY description and terms. These are access
+  products, not priced plans: there is no price, no quota, no overage and no tier anywhere in the catalogue
+  or on the portal. This is a B2B partner/supplier estate, and access is obtained by requesting a key
+  per API from the portal.'
+products:
+- BagLabelPrintingApi_default
+- CasApi_default
+- CasGatewayApi_default
+- DevOpsMetricsApi_default
+- DigitalProductionPlannerApi_default
+- fuelpriceapi_default
+- ItemApi_default
+- ItsmApi_default
+- KitchenSupplyOrderingapi_default
+- OldStoreApi_default
+- OrderApi_default
+- PowerInventoryApi_default
+- ProductionPlannerApi_default
+- ShelfLabelPrintApi_default
+- storeapi_default
+- StoreDetailsApi_default
+- StoreMessagingApi_default
+- StoreNumberApi_default
+- SupplierApi_default
+- TankLevelApi_default
+- TaxApi_default
+- TeamMemberApi_default
+- VendorCheckinApi_default
+products_note: Two products — OrderApi_default and BagLabelPrintingApi_default — have no corresponding
+  API visible in the anonymous catalogue. Casey's runs an Order API and a Bag Label Printing API whose
+  contracts are not exposed to unauthenticated visitors, so the estate is at least 23 APIs, not 21.

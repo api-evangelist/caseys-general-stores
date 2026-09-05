@@ -1,0 +1,35 @@
+generated: '2026-09-05'
+method: probed
+source: https://developer.esl.caseys.io/ Getting Started section + live probes of the UAT environment
+  (2026-09-05)
+published: true
+summary: Casey's runs a full UAT mirror of the API estate. The developer portal's Getting Started steps
+  end with "Use the UAT endpoint to test out your API."
+environments:
+- name: production
+  gateway: https://esl.caseys.io
+  portal: https://developer.esl.caseys.io/
+  apis: 21
+  status: live
+- name: uat
+  gateway: https://uat.esl.caseys.io
+  portal: https://developer-uat.esl.caseys.io/
+  apis: 20
+  status: live
+  method: probed
+  evidence: https://developer-uat.esl.caseys.io/ returned HTTP 200 with the same Casey's developer portal,
+    and its anonymous catalogue (/mapi/apis?api-version=2022-08-01) lists 20 of the 21 production APIs
+    (FuelPriceApi is absent from UAT). https://uat.esl.caseys.io/ returns the APIM gateway 404 envelope.
+  note: The UAT gateway host is not named anywhere in the published docs that are readable anonymously
+    — it was found by probing. Casey's should state it on the Getting Started page.
+test_credentials:
+  published: false
+  note: No test key, sandbox key, magic identifier, fixture store number or seeded test data is published.
+    A UAT subscription key must be requested through the portal like a production one.
+test_data: []
+time_simulation:
+  supported: false
+gotchas:
+- The Getting Started page links its Postman collection to https://confluence.caseys.com/display/ESLT1/Postman.
+  That hostname does not resolve on the public internet (NXDOMAIN, 2026-09-05) — the only "try it out"
+  instruction on the portal points at an internal Confluence wiki an external integrator cannot reach.

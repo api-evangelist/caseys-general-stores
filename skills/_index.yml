@@ -1,0 +1,48 @@
+generated: '2026-09-05'
+method: generated
+source: Packaged Agent Skills generated from the 21 OpenAPI documents in openapi/, harvested from Casey's
+  Azure API Management catalogue at developer.esl.caseys.io. Every operationId in every skill was verified
+  verbatim against those documents. Cross-cutting rules cite conventions/, errors/, lifecycle/ and authentication/.
+  No skill was written over the 8 GraphQL endpoints — their schemas are auth-gated and were not introspected.
+skills:
+- file: caseys-general-stores-find-stores-and-hours.md
+  name: Find Casey's stores and their hours
+  api: openapi/caseys-general-stores-store-api-openapi.yml
+  operations:
+  - get-v1-stores
+  - get-v1-stores-storenumber
+  - get-v1-stores-storenumber-hours
+  - get-v1-stores-hours
+  - get-v1-brands
+- file: caseys-general-stores-fuel-price-and-tank-levels.md
+  name: Read fuel prices and tank levels
+  api: openapi/caseys-general-stores-fuel-price-api-openapi.yml
+  operations:
+  - getFuelPricesByStoreNumbers
+  - getMostRecentTankLevels
+  - postTankLevels
+- file: caseys-general-stores-store-pricebook-lookup.md
+  name: Look up items in a store's pricebook
+  api: openapi/caseys-general-stores-item-api-openapi.yml
+  operations:
+  - getItemByStoreNumberV2
+  - getRelatedItemsByUpcV2
+  - getItemByStoreNumberUnbuffered
+  - getSuppliersForStore
+- file: caseys-general-stores-submit-pos-activity-report.md
+  name: Submit a Conexxus POS activity report or journal
+  api: openapi/caseys-general-stores-cas-gateway-api-openapi.yml
+  operations:
+  - post-reports
+  - post-journal
+  - post-journalreconciliation
+  - get-cpjr-document
+  - get-reports
+- file: caseys-general-stores-open-itsm-incident.md
+  name: Open and update an ITSM incident
+  api: openapi/caseys-general-stores-itsm-api-openapi.yml
+  operations:
+  - createIncident
+  - updateIncidentById
+  - addAttachment
+  - getHeartbeatV1

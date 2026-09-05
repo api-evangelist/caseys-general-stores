@@ -1,0 +1,69 @@
+generated: '2026-09-05'
+method: searched
+source: https://developer.esl.caseys.io/ (anonymous APIM catalogue at https://developer.esl.caseys.io/mapi/apis?api-version=2022-08-01)
+  + the 21 exported OpenAPI documents in openapi/
+summary: Casey's B2B API estate runs on Azure API Management at esl.caseys.io. The contracts declare the
+  Conexxus POS Back Office Interface / POS Activity Reporting API standard by name and carry Conexxus
+  Open Retailing correlation headers, which is the domain standard for the convenience-store and fuel-retail
+  market. No OAuth2/OIDC, FAPI, SCIM or OData surface exists — authentication is an APIM subscription
+  key.
+conformance:
+- id: conexxus-pos-back-office-interface
+  conforms: true
+  domain_standard: true
+  evidence: 'info.description of openapi/caseys-general-stores-cas-api-openapi.yml and openapi/caseys-general-stores-cas-gateway-api-openapi.yml:
+    ''API enabling storage of POS Activity Report documents following the Conexxus POS Back Office Interface
+    standard.'''
+  note: Casey’s states the API major version mirrors the major version of the implemented Conexxus POS
+    Activity Reporting API standard.
+- id: conexxus-pos-activity-reporting-api
+  conforms: true
+  domain_standard: true
+  evidence: info.description of openapi/caseys-general-stores-cas-api-openapi.yml and openapi/caseys-general-stores-cas-gateway-api-openapi.yml.
+- id: conexxus-open-retailing
+  conforms: true
+  domain_standard: true
+  evidence: Required request headers openretailing-organization-id and openretailing-store-location-id
+    on all 7 CasApi/CasGatewayApi report, journal and journal-reconciliation operations (openapi/caseys-general-stores-cas-api-openapi.yml,
+    openapi/caseys-general-stores-cas-gateway-api-openapi.yml).
+  note: Open Retailing is the Conexxus header/identifier convention; its presence in the contract is what
+    makes these operations integrable without a bespoke connector.
+- id: openapi-3.0.1
+  conforms: true
+  evidence: 'All 21 exported documents declare openapi: 3.0.1; 158 operations, every one carrying a unique
+    operationId.'
+- id: rfc7807
+  conforms: false
+  evidence: supplierapi and storemessagingapi define problemDetails / validationProblemDetails schemas
+    with the exact RFC 7807 member set (type, title, status, detail, instance, extensions), but every
+    error response is served as application/json, not application/problem+json. Shape-conformant, media-type
+    non-conformant.
+  note: The other 19 APIs use a bespoke apiError {code,message} envelope instead — the estate has three
+    error envelopes, not one.
+- id: rfc9457
+  conforms: false
+  evidence: No application/problem+json response is declared anywhere in the 21 documents.
+- id: pagination
+  conforms: true
+  evidence: Offset-based pagination via limit/offset query parameters on 24 read operations (store, store-details
+    and old-store APIs).
+- id: idempotency
+  conforms: false
+  evidence: Zero matches for "idempoten" across all 21 documents; no Idempotency-Key header is declared
+    on any of the 22 write operations.
+- id: oauth2
+  conforms: false
+  evidence: components.securitySchemes declares only apiKey (Ocp-Apim-Subscription-Key header, subscription-key
+    query) in all 21 documents.
+- id: oidc
+  conforms: false
+  evidence: /.well-known/openid-configuration returned 404 on esl.caseys.io and developer.esl.caseys.io
+    (probed 2026-09-05).
+- id: request-correlation
+  conforms: true
+  evidence: x-correlation-id request header declared on 12 operations across CasApi, CasGatewayApi and
+    ItsmApi.
+certifications: []
+certifications_note: No trust center, SOC 2 / ISO 27001 / PCI attestation page or compliance program was
+  found on caseys.com or the developer portal; trust.caseys.com and security.caseys.com do not resolve.
+  No Compliance pointer is emitted — this is a genuine absence, not a missing pointer.

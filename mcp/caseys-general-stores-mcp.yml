@@ -1,0 +1,144 @@
+generated: '2026-09-05'
+method: derived
+source: openapi/ (21 documents, 158 operations) — no MCP server is published by Casey's
+status: candidate
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: api-key
+  verified: searched
+search_note: No hosted or local MCP server was found. mcp.caseys.com does not resolve; no MCP endpoint
+  appears in the anonymous Azure APIM catalogue (21 current APIs, none MCP-shaped); no @caseys / caseys-*
+  MCP package exists on npm or PyPI; the developer portal home page and sitemap name no MCP surface. Probed
+  2026-09-05.
+auth:
+  style: api-key
+  header: Ocp-Apim-Subscription-Key
+  note: Any MCP server built over this estate would need one APIM subscription key per API product — 23
+    products are published, each with its own key.
+tool_count: 18
+tools:
+- name: list_stores
+  description: List Casey's stores with limit/offset paging and optional brand, state and status filters.
+  rest:
+  - get-v1-stores
+  api: StoreApi
+  read_only: true
+- name: get_store
+  description: Get one store by store number.
+  rest:
+  - get-v1-stores-storenumber
+  api: StoreApi
+  read_only: true
+- name: get_store_hours
+  description: Get opening hours for one store, or for all stores.
+  rest:
+  - get-v1-stores-storenumber-hours
+  - get-v1-stores-hours
+  api: StoreApi
+  read_only: true
+- name: get_store_organization
+  description: Get the division / region / district a store belongs to.
+  rest:
+  - get-v1-stores-storenumber-organizational
+  api: StoreApi
+  read_only: true
+- name: list_brands
+  description: List the store brands operated by Casey's.
+  rest:
+  - get-v1-brands
+  api: StoreApi
+  read_only: true
+- name: list_regions
+  description: List organizational regions, or fetch one by id.
+  rest:
+  - get-v1-organizational-regions
+  - get-v1-organizational-regions-regionid
+  api: StoreApi
+  read_only: true
+- name: list_districts
+  description: List organizational districts, or fetch one by id.
+  rest:
+  - get-v1-organizational-districts
+  - getDistrictByIdV1
+  api: StoreApi
+  read_only: true
+- name: list_divisions
+  description: List organizational divisions, or fetch one by id.
+  rest:
+  - get-v1-organizational-divisions
+  - getDivisionByIdV1
+  api: StoreApi
+  read_only: true
+- name: get_fuel_prices
+  description: Get current fuel prices for a list of store numbers.
+  rest:
+  - getFuelPricesByStoreNumbers
+  api: FuelPriceApi
+  read_only: true
+- name: get_store_items
+  description: Get Item Master (Pricebook) items for a store.
+  rest:
+  - getItemByStoreNumberV2
+  api: ItemApi
+  read_only: true
+- name: get_related_items
+  description: Get related items for a UPC.
+  rest:
+  - getRelatedItemsByUpcV2
+  api: ItemApi
+  read_only: true
+- name: get_store_suppliers
+  description: Get the supplier list for a store.
+  rest:
+  - getSuppliersForStore
+  api: SupplierApi
+  read_only: true
+- name: get_tank_levels
+  description: Get the most recent fuel tank level readings.
+  rest:
+  - getMostRecentTankLevels
+  api: TankLevelApi
+  read_only: true
+- name: get_tax_strategies
+  description: Get tax strategies, tax levels and compound taxes for a store.
+  rest:
+  - getTaxStrategies
+  - getTaxLevels
+  - getCompoundTaxes
+  api: TaxApi
+  read_only: true
+- name: calculate_taxes
+  description: Calculate taxes for a basket of items at a store.
+  rest:
+  - getTaxes
+  api: TaxApi
+  read_only: true
+  note: POST-shaped read; no state is changed.
+- name: create_incident
+  description: Open an incident in the ITSM tool.
+  rest:
+  - createIncident
+  api: ItsmApi
+  read_only: false
+  consequence: writes — creates a ticket; NOT idempotent and NOT reversible (no delete/close operation
+    is published).
+- name: update_incident
+  description: Update an existing incident.
+  rest:
+  - updateIncidentById
+  api: ItsmApi
+  read_only: false
+- name: send_store_message
+  description: Send a message to services running in a store.
+  rest:
+  - StoreMessagingEndpointV1
+  api: StoreMessagingApi
+  read_only: false
+  consequence: writes — delivers a message to in-store equipment; no recall operation exists.
+note: These are CANDIDATE tools derived from published operationIds, not a server anyone can call. The
+  full REST surface is 158 operations; the 18 tools above are the subset with clear agent value. The 8
+  GraphQL endpoints are deliberately excluded — their schemas are auth-gated and could not be introspected,
+  so no tool is asserted over them.

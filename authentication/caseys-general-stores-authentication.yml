@@ -1,0 +1,68 @@
+generated: '2026-09-05'
+method: derived
+source: openapi/caseys-general-stores-cas-api-openapi.yml, openapi/caseys-general-stores-cas-gateway-api-openapi.yml,
+  openapi/caseys-general-stores-devops-metrics-api-openapi.yml, openapi/caseys-general-stores-digital-production-planner-api-openapi.yml,
+  openapi/caseys-general-stores-fuel-price-api-openapi.yml, openapi/caseys-general-stores-item-api-openapi.yml,
+  openapi/caseys-general-stores-itsm-api-openapi.yml, openapi/caseys-general-stores-kitchen-supply-ordering-api-openapi.yml,
+  openapi/caseys-general-stores-old-store-api-openapi.yml, openapi/caseys-general-stores-power-inventory-api-openapi.yml,
+  openapi/caseys-general-stores-production-planner-api-openapi.yml, openapi/caseys-general-stores-shelf-label-print-api-openapi.yml
+  ...
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+  - query
+schemes:
+- name: apiKeyHeader
+  type: apiKey
+  in: header
+  parameter: Ocp-Apim-Subscription-Key
+  sources:
+  - openapi/caseys-general-stores-cas-api-openapi.yml
+  - openapi/caseys-general-stores-cas-gateway-api-openapi.yml
+  - openapi/caseys-general-stores-devops-metrics-api-openapi.yml
+  - openapi/caseys-general-stores-digital-production-planner-api-openapi.yml
+  - openapi/caseys-general-stores-fuel-price-api-openapi.yml
+  - openapi/caseys-general-stores-item-api-openapi.yml
+  - openapi/caseys-general-stores-itsm-api-openapi.yml
+  - openapi/caseys-general-stores-kitchen-supply-ordering-api-openapi.yml
+  - openapi/caseys-general-stores-old-store-api-openapi.yml
+  - openapi/caseys-general-stores-power-inventory-api-openapi.yml
+  - openapi/caseys-general-stores-production-planner-api-openapi.yml
+  - openapi/caseys-general-stores-shelf-label-print-api-openapi.yml
+  - openapi/caseys-general-stores-store-api-openapi.yml
+  - openapi/caseys-general-stores-store-details-api-openapi.yml
+  - openapi/caseys-general-stores-store-messaging-api-openapi.yml
+  - openapi/caseys-general-stores-store-number-api-openapi.yml
+  - openapi/caseys-general-stores-supplier-api-openapi.yml
+  - openapi/caseys-general-stores-tank-level-api-openapi.yml
+  - openapi/caseys-general-stores-tax-api-openapi.yml
+  - openapi/caseys-general-stores-team-member-api-openapi.yml
+  - openapi/caseys-general-stores-vendor-checkin-api-openapi.yml
+- name: apiKeyQuery
+  type: apiKey
+  in: query
+  parameter: subscription-key
+  sources:
+  - openapi/caseys-general-stores-cas-api-openapi.yml
+  - openapi/caseys-general-stores-cas-gateway-api-openapi.yml
+  - openapi/caseys-general-stores-devops-metrics-api-openapi.yml
+  - openapi/caseys-general-stores-digital-production-planner-api-openapi.yml
+  - openapi/caseys-general-stores-fuel-price-api-openapi.yml
+  - openapi/caseys-general-stores-item-api-openapi.yml
+  - openapi/caseys-general-stores-itsm-api-openapi.yml
+  - openapi/caseys-general-stores-kitchen-supply-ordering-api-openapi.yml
+  - openapi/caseys-general-stores-old-store-api-openapi.yml
+  - openapi/caseys-general-stores-power-inventory-api-openapi.yml
+  - openapi/caseys-general-stores-production-planner-api-openapi.yml
+  - openapi/caseys-general-stores-shelf-label-print-api-openapi.yml
+  - openapi/caseys-general-stores-store-api-openapi.yml
+  - openapi/caseys-general-stores-store-details-api-openapi.yml
+  - openapi/caseys-general-stores-store-messaging-api-openapi.yml
+  - openapi/caseys-general-stores-store-number-api-openapi.yml
+  - openapi/caseys-general-stores-supplier-api-openapi.yml
+  - openapi/caseys-general-stores-tank-level-api-openapi.yml
+  - openapi/caseys-general-stores-tax-api-openapi.yml
+  - openapi/caseys-general-stores-team-member-api-openapi.yml
+  - openapi/caseys-general-stores-vendor-checkin-api-openapi.yml

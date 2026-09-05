@@ -1,0 +1,13 @@
+generated: '2026-09-05'
+method: probed
+source: https://developer.esl.caseys.io/ + live unauthenticated responses from https://esl.caseys.io (2026-09-05)
+limit_count: 0
+rate_limits: []
+headers_observed: []
+status_on_exhaustion: null
+note: No rate limit is documented anywhere Casey's publishes, and none is observable. Live anonymous responses
+  from the gateway (401 on https://esl.caseys.io/fuelpriceapi/heartbeat, 404 on https://esl.caseys.io/.well-known/security.txt)
+  return only Content-Type, Content-Length and Date — no RateLimit-*, X-RateLimit-*, Retry-After or Ocp-Apim-*
+  quota header. Azure API Management enforces quotas through policy, and the policy is not exposed to
+  unauthenticated visitors, so a limit may exist; an integrator cannot discover it before they hit it.
+  An honest zero, not an unchecked field.

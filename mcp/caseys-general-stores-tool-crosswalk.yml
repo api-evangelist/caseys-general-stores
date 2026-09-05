@@ -1,0 +1,203 @@
+generated: '2026-09-05'
+method: derived
+source: mcp/caseys-general-stores-mcp.yml (candidate tools) + openapi/ (21 documents) + the 8 GraphQL
+  endpoints declared in those documents
+surfaces:
+  openapi:
+    files: 21
+    operations: 158
+    base: https://esl.caseys.io/<api-path>
+    gated: false
+    note: Contracts are anonymously readable via the APIM portal export API; CALLING them requires a subscription
+      key.
+  graphql:
+    endpoints: 8
+    gated: true
+    note: POST /graphql on itemapi, supplierapi, vendorcheckinapi, powerinventoryapi, shelflabelprintapi,
+      kitchensupplyorderingapi, productionplannerapi and digitalproductionplannerapi. Introspection returned
+      HTTP 401 on 2026-09-05, so no field can be crosswalked.
+  mcp:
+    url: null
+    gated: null
+    note: No MCP server exists.
+crosswalk:
+- tool: list_stores
+  category: StoreApi
+  rest:
+  - get-v1-stores
+  binding: operationId
+  confidence: high
+  note: Tool is candidate-only; the REST operationIds are verified against the published spec.
+- tool: get_store
+  category: StoreApi
+  rest:
+  - get-v1-stores-storenumber
+  binding: operationId
+  confidence: high
+  note: Tool is candidate-only; the REST operationIds are verified against the published spec.
+- tool: get_store_hours
+  category: StoreApi
+  rest:
+  - get-v1-stores-storenumber-hours
+  - get-v1-stores-hours
+  binding: operationId
+  confidence: high
+  note: Tool is candidate-only; the REST operationIds are verified against the published spec.
+- tool: get_store_organization
+  category: StoreApi
+  rest:
+  - get-v1-stores-storenumber-organizational
+  binding: operationId
+  confidence: high
+  note: Tool is candidate-only; the REST operationIds are verified against the published spec.
+- tool: list_brands
+  category: StoreApi
+  rest:
+  - get-v1-brands
+  binding: operationId
+  confidence: high
+  note: Tool is candidate-only; the REST operationIds are verified against the published spec.
+- tool: list_regions
+  category: StoreApi
+  rest:
+  - get-v1-organizational-regions
+  - get-v1-organizational-regions-regionid
+  binding: operationId
+  confidence: high
+  note: Tool is candidate-only; the REST operationIds are verified against the published spec.
+- tool: list_districts
+  category: StoreApi
+  rest:
+  - get-v1-organizational-districts
+  - getDistrictByIdV1
+  binding: operationId
+  confidence: high
+  note: Tool is candidate-only; the REST operationIds are verified against the published spec.
+- tool: list_divisions
+  category: StoreApi
+  rest:
+  - get-v1-organizational-divisions
+  - getDivisionByIdV1
+  binding: operationId
+  confidence: high
+  note: Tool is candidate-only; the REST operationIds are verified against the published spec.
+- tool: get_fuel_prices
+  category: FuelPriceApi
+  rest:
+  - getFuelPricesByStoreNumbers
+  binding: operationId
+  confidence: high
+  note: Tool is candidate-only; the REST operationIds are verified against the published spec.
+- tool: get_store_items
+  category: ItemApi
+  rest:
+  - getItemByStoreNumberV2
+  binding: operationId
+  confidence: high
+  note: Tool is candidate-only; the REST operationIds are verified against the published spec.
+- tool: get_related_items
+  category: ItemApi
+  rest:
+  - getRelatedItemsByUpcV2
+  binding: operationId
+  confidence: high
+  note: Tool is candidate-only; the REST operationIds are verified against the published spec.
+- tool: get_store_suppliers
+  category: SupplierApi
+  rest:
+  - getSuppliersForStore
+  binding: operationId
+  confidence: high
+  note: Tool is candidate-only; the REST operationIds are verified against the published spec.
+- tool: get_tank_levels
+  category: TankLevelApi
+  rest:
+  - getMostRecentTankLevels
+  binding: operationId
+  confidence: high
+  note: Tool is candidate-only; the REST operationIds are verified against the published spec.
+- tool: get_tax_strategies
+  category: TaxApi
+  rest:
+  - getTaxStrategies
+  - getTaxLevels
+  - getCompoundTaxes
+  binding: operationId
+  confidence: high
+  note: Tool is candidate-only; the REST operationIds are verified against the published spec.
+- tool: calculate_taxes
+  category: TaxApi
+  rest:
+  - getTaxes
+  binding: operationId
+  confidence: high
+  note: Tool is candidate-only; the REST operationIds are verified against the published spec.
+- tool: create_incident
+  category: ItsmApi
+  rest:
+  - createIncident
+  binding: operationId
+  confidence: high
+  note: Tool is candidate-only; the REST operationIds are verified against the published spec.
+- tool: update_incident
+  category: ItsmApi
+  rest:
+  - updateIncidentById
+  binding: operationId
+  confidence: high
+  note: Tool is candidate-only; the REST operationIds are verified against the published spec.
+- tool: send_store_message
+  category: StoreMessagingApi
+  rest:
+  - StoreMessagingEndpointV1
+  binding: operationId
+  confidence: high
+  note: Tool is candidate-only; the REST operationIds are verified against the published spec.
+mcp_only: []
+graphql_only:
+- endpoint: https://esl.caseys.io/digitalproductionplannerapi/graphql
+  reason: Schema is auth-gated; fields could not be enumerated, so any REST equivalence is unknown.
+- endpoint: https://esl.caseys.io/itemapi/graphql
+  reason: Schema is auth-gated; fields could not be enumerated, so any REST equivalence is unknown.
+- endpoint: https://esl.caseys.io/kitchensupplyorderingapi/graphql
+  reason: Schema is auth-gated; fields could not be enumerated, so any REST equivalence is unknown.
+- endpoint: https://esl.caseys.io/powerinventoryapi/graphql
+  reason: Schema is auth-gated; fields could not be enumerated, so any REST equivalence is unknown.
+- endpoint: https://esl.caseys.io/productionplannerapi/graphql
+  reason: Schema is auth-gated; fields could not be enumerated, so any REST equivalence is unknown.
+- endpoint: https://esl.caseys.io/shelflabelprintapi/graphql
+  reason: Schema is auth-gated; fields could not be enumerated, so any REST equivalence is unknown.
+- endpoint: https://esl.caseys.io/supplierapi/graphql
+  reason: Schema is auth-gated; fields could not be enumerated, so any REST equivalence is unknown.
+- endpoint: https://esl.caseys.io/vendorcheckinapi/graphql
+  reason: Schema is auth-gated; fields could not be enumerated, so any REST equivalence is unknown.
+rest_only:
+- reason: Health and self-description operations with no agent value
+  operations: 22
+  examples:
+  - getHeartbeat
+  - getHeartbeatV1
+  - get-health
+  - getOpenApiSpec
+- reason: Deprecated v0 surface — excluded from the tool set deliberately
+  operations: 24
+  examples:
+  - getAllStoresV0
+  - getStoreByIdV0
+  - getBrandsV0
+- reason: POS document ingestion (Conexxus) — machine-to-machine batch surface, not an agent action
+  operations: 7
+  examples:
+  - post-journal
+  - post-reports
+  - post-journalreconciliation
+  - get-cpjr-document
+- reason: Store-agent registration and printing, plus the remaining un-toolable operations
+  operations: balance of 158
+coverage:
+  rest_operations: 158
+  tools: 18
+  rest_operations_bound: 24
+  graphql_fields_bound: 0
+  note: 22 of 158 operations bind to a candidate tool. The gap is health checks, the deprecated v0 surface,
+    and batch POS ingestion.

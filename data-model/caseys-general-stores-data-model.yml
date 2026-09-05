@@ -1,0 +1,220 @@
+generated: '2026-09-05'
+method: derived
+source: openapi/ (21 documents) — components.schemas $ref graph and id-reference fields
+summary: 'The estate is organised around one primary key: storeNumber. It appears as a path parameter,
+  a query parameter or a body field on 24 operations across 9 of the 21 APIs, and it is the join key between
+  the store hierarchy, item/pricebook data, fuel pricing, tax configuration, tank telemetry, supplier
+  lists and POS documents. The organizational hierarchy (division -> region -> district -> store) is the
+  second backbone.'
+entity_count: 103
+primary_keys:
+- field: storeNumber
+  type: integer/string
+  note: The universal Casey's store identifier. Every domain API keys on it.
+- field: divisionId
+  scope: StoreApi / OldStoreApi organizational hierarchy
+- field: regionId
+  scope: StoreApi / OldStoreApi organizational hierarchy
+- field: districtId
+  scope: StoreApi / OldStoreApi organizational hierarchy
+- field: upc
+  scope: ItemApi — item and related-item lookup
+- field: supplierId
+  scope: SupplierApi, ItemApi (itemSupplier)
+- field: documentId + reportType
+  scope: CasGatewayApi CPJR document retrieval
+- field: openretailing-organization-id / openretailing-store-location-id
+  scope: Conexxus Open Retailing identifiers on all POS operations
+entities:
+- name: store
+  schemas:
+  - storeInfoV1
+  - storeInfoV0
+  - allStoreInfoV1
+  - truckStopStoreEntity
+  api: StoreApi / StoreDetailsApi / OldStoreApi
+- name: storeHours
+  schemas:
+  - storeHoursInfoV1
+  - hourV1
+  - hoursBlock
+  - allStoreHoursInfoV1
+  api: StoreApi
+- name: brand
+  schemas:
+  - brandModelV1
+  - brandModelV0
+  api: StoreApi
+- name: division
+  schemas:
+  - divisionModelV1
+  - divisionListModelV1
+  api: StoreApi
+- name: region
+  schemas:
+  - regionModelV1
+  - regionListModelV1
+  api: StoreApi
+- name: district
+  schemas:
+  - districtModelV1
+  - districtListModelV1
+  api: StoreApi
+- name: organizational
+  schemas:
+  - organizationalModelV1
+  - allStoresOrganizationalInfoV1
+  api: StoreApi
+- name: carWash
+  schemas:
+  - carWashV1
+  api: StoreApi — store amenity
+- name: deliveryVendors
+  schemas:
+  - deliveryVendorsInfoV1
+  api: StoreApi — third-party delivery partners per store
+- name: storeLoyaltyProgram
+  schemas:
+  - storeLoyaltyProgramInfoV1
+  api: StoreApi — Casey's Rewards enrolment per store
+- name: storeItem
+  schemas:
+  - storeItem
+  - itemCost
+  - itemRetailPrice
+  - itemStatus
+  - itemSupplier
+  - restriction
+  - relatedItem
+  api: ItemApi — Item Master / Pricebook
+- name: fuelPrice
+  schemas:
+  - fuelPriceModel
+  - fuelProductModel
+  api: FuelPriceApi
+- name: tankLevel
+  schemas:
+  - tankLevelViewModelV1
+  - tankLevelGetEndpointPaginatedResultsV1
+  api: TankLevelApi
+- name: tax
+  schemas:
+  - taxStrategy
+  - taxLevelResponseModel
+  - compoundTax
+  - taxResponseModel
+  - itemResponseModel
+  api: TaxApi
+- name: supplier
+  schemas:
+  - supplier
+  api: SupplierApi
+- name: incident
+  schemas:
+  - createIncidentParameterModel
+  - updateIncidentParameterModel
+  - attachmentParameterModel
+  - assignedToModel
+  - requestedByModel
+  - commentModel
+  api: ItsmApi
+- name: registeredService
+  schemas:
+  - registeredServiceModel
+  - serviceModel
+  - registrationInput
+  - registrationInputV2
+  - registrationOutput
+  api: StoreMessagingApi
+- name: posMovementReport
+  schemas:
+  - posMovementReport
+  - posMovementReportHeader
+  - posMovement
+  - movementReport
+  - movementReportPeriod
+  - reportRange
+  - transmissionHeader
+  api: CasApi — Conexxus POS Activity Report
+relationships:
+- from: division
+  to: region
+  type: has_many
+  via: divisionId
+- from: region
+  to: district
+  type: has_many
+  via: regionId
+- from: district
+  to: store
+  type: has_many
+  via: districtId
+- from: store
+  to: organizational
+  type: has_one
+  via: storeNumber
+  note: GET /store/{storeNumber}/organizational returns the division/region/district a store belongs to.
+- from: store
+  to: storeHours
+  type: has_many
+  via: storeNumber
+- from: store
+  to: carWash
+  type: has_one
+  via: storeNumber
+- from: store
+  to: deliveryVendors
+  type: has_many
+  via: storeNumber
+- from: store
+  to: storeLoyaltyProgram
+  type: has_one
+  via: storeNumber
+- from: store
+  to: brand
+  type: belongs_to
+  via: storeBrand
+- from: store
+  to: storeItem
+  type: has_many
+  via: storeNumber
+  note: ItemApi GET /v2/store-items is keyed on store number — the pricebook is per store.
+- from: storeItem
+  to: itemSupplier
+  type: has_one
+  via: supplierId
+- from: storeItem
+  to: relatedItem
+  type: has_many
+  via: upc
+- from: store
+  to: supplier
+  type: has_many
+  via: storeNumber
+  note: SupplierApi GET /v1/suppliers returns the supplier list for a given store.
+- from: store
+  to: fuelPrice
+  type: has_many
+  via: storeId
+  note: FuelPriceApi POST /fuelprices takes a storeId array.
+- from: store
+  to: tankLevel
+  type: has_many
+  via: storeNumber
+- from: store
+  to: tax
+  type: has_many
+  via: storeNumber
+  note: Tax strategies, tax levels and compound taxes are all scoped to /stores/{storeNumber}.
+- from: store
+  to: posMovementReport
+  type: has_many
+  via: openretailing-store-location-id
+- from: store
+  to: registeredService
+  type: has_many
+  via: storeNumber
+cross_api_note: storeNumber is a genuine cross-API foreign key but is typed inconsistently — integer in
+  FuelPriceApi (storeId), path string in TaxApi and StoreMessagingApi, and both integer and string in
+  the store APIs. There is no shared components library across the 21 documents; StoreApi and OldStoreApi
+  duplicate 46 identical schemas.

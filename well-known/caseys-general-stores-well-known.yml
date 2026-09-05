@@ -1,0 +1,126 @@
+generated: '2026-09-05'
+method: probed
+source: 'live probes 2026-09-05 of every host this record knows: registrable domain + www, the developer
+  portal, the APIM gateway, and the UAT environment'
+hosts:
+- host: www.caseys.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+    file: null
+    note: Cloudflare interstitial ("Just a moment...") — challenged, not answered. Not evidence of absence.
+  - path: /.well-known/openid-configuration
+    status: 403
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 403
+    file: null
+  - path: /.well-known/api-catalog
+    status: 403
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 403
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 403
+    file: null
+  - path: /.well-known/agent.json
+    status: 403
+    file: null
+  - path: /llms.txt
+    status: 403
+    file: null
+  - path: /robots.txt
+    status: 200
+    file: null
+    note: 'Served. Cloudflare-managed content-signal block: search=yes, ai-train=no, use=reference, with
+      explicit Disallow for ClaudeBot, GPTBot, CCBot, Google-Extended, Applebot-Extended, Bytespider,
+      Amazonbot and meta-externalagent.'
+- host: caseys.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+    file: null
+  - path: /.well-known/api-catalog
+    status: 403
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 403
+    file: null
+  - path: /llms.txt
+    status: 403
+    file: null
+- host: developer.esl.caseys.io
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+  - path: /llms.txt
+    status: 404
+    file: null
+  - path: /robots.txt
+    status: 404
+    file: null
+  - path: /sitemap.xml
+    status: 200
+    file: null
+    note: Served — 22 portal routes, of which only / and /signin render anonymously.
+- host: esl.caseys.io
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+  - path: /llms.txt
+    status: 404
+    file: null
+- host: api.caseys.com
+  documents:
+  - path: /.well-known/agent-card.json
+    status: 526
+    file: null
+    note: Host resolves to Cloudflare but the origin certificate is invalid — every path returns Cloudflare
+      error 526. Not a serving host.
+  - path: /openapi.json
+    status: 526
+    file: null
+  - path: /.well-known/security.txt
+    status: 526
+    file: null
+result: no-documents-found
+note: Not one .well-known document is served on any Casey's host. No WellKnown or SecurityTxt pointer
+  is emitted — this file records a measured absence, not a surface. The www.caseys.com 403s are a Cloudflare
+  bot challenge rather than a confirmed 404, so absence there is unproven; the developer portal and gateway
+  404s are real.
