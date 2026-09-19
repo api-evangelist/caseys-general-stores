@@ -151,6 +151,8 @@ apis:
   humanURL: https://developer.esl.caseys.io/
   baseURL: https://esl.caseys.io/casapi
   tags:
+  - Brands
+  tags_raw:
   - brands
   properties:
   - type: OpenAPI
@@ -309,6 +311,8 @@ apis:
   humanURL: https://developer.esl.caseys.io/
   baseURL: https://esl.caseys.io/casapi
   tags:
+  - Heartbeat
+  tags_raw:
   - heartbeat
   properties:
   - type: OpenAPI
@@ -335,6 +339,8 @@ apis:
   humanURL: https://developer.esl.caseys.io/
   baseURL: https://esl.caseys.io/casapi
   tags:
+  - Hours
+  tags_raw:
   - hours
   properties:
   - type: OpenAPI
@@ -361,6 +367,8 @@ apis:
   humanURL: https://developer.esl.caseys.io/
   baseURL: https://esl.caseys.io/casapi
   tags:
+  - Incident
+  tags_raw:
   - incident
   properties:
   - type: OpenAPI
@@ -414,6 +422,8 @@ apis:
   humanURL: https://developer.esl.caseys.io/
   baseURL: https://esl.caseys.io/casapi
   tags:
+  - Organization Hierarchy
+  tags_raw:
   - organization hierarchy
   properties:
   - type: OpenAPI
@@ -492,6 +502,8 @@ apis:
   humanURL: https://developer.esl.caseys.io/
   baseURL: https://esl.caseys.io/casapi
   tags:
+  - Pull
+  tags_raw:
   - pull
   properties:
   - type: OpenAPI
@@ -518,6 +530,8 @@ apis:
   humanURL: https://developer.esl.caseys.io/
   baseURL: https://esl.caseys.io/casapi
   tags:
+  - Push
+  tags_raw:
   - push
   properties:
   - type: OpenAPI
@@ -726,7 +740,8 @@ apis:
   description: The tankLevels API from Casey's General Stores — 2 operation(s) for tanklevels.
   humanURL: https://developer.esl.caseys.io/
   baseURL: https://esl.caseys.io/casapi
-  tags:
+  tags: []
+  tags_raw:
   - tankLevels
   properties:
   - type: OpenAPI
@@ -753,6 +768,8 @@ apis:
   humanURL: https://developer.esl.caseys.io/
   baseURL: https://esl.caseys.io/casapi
   tags:
+  - Tax
+  tags_raw:
   - Taxes
   properties:
   - type: OpenAPI
@@ -1041,6 +1058,8 @@ apis:
   humanURL: https://developer.esl.caseys.io/
   baseURL: https://esl.caseys.io/itemapi
   tags:
+  - GraphQL
+  tags_raw:
   - Graph QL
   properties:
   - type: OpenAPI
@@ -1067,6 +1086,8 @@ apis:
   humanURL: https://developer.esl.caseys.io/
   baseURL: https://esl.caseys.io/itemapi
   tags:
+  - OpenAPI
+  tags_raw:
   - Open API
   properties:
   - type: OpenAPI
