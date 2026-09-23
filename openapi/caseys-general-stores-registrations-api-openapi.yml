@@ -1,0 +1,80 @@
+openapi: 3.2.0
+info:
+  title: StoreMessagingApi Registrations API
+  description: An API that allows services at the store to receive messages from external sources.
+  version: '1.0'
+servers:
+- url: https://esl.caseys.io/storemessagingapi
+security:
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Registrations
+paths:
+  /v2/registrations:
+    get:
+      summary: Get Registered Services
+      operationId: RegisteredServicesEndpoint
+      responses:
+        '200':
+          description: Payload of ApiCollection containing RegisteredServiceModel
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/apiCollection_registeredServiceModel'
+              example:
+                data:
+                - storeNumber: 0
+                  services:
+                  - service: string
+                    messagesToHandle:
+                    - string
+                    owningTeamEmail: string
+                    lastRegistrationTimestamp: string
+      tags:
+      - Registrations
+components:
+  schemas:
+    apiCollection_registeredServiceModel:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/registeredServiceModel'
+          description: The data collection.
+    registeredServiceModel:
+      type: object
+      properties:
+        storeNumber:
+          type: integer
+          format: int32
+        services:
+          type: array
+          items:
+            $ref: '#/components/schemas/serviceModel'
+    serviceModel:
+      type: object
+      properties:
+        service:
+          type: string
+        messagesToHandle:
+          type: array
+          items:
+            type: string
+        owningTeamEmail:
+          type: string
+        lastRegistrationTimestamp:
+          type:
+          - string
+          - 'null'
+          format: date-time
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query

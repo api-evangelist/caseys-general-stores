@@ -1,0 +1,211 @@
+openapi: 3.2.0
+info:
+  title: TaxApi Taxes API
+  description: This is the OpenAPI Document on Azure Functions
+  version: '1.0'
+servers:
+- url: https://esl.caseys.io/taxapi
+security:
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Taxes
+paths:
+  /Taxes:
+    post:
+      summary: getTaxes
+      operationId: getTaxes
+      requestBody:
+        description: The tax request.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/getTaxRequestModel'
+            example:
+              taxes:
+              - uniqueIdentifier: string
+                itemUpc: string
+                taxCollected: 0
+                storeNumber: 0
+                saleDate: string
+      responses:
+        '200':
+          description: The OK response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getTaxResponseModel'
+              example:
+                items:
+                - uniqueIdentifier: string
+                  itemUpc: string
+                  storeNumber: 0
+                  saleDate: string
+                  taxes:
+                  - taxId: 0
+                    taxCode: string
+                    taxRate: 0
+                    taxAmount: 0
+        '400':
+          description: The bad request response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/validationProblemDetails'
+              example:
+                errors: {}
+                type: string
+                title: string
+                status: 0
+                detail: string
+                instance: string
+                extensions: {}
+        '500':
+          description: The error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/problemDetails'
+              example:
+                type: string
+                title: string
+                status: 0
+                detail: string
+                instance: string
+                extensions: {}
+      tags:
+      - Taxes
+components:
+  schemas:
+    taxRequestModel:
+      type: object
+      properties:
+        uniqueIdentifier:
+          type: string
+          description: Used to make each item unique even if they share the same upc.
+          format: uuid
+        itemUpc:
+          type: string
+        taxCollected:
+          type: number
+          description: The full amount of tax collected for the item.
+          format: double
+        storeNumber:
+          type: integer
+          format: int32
+        saleDate:
+          type: string
+          description: The date the item was sold.
+          format: date-time
+    problemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type: string
+        instance:
+          type: string
+        extensions:
+          type: object
+          additionalProperties:
+            type: object
+    taxResponseModel:
+      type: object
+      properties:
+        taxId:
+          type: integer
+          description: The identifier of the tax jurisdiction.
+          format: int32
+        taxCode:
+          type: string
+          description: 'The tax jurisdiction (ex: ST, CO, LO). This is not guaranteed to be unique.'
+        taxRate:
+          type: number
+          description: The tax percentage for the jurisdiction; represented as a decimal between 0 and 1.
+          format: double
+        taxAmount:
+          type: number
+          description: The portion of tax that goes to the jurisdiction.
+          format: double
+    list_string:
+      type: array
+      items:
+        type: string
+    getTaxResponseModel:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/itemResponseModel'
+          description: List of returned tax information broken out by jurisdiction.
+    validationProblemDetails:
+      type: object
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/list_string'
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type: string
+        instance:
+          type: string
+        extensions:
+          type: object
+          additionalProperties:
+            type: object
+    getTaxRequestModel:
+      type: object
+      properties:
+        taxes:
+          type: array
+          items:
+            $ref: '#/components/schemas/taxRequestModel'
+          description: List of items to get tax information for.
+    itemResponseModel:
+      type: object
+      properties:
+        uniqueIdentifier:
+          type: string
+          description: The identifier provided by the request.
+          format: uuid
+        itemUpc:
+          type: string
+        storeNumber:
+          type: integer
+          description: A valid PriceBook store number.
+          format: int32
+        saleDate:
+          type: string
+          description: The date the item was sold.
+          format: date-time
+        taxes:
+          type: array
+          items:
+            $ref: '#/components/schemas/taxResponseModel'
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query

@@ -1,16 +1,21 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: ItsmApi
+  title: ItsmApi Incident API
   description: An API to manage incidents in ITSM tool.
   version: '1.0'
 servers:
 - url: https://esl.caseys.io/itsmapi
+security:
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Incident
 paths:
   /v1/incidents:
     post:
       tags:
-      - incident
-      summary: v1 Creates an incident's data.
+      - Incident
+      summary: v1 Creates an incident's data
       description: Creates the data for a specific incident.
       operationId: createIncident
       requestBody:
@@ -143,8 +148,8 @@ paths:
                 examples: {}
     put:
       tags:
-      - incident
-      summary: v1 Updates an incident's data.
+      - Incident
+      summary: v1 Updates an incident's data
       description: Updates the data for a specific incident.
       operationId: updateIncidentById
       requestBody:
@@ -275,35 +280,10 @@ paths:
                 $ref: '#/components/schemas/updateIncidentBadRequestExample'
               example:
                 examples: {}
-  /v1/heartbeat:
-    get:
-      tags:
-      - heartbeat
-      summary: v1 Gets the health of the API
-      description: Interrogates the state of the API and its dependencies to return the API health.
-      operationId: getHeartbeatV1
-      responses:
-        '200':
-          description: The status of the APIs health. Healthy if all dependency health checks pass. Unhealthy if
-            any dependency's health check fails, or if an exception occurs.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/heartbeatReport'
-              example:
-                status: string
-        '401':
-          description: The status of the unauthorized. 401 if unauthorized.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/heartbeatReport'
-              example:
-                status: string
   /v1/incidents/attachments:
     post:
       tags:
-      - incident
+      - Incident
       summary: v1 Add an attachment to an existing incident
       description: Add an attachment to a specific incident.
       operationId: addAttachment
@@ -375,36 +355,49 @@ paths:
                 $ref: '#/components/schemas/addAttachmentBadRequestExample'
               example:
                 examples: {}
-  /openapi/V3.json:
-    get:
-      summary: Get OpenApi Specification
-      description: Gets the OpenApi specification in V3.json format with the parameters .
-      operationId: getOpenApiSpec
-      responses:
-        '200':
-          description: ''
 components:
   schemas:
-    addAttachmentBadRequestExample:
-      type: object
-      properties:
-        examples:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/openApiExample'
-    assignedToModel:
+    commentModel:
       type: object
       properties:
         id:
           type: string
-          description: Assigned to user id.
-        displayName:
+          description: comment id.
+        origin:
           type: string
-          description: Assigned to user display name.
-        email:
+          description: The origin of the incident.
+        externalId:
           type: string
-          description: Assigned to user email id.
-      description: Assigned to User details.
+          description: Unique Correlation Id of incident.
+        comment:
+          type: string
+          description: Comment added in the incident.
+        postedBy:
+          type: string
+          description: Comment posted by.
+        postedOn:
+          type: string
+          description: Comment posted on.
+      description: The Comment of incident.
+    openApiExample:
+      type: object
+      properties:
+        summary:
+          type: string
+        description:
+          type: string
+        value:
+          $ref: '#/components/schemas/iOpenApiAny'
+        externalValue:
+          type: string
+        extensions:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/iOpenApiExtension'
+        reference:
+          $ref: '#/components/schemas/openApiReference'
+        unresolvedReference:
+          type: boolean
     attachmentParameterModel:
       required:
       - incidentId
@@ -451,29 +444,46 @@ components:
         contentType:
           type: string
           description: Attachment content type
-    commentModel:
+    createIncidentBadRequestExample:
       type: object
       properties:
+        examples:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/openApiExample'
+    openApiReference:
+      type: object
+      properties:
+        externalResource:
+          type: string
+        type:
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          - 7
+          - 8
+          - 9
+          type:
+          - integer
+          - 'null'
+          format: int32
+          default: 0
         id:
           type: string
-          description: comment id.
-        origin:
+        isExternal:
+          type: boolean
+        isLocal:
+          type: boolean
+        referenceV3:
           type: string
-          description: The origin of the incident.
-        externalId:
+        referenceV2:
           type: string
-          description: Unique Correlation Id of incident.
-        comment:
-          type: string
-          description: Comment added in the incident.
-        postedBy:
-          type: string
-          description: Comment posted by.
-        postedOn:
-          type: string
-          description: Comment posted on.
-      description: The Comment of incident.
-    createIncidentBadRequestExample:
+    addAttachmentBadRequestExample:
       type: object
       properties:
         examples:
@@ -552,76 +562,6 @@ components:
           $ref: '#/components/schemas/assignedToModel'
         requestedBy:
           $ref: '#/components/schemas/requestedByModel'
-    heartbeatReport:
-      type: object
-      properties:
-        status:
-          type: string
-          description: Description of the current status of dependencies of the API.
-    iOpenApiAny:
-      type: object
-      properties:
-        anyType:
-          enum:
-          - 0
-          - 1
-          - 2
-          - 3
-          type: integer
-          format: int32
-          default: 0
-    iOpenApiExtension:
-      type: object
-    openApiExample:
-      type: object
-      properties:
-        summary:
-          type: string
-        description:
-          type: string
-        value:
-          $ref: '#/components/schemas/iOpenApiAny'
-        externalValue:
-          type: string
-        extensions:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/iOpenApiExtension'
-        reference:
-          $ref: '#/components/schemas/openApiReference'
-        unresolvedReference:
-          type: boolean
-    openApiReference:
-      type: object
-      properties:
-        externalResource:
-          type: string
-        type:
-          enum:
-          - 0
-          - 1
-          - 2
-          - 3
-          - 4
-          - 5
-          - 6
-          - 7
-          - 8
-          - 9
-          type: integer
-          format: int32
-          default: 0
-          nullable: true
-        id:
-          type: string
-        isExternal:
-          type: boolean
-        isLocal:
-          type: boolean
-        referenceV3:
-          type: string
-        referenceV2:
-          type: string
     requestedByModel:
       type: object
       properties:
@@ -714,6 +654,33 @@ components:
           $ref: '#/components/schemas/assignedToModel'
         requestedBy:
           $ref: '#/components/schemas/requestedByModel'
+    assignedToModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Assigned to user id.
+        displayName:
+          type: string
+          description: Assigned to user display name.
+        email:
+          type: string
+          description: Assigned to user email id.
+      description: Assigned to User details.
+    iOpenApiAny:
+      type: object
+      properties:
+        anyType:
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          type: integer
+          format: int32
+          default: 0
+    iOpenApiExtension:
+      type: object
   securitySchemes:
     apiKeyHeader:
       type: apiKey
@@ -723,6 +690,3 @@ components:
       type: apiKey
       name: subscription-key
       in: query
-security:
-- apiKeyHeader: []
-- apiKeyQuery: []

@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: ItemApi Item API
+  title: ItemApi Unbuffered Store Items API
   description: An API to obtain item information.
   version: '1.0'
 servers:
@@ -9,15 +9,13 @@ security:
 - apiKeyHeader: []
 - apiKeyQuery: []
 tags:
-- name: Item
+- name: Unbuffered Store Items
 paths:
-  /v2/store-items:
+  /v2/unbuffered-store-items:
     get:
-      tags:
-      - Item
-      summary: v2 Gets retrieval of items from the Item Master (Pricebook), Providing…
+      summary: 'UNBUFFERED: v2 Gets retrieval of items from the Item Master (Pricebook)…'
       description: Gets the data for a specific StoreNumber.
-      operationId: getItemByStoreNumberV2
+      operationId: getItemByStoreNumberUnbuffered
       parameters:
       - name: StoreNumber
         in: query
@@ -125,6 +123,8 @@ paths:
               example:
                 code: 0
                 message: string
+      tags:
+      - Unbuffered Store Items
 components:
   schemas:
     itemRetailPrice:

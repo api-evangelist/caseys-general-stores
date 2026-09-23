@@ -1,0 +1,41 @@
+openapi: 3.2.0
+info:
+  title: StoreNumberApi Caseys.Store Number Generator.Api API
+  description: The Store Number Generator API is responsible for representing key points of information around stores.
+  version: '1.0'
+servers:
+- url: https://esl.caseys.io/storenumberapi
+security:
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Caseys.StoreNumberGenerator.Api
+paths:
+  /:
+    get:
+      tags:
+      - Caseys.StoreNumberGenerator.Api
+      summary: / - GET
+      operationId: get
+      responses:
+        '200':
+          description: OK
+  /v1/version:
+    get:
+      tags:
+      - Caseys.StoreNumberGenerator.Api
+      summary: /v1/version - GET
+      operationId: get-v1-version
+      responses:
+        '200':
+          description: OK
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query

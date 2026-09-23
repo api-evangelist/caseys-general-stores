@@ -1,7 +1,9 @@
 ---
 title: Casey's, Pizza and the Quiet Power of AI
 url: https://www.wisdomtree.com/us/insights/blog/caseys-pizza-and-the-quiet-power-of-ai
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Casey''s General Stores" press release artificial intelligence'
 position: 1
 source: serpapi-google

@@ -1,0 +1,83 @@
+openapi: 3.2.0
+info:
+  title: Caseys General Stores V1 API
+  version: '1.0'
+  description: 'Operations tagged v1 across 4 of this provider''s published API definitions: caseys-general-stores-old-store-api-openapi.json, caseys-general-stores-store-api-openapi.json, caseys-general-stores-supplier-api-openapi.json, caseys-general-stores-tank-level-api-openapi.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://esl.caseys.io/oldstoreapi
+- url: https://esl.caseys.io/storeapi
+- url: https://esl.caseys.io/supplierapi
+- url: https://esl.caseys.io/tanklevelapi
+security:
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: v1
+paths:
+  /v1/heartbeat:
+    get:
+      tags:
+      - v1
+      summary: v1 Gets the health of the API
+      description: Interrogates the state of the API and its dependencies to return the API health.
+      operationId: getHeartbeatV1
+      responses:
+        '200':
+          description: The status of the APIs health. Healthy if all dependency health checks pass. Unhealthy if any dependency's health check fails, or if an exception occurs.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/heartbeatReportV1'
+              example:
+                status: Healthy
+        '500':
+          description: An error occurred while processing the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/heartbeatReportV1'
+              example:
+                status: Healthy
+    servers:
+    - url: https://esl.caseys.io/oldstoreapi
+components:
+  schemas:
+    heartbeatReportV1:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Description of the current status of dependencies of the API.
+      example: '{"status":"Healthy"}'
+    heartbeatReportV1_2:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Description of the current status of dependencies of the API.
+      example:
+        status: Healthy
+    heartbeatReportV1_3:
+      type: object
+      properties:
+        status:
+          type: string
+    heartbeatReportV1_4:
+      type: object
+      properties:
+        status:
+          type: string
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+x-refined-from:
+- caseys-general-stores-old-store-api-openapi.json
+- caseys-general-stores-store-api-openapi.json
+- caseys-general-stores-supplier-api-openapi.json
+- caseys-general-stores-tank-level-api-openapi.json

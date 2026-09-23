@@ -1,0 +1,410 @@
+openapi: 3.2.0
+info:
+  title: Caseys General Stores API
+  version: '1.0'
+  description: 'Operations tagged Stores across 3 of this provider''s published API definitions: caseys-general-stores-store-messaging-api-openapi.json, caseys-general-stores-store-number-api-openapi.json, caseys-general-stores-tax-api-openapi.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://esl.caseys.io/storemessagingapi
+- url: https://esl.caseys.io/storenumberapi
+- url: https://esl.caseys.io/taxapi
+security:
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Stores
+paths:
+  /v1/stores/{storeNumber}/messages:
+    post:
+      summary: Sends messages to a store
+      description: Sends messages for a store number to azure service bus to forward to a store agent.
+      operationId: StoreMessagingEndpointV1
+      parameters:
+      - name: storeNumber
+        in: path
+        description: Format - int32. The unique identifier of the store to get data about.
+        required: true
+        schema:
+          type: integer
+      - name: x-correlation-id
+        in: header
+        description: An identifier that will be used to aggregate all logs across all systems the request passes through.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Data containing print ticket request.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/storeMessageInput'
+            example:
+              messageType: string
+              eventTime: string
+              requestedBy: string
+              data:
+              - string
+              timeToLive: 300
+      responses:
+        '202':
+          description: The status of the message request. 202 if successful
+        '400':
+          description: The details of the invalid values included in the request payload.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/validationProblemDetails'
+              example:
+                errors: {}
+                type: string
+                title: string
+                status: 0
+                detail: string
+                instance: string
+                extensions: {}
+      tags:
+      - Stores
+    servers:
+    - url: https://esl.caseys.io/storemessagingapi
+  /v2/stores/{storeNumber}/register:
+    post:
+      summary: Registers a new store agent
+      description: Creates backend resources required for the store agent to function.
+      operationId: RegistrationEndpointV2
+      parameters:
+      - name: storeNumber
+        in: path
+        description: Format - int32. The unique identifier of the store to get data about.
+        required: true
+        schema:
+          type: integer
+      - name: x-correlation-id
+        in: header
+        description: An identifier that will be used to aggregate all logs across all systems the request passes through.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Data required to register the store agent.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/registrationInputV2'
+            example:
+              storeNumber: 0
+              service: string
+              messagesToHandle:
+              - string
+              owningTeamEmail: string
+      responses:
+        '200':
+          description: Payload of RegistrationOutput
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/registrationOutput'
+              example:
+                storeNumber: 0
+                storeAgentClientId: string
+                storeAgentClientSecret: string
+                clientName: string
+      tags:
+      - Stores
+    servers:
+    - url: https://esl.caseys.io/storemessagingapi
+  /v1/stores/available:
+    get:
+      tags:
+      - Stores
+      summary: /v1/stores/available - GET
+      operationId: get-v1-stores-available
+      parameters:
+      - name: system
+        in: query
+        schema:
+          type: string
+      - name: preferred
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+    servers:
+    - url: https://esl.caseys.io/storenumberapi
+  /stores/{storeNumber}/tax-strategies:
+    get:
+      summary: getTaxStrategies
+      operationId: getTaxStrategies
+      parameters:
+      - name: storeNumber
+        in: path
+        description: The store to get tax strategies for.
+        required: true
+        schema:
+          type: integer
+      - name: isActive
+        in: query
+        description: A flag used to filter tax strategies based on their status. When set to true, the endpoint returns active tax strategies. When set to false, it returns inactive tax strategies.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: The OK response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/taxStrategyResponseModel'
+              example:
+              - data:
+                - taxBracketId: 0
+                  taxBracketDescription: string
+                  taxId: 0
+                  isActive: true
+      tags:
+      - Stores
+    servers:
+    - url: https://esl.caseys.io/taxapi
+  /stores/{storeNumber}/tax-levels:
+    get:
+      summary: getTaxLevels
+      operationId: getTaxLevels
+      parameters:
+      - name: storeNumber
+        in: path
+        description: The store to get tax levels for.
+        required: true
+        schema:
+          type: integer
+      - name: includeInactive
+        in: query
+        description: A flag used to include inactive tax levels. When set to true, the endpoint returns active and inactive tax levels. When set to false, it only returns active tax levels.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: The OK response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/taxLevelResponseModel'
+              example:
+              - taxId: string
+                storeNumber: 0
+                description: string
+                rate: 0
+                isActive: true
+      tags:
+      - Stores
+    servers:
+    - url: https://esl.caseys.io/taxapi
+  /stores/{storeNumber}/compound-taxes:
+    get:
+      summary: getCompoundTaxes
+      operationId: getCompoundTaxes
+      parameters:
+      - name: storeNumber
+        in: path
+        description: The store to get compound taxes for.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: The OK response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/compoundTaxResponseModel'
+              example:
+              - data:
+                - storeNumber: 0
+                  jurisdiction: string
+                  rate: 0
+                  applicationOrder: 0
+                  appliedToTaxID: 0
+                  compoundTaxID: 0
+      tags:
+      - Stores
+    servers:
+    - url: https://esl.caseys.io/taxapi
+components:
+  schemas:
+    list_string:
+      type: array
+      items:
+        type: string
+    storeMessageInput:
+      type: object
+      properties:
+        messageType:
+          type: string
+          description: The type of message being sent to the store. This value is blindly passed-through by the API. It is up to the producer and consumer of the message to agree on this value.
+        eventTime:
+          type: string
+          description: The time the event was created or sent to the API. Defaults to the current time UTC.
+        requestedBy:
+          type: string
+        data:
+          type: array
+          items:
+            type: string
+          description: A list of messages payloads to send to the store. This value is sent as a single message to the store. It is up to the consumer to know how to deserialize and handle the list of messages.
+        timeToLive:
+          type: integer
+          description: The amount of time, in seconds, before the request is expired and not sent to the store. This value defaults to 300 seconds, which is the maximum time allowed.
+          format: int32
+          default: 300
+    registrationInputV2:
+      type: object
+      properties:
+        storeNumber:
+          type: integer
+          format: int32
+        service:
+          type: string
+          description: 'The store agent service to register. Ex: print-service'
+        messagesToHandle:
+          type: array
+          items:
+            type: string
+          description: A collection of message types to handle for the service
+        owningTeamEmail:
+          type: string
+          description: Email address of the team who owns the service
+    validationProblemDetails:
+      type: object
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/list_string'
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type: string
+        instance:
+          type: string
+        extensions:
+          type: object
+          additionalProperties:
+            type: object
+    registrationOutput:
+      type: object
+      properties:
+        storeNumber:
+          type: integer
+          format: int32
+        storeAgentClientId:
+          type: string
+          description: The store agent client id to use for authentication
+        storeAgentClientSecret:
+          type: string
+          description: The store agent client secret to use for authentication
+        clientName:
+          type: string
+          description: The display name of the app registration in Azure AD.
+    compoundTaxResponseModel:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/compoundTax'
+          description: The data collection.
+    taxLevelResponseModel:
+      type: object
+      properties:
+        taxId:
+          type: string
+          description: The identifier of the tax information.
+        storeNumber:
+          type: integer
+          description: The store identifier.
+          format: int32
+        description:
+          type: string
+          description: The definition of the tax level.
+        rate:
+          type: number
+          description: The rate of taxes.
+          format: double
+        isActive:
+          type: boolean
+          description: A flag to determine if the tax level is active or inactive.
+    compoundTax:
+      type: object
+      properties:
+        storeNumber:
+          type: integer
+          description: The store identifier.
+          format: int32
+        jurisdiction:
+          type: string
+          description: 'The tax jurisdiction (ex: OT, OC). This is not guaranteed to be unique.'
+        rate:
+          type: number
+          description: The rate of the compound tax.
+          format: double
+        applicationOrder:
+          type: integer
+          description: The order in which the compound tax is applied.
+          format: int32
+        appliedToTaxID:
+          type: integer
+          description: The identifier of the tax to which this compound tax is applied.
+          format: int32
+        compoundTaxID:
+          type: integer
+          description: The identifier of the compound tax.
+          format: int32
+    taxStrategy:
+      type: object
+      properties:
+        taxBracketId:
+          type: integer
+          description: The identifier of the tax strategy information.
+          format: int32
+        taxBracketDescription:
+          type: string
+          description: The definition of the tax strategy.
+        taxId:
+          type: integer
+          description: The ids of associated tax types
+          format: int32
+        isActive:
+          type: boolean
+          description: A flag to determine if the tax strategy is active or inactive.
+    taxStrategyResponseModel:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/taxStrategy'
+          description: The data collection.
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+x-refined-from:
+- caseys-general-stores-store-messaging-api-openapi.json
+- caseys-general-stores-store-number-api-openapi.json
+- caseys-general-stores-tax-api-openapi.json

@@ -1,0 +1,44 @@
+openapi: 3.2.0
+info:
+  title: Caseys General Stores V1 Store Hours By Store Number API
+  version: '1.0'
+  description: 'Operations tagged V1StoreHoursByStoreNumber across 2 of this provider''s published API definitions: caseys-general-stores-store-api-openapi.json, caseys-general-stores-store-details-api-openapi.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://esl.caseys.io/storeapi
+- url: https://esl.caseys.io/storedetailsapi
+security:
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: V1StoreHoursByStoreNumber
+paths:
+  /v1/stores/{storeNumber}/hours:
+    get:
+      tags:
+      - V1StoreHoursByStoreNumber
+      summary: /v1/stores/{storeNumber}/hours - GET
+      operationId: get-v1-stores-storenumber-hours
+      parameters:
+      - name: storeNumber
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+    servers:
+    - url: https://esl.caseys.io/storeapi
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+x-refined-from:
+- caseys-general-stores-store-api-openapi.json
+- caseys-general-stores-store-details-api-openapi.json

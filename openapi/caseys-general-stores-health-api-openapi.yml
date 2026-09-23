@@ -1,0 +1,43 @@
+openapi: 3.2.0
+info:
+  title: Caseys General Stores Health API
+  version: '1.0'
+  description: 'Operations tagged Health across 3 of this provider''s published API definitions: caseys-general-stores-store-api-openapi.json, caseys-general-stores-store-details-api-openapi.json, caseys-general-stores-store-number-api-openapi.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://esl.caseys.io/storeapi
+- url: https://esl.caseys.io/storedetailsapi
+- url: https://esl.caseys.io/storenumberapi
+security:
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Health
+paths:
+  /health:
+    get:
+      tags:
+      - Health
+      summary: Health Check
+      description: Returns the health status of the application
+      operationId: get-health
+      responses:
+        '200':
+          description: Healthy
+        '503':
+          description: Unhealthy
+    servers:
+    - url: https://esl.caseys.io/storeapi
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+x-refined-from:
+- caseys-general-stores-store-api-openapi.json
+- caseys-general-stores-store-details-api-openapi.json
+- caseys-general-stores-store-number-api-openapi.json

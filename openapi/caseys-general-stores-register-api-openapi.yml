@@ -1,0 +1,118 @@
+openapi: 3.2.0
+info:
+  title: StoreMessagingApi Register API
+  description: An API that allows services at the store to receive messages from external sources.
+  version: '1.0'
+servers:
+- url: https://esl.caseys.io/storemessagingapi
+security:
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Register
+paths:
+  /register:
+    post:
+      summary: Registers a new store agent
+      description: Creates backend resources required for the store agent to function.
+      operationId: RegistrationEndpoint
+      parameters:
+      - name: x-correlation-id
+        in: header
+        description: An identifier that will be used to aggregate all logs across all systems the request passes through.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Data required to register the store agent.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/registrationInput'
+            example:
+              storeNumber: 0
+              service: string
+      responses:
+        '200':
+          description: Payload of RegistrationOutput
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/registrationOutput'
+              example:
+                storeNumber: 0
+                storeAgentClientId: string
+                storeAgentClientSecret: string
+                clientName: string
+      tags:
+      - Register
+  /v1/register:
+    post:
+      summary: New enhancements have been made to the registration process.
+      description: Creates backend resources required for the store agent to function.
+      operationId: RegistrationEndpointV1
+      parameters:
+      - name: x-correlation-id
+        in: header
+        description: An identifier that will be used to aggregate all logs across all systems the request passes through.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Data required to register the store agent.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/registrationInput'
+            example:
+              storeNumber: 0
+              service: string
+      responses:
+        '200':
+          description: Payload of RegistrationOutput
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/registrationOutput'
+              example:
+                storeNumber: 0
+                storeAgentClientId: string
+                storeAgentClientSecret: string
+                clientName: string
+      tags:
+      - Register
+components:
+  schemas:
+    registrationOutput:
+      type: object
+      properties:
+        storeNumber:
+          type: integer
+          format: int32
+        storeAgentClientId:
+          type: string
+          description: The store agent client id to use for authentication
+        storeAgentClientSecret:
+          type: string
+          description: The store agent client secret to use for authentication
+        clientName:
+          type: string
+          description: The display name of the app registration in Azure AD.
+    registrationInput:
+      type: object
+      properties:
+        storeNumber:
+          type: integer
+          format: int32
+        service:
+          type: string
+          description: 'The store agent service to register. Ex: print-service'
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query

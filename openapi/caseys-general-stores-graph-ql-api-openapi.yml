@@ -1,16 +1,23 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: DigitalProductionPlannerApi
-  description: This is the OpenAPI Document on Azure Functions
+  title: Caseys General Stores Graph QL API
   version: '1.0'
+  description: 'Operations tagged GraphQL across 3 of this provider''s published API definitions: caseys-general-stores-digital-production-planner-api-openapi.json, caseys-general-stores-item-api-openapi.json, caseys-general-stores-supplier-api-openapi.json. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://esl.caseys.io/digitalproductionplannerapi
+- url: https://esl.caseys.io/itemapi
+- url: https://esl.caseys.io/supplierapi
+security:
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Graph QL
 paths:
   /graphql:
     post:
       tags:
-      - GraphQL
-      summary: GraphQL endpoint for production planner data.
+      - Graph QL
+      summary: GraphQL endpoint for production planner data
       description: Executes GraphQL operations for production planner data.
       operationId: graphql
       requestBody:
@@ -28,14 +35,8 @@ paths:
               schema:
                 type: string
               example: string
-  /openapi/v3.json:
-    get:
-      summary: Get OpenApi Specification
-      description: Gets the OpenApi specification in . format with the parameters .
-      operationId: getOpenApiSpec
-      responses:
-        '200':
-          description: ''
+    servers:
+    - url: https://esl.caseys.io/digitalproductionplannerapi
 components:
   securitySchemes:
     apiKeyHeader:
@@ -46,6 +47,7 @@ components:
       type: apiKey
       name: subscription-key
       in: query
-security:
-- apiKeyHeader: []
-- apiKeyQuery: []
+x-refined-from:
+- caseys-general-stores-digital-production-planner-api-openapi.json
+- caseys-general-stores-item-api-openapi.json
+- caseys-general-stores-supplier-api-openapi.json

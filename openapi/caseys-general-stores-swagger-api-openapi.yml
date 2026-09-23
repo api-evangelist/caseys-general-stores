@@ -1,0 +1,41 @@
+openapi: 3.2.0
+info:
+  title: Caseys General Stores Swagger API
+  version: '1.0'
+  description: 'Operations tagged Swagger across 3 of this provider''s published API definitions: caseys-general-stores-store-api-openapi.json, caseys-general-stores-store-details-api-openapi.json, caseys-general-stores-store-number-api-openapi.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://esl.caseys.io/storeapi
+- url: https://esl.caseys.io/storedetailsapi
+- url: https://esl.caseys.io/storenumberapi
+security:
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Swagger
+paths:
+  /swagger/v1/swagger.json:
+    get:
+      summary: Get OpenApi Specification
+      description: Gets the OpenApi specification in . format with the parameters StoreApi.
+      operationId: getOpenApiSpec
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Swagger
+    servers:
+    - url: https://esl.caseys.io/storeapi
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+x-refined-from:
+- caseys-general-stores-store-api-openapi.json
+- caseys-general-stores-store-details-api-openapi.json
+- caseys-general-stores-store-number-api-openapi.json

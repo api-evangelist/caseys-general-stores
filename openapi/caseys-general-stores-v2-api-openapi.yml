@@ -1,0 +1,123 @@
+openapi: 3.2.0
+info:
+  title: ItemApi V2 API
+  description: An API to obtain item information.
+  version: '1.0'
+servers:
+- url: https://esl.caseys.io/itemapi
+security:
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: v2
+paths:
+  /v2/related-items:
+    get:
+      tags:
+      - v2
+      summary: v2 Gets retrieval of related items from the Item Master(Pricebook), Providing…
+      description: Gets the related data for a specific upc.
+      operationId: getRelatedItemsByUpcV2
+      parameters:
+      - name: Upc
+        in: query
+        description: UPC of the item.
+        required: true
+        schema:
+          type: string
+      - name: Limit
+        in: query
+        description: Limits the number of results returned in the list.Default value is 100
+        schema:
+          type: integer
+      - name: Offset
+        in: query
+        description: Offsets the data in the list for use in pagination.Default value 0
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: This resource represents an item (upc).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getRelatedItemsResponseModelV2'
+              example:
+                limit: 0
+                offset: 0
+                count: 0
+                total: 0
+                data:
+                - upc: string
+                  description: string
+        '400':
+          description: The request received was in an invalid state or format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/apiError'
+              example:
+                code: 0
+                message: string
+        '500':
+          description: An error occurred while processing the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/apiError'
+              example:
+                code: 0
+                message: string
+components:
+  schemas:
+    apiError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Status code of the error.
+          format: int32
+        message:
+          type: string
+          description: Message that describes the error.
+    getRelatedItemsResponseModelV2:
+      type: object
+      properties:
+        limit:
+          type: integer
+          description: The limited number of items returned.
+          format: int32
+        offset:
+          type: integer
+          description: The number of items skipped.
+          format: int32
+        count:
+          type: integer
+          description: The number of items returned.
+          format: int32
+        total:
+          type: integer
+          description: The total number of items.
+          format: int32
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/relatedItem'
+    relatedItem:
+      type: object
+      properties:
+        upc:
+          type: string
+          description: The Universal Product Code of the related item.
+        description:
+          type: string
+          description: A brief description of the related item.
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query

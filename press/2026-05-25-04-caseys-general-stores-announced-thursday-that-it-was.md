@@ -1,7 +1,9 @@
 ---
 title: Casey's General Stores announced Thursday that it was ...
 url: https://www.facebook.com/DakotaNewsNow/posts/caseys-general-stores-announced-thursday-that-it-was-added-to-the-sp-500-one-of-/1355783423246321/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Casey''s General Stores" press release artificial intelligence'
 position: 4
 source: serpapi-google

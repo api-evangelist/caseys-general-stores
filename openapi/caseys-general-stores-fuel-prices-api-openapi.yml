@@ -1,41 +1,21 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: FuelPriceApi
+  title: FuelPriceApi Fuel Prices API
   description: An API to obtain fuel price information.
   version: '1.0'
 servers:
 - url: https://esl.caseys.io/fuelpriceapi
+security:
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Fuel Prices
 paths:
-  /heartbeat:
-    get:
-      tags:
-      - heartbeat
-      summary: Gets the health of the API.
-      description: Interrogates the state of the API and its dependencies to return the API health.
-      operationId: getHeartbeat
-      responses:
-        '200':
-          description: The status of the APIs health. Healthy if all dependency health checks pass. Unhealthy if
-            any dependency's health check fails, or if an exception occurs.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/heartbeatReport'
-              example:
-                status: string
-        '500':
-          description: An error occurred while processing the request.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/heartbeatReport'
-              example:
-                status: string
   /fuelprices:
     post:
       tags:
-      - fuelPrices
-      summary: Get a list of fuel prices.
+      - Fuel Prices
+      summary: Get a list of fuel prices
       description: Gets a list of fuel price data for stores.
       operationId: getFuelPricesByStoreNumbers
       requestBody:
@@ -90,16 +70,16 @@ paths:
               example:
                 code: 0
                 message: string
-  /openapi/V3.json:
-    get:
-      summary: Get OpenApi Specification
-      description: Gets the OpenApi specification in V3.json format with the parameters .
-      operationId: getOpenApiSpec
-      responses:
-        '200':
-          description: ''
 components:
   schemas:
+    fuelPriceParameterModel:
+      type: object
+      properties:
+        storeId:
+          type: array
+          items:
+            type: integer
+            format: int32
     apiError:
       type: object
       properties:
@@ -110,30 +90,6 @@ components:
         message:
           type: string
           description: Message that describes the error.
-    fuelPriceModel:
-      type: object
-      properties:
-        storeId:
-          type: integer
-          description: The number of the store.
-          format: int32
-        updateOn:
-          type: string
-          description: The date the fuel price was updated on.
-          format: date-time
-        products:
-          type: array
-          items:
-            $ref: '#/components/schemas/fuelProductModel'
-          description: A collection of fuel price products.
-    fuelPriceParameterModel:
-      type: object
-      properties:
-        storeId:
-          type: array
-          items:
-            type: integer
-            format: int32
     fuelProductModel:
       type: object
       properties:
@@ -154,12 +110,22 @@ components:
         streetFighter:
           type: boolean
           description: Indicates high selling fuel that is advertised more often.
-    heartbeatReport:
+    fuelPriceModel:
       type: object
       properties:
-        status:
+        storeId:
+          type: integer
+          description: The number of the store.
+          format: int32
+        updateOn:
           type: string
-          description: Description of the current status of dependencies of the API.
+          description: The date the fuel price was updated on.
+          format: date-time
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/fuelProductModel'
+          description: A collection of fuel price products.
   securitySchemes:
     apiKeyHeader:
       type: apiKey
@@ -169,6 +135,3 @@ components:
       type: apiKey
       name: subscription-key
       in: query
-security:
-- apiKeyHeader: []
-- apiKeyQuery: []

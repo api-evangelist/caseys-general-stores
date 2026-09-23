@@ -1,0 +1,972 @@
+openapi: 3.2.0
+info:
+  title: Caseys General Stores Hours API
+  version: '1.0'
+  description: 'Operations tagged hours across 2 of this provider''s published API definitions: caseys-general-stores-old-store-api-openapi.json, caseys-general-stores-store-api-openapi.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://esl.caseys.io/oldstoreapi
+- url: https://esl.caseys.io/storeapi
+security:
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Hours
+paths:
+  /v1/stores/{storeNumber}/hours:
+    get:
+      tags:
+      - Hours
+      summary: v1 Gets a store's hours
+      description: Gets the store hours data for a specific store.
+      operationId: getHoursByStoreV1
+      parameters:
+      - name: storeNumber
+        in: path
+        description: The unique identifier of the store to get data about.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: This resource represents the different working hours for a store.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/storeHoursInfoV1'
+              example:
+                hoursBlocks:
+                - type: StoreOpenHours
+                  hours:
+                  - dayOfWeek: Sunday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Monday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Tuesday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Wednesday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Thursday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Friday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Saturday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                - type: CarryoutHours
+                  hours:
+                  - dayOfWeek: Sunday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Monday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Tuesday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Wednesday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Thursday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Friday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Saturday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                - type: DoorDashHours
+                  hours:
+                  - dayOfWeek: Sunday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Monday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Tuesday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Wednesday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Thursday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Friday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Saturday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                - type: PumpHours
+                  hours:
+                  - dayOfWeek: Sunday
+                    startTime: '2026-09-05'
+                    endTime: 1.00:00:00
+                  - dayOfWeek: Monday
+                    startTime: '2026-09-05'
+                    endTime: 1.00:00:00
+                  - dayOfWeek: Tuesday
+                    startTime: '2026-09-05'
+                    endTime: 1.00:00:00
+                  - dayOfWeek: Wednesday
+                    startTime: '2026-09-05'
+                    endTime: 1.00:00:00
+                  - dayOfWeek: Thursday
+                    startTime: '2026-09-05'
+                    endTime: 1.00:00:00
+                  - dayOfWeek: Friday
+                    startTime: '2026-09-05'
+                    endTime: 1.00:00:00
+                  - dayOfWeek: Saturday
+                    startTime: '2026-09-05'
+                    endTime: 1.00:00:00
+                - type: CarWashHours
+                  hours:
+                  - dayOfWeek: Sunday
+                    startTime: '2026-09-05'
+                    endTime: 1.00:00:00
+                  - dayOfWeek: Monday
+                    startTime: '2026-09-05'
+                    endTime: 1.00:00:00
+                  - dayOfWeek: Tuesday
+                    startTime: '2026-09-05'
+                    endTime: 1.00:00:00
+                  - dayOfWeek: Wednesday
+                    startTime: '2026-09-05'
+                    endTime: 1.00:00:00
+                  - dayOfWeek: Thursday
+                    startTime: '2026-09-05'
+                    endTime: 1.00:00:00
+                  - dayOfWeek: Friday
+                    startTime: '2026-09-05'
+                    endTime: 1.00:00:00
+                  - dayOfWeek: Saturday
+                    startTime: '2026-09-05'
+                    endTime: 1.00:00:00
+                - type: CurbSideHours
+                  hours:
+                  - dayOfWeek: Sunday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Monday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Tuesday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Wednesday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Thursday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Friday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Saturday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                - type: KitchenHours
+                  hours:
+                  - dayOfWeek: Sunday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Sunday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Sunday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Monday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Monday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Monday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Tuesday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Tuesday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Tuesday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Wednesday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Wednesday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Wednesday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Thursday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Thursday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Thursday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Friday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Friday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Friday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Saturday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Saturday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Saturday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                storeNumber: 2
+        '404':
+          description: No resource was found for the given identifier.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/apiError'
+              example:
+                code: 0
+                message: string
+        '500':
+          description: An error occurred while processing the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/apiError'
+              example:
+                code: 0
+                message: string
+    servers:
+    - url: https://esl.caseys.io/oldstoreapi
+  /v1/stores/hours:
+    get:
+      tags:
+      - Hours
+      summary: v1 Gets all store hours for a list of paginated stores
+      description: Gets store hours data for a list of paginated stores.
+      operationId: getAllStoreHoursV1
+      parameters:
+      - name: offset
+        in: query
+        description: Offsets the data in the list for use in pagination. If you make a request for the first 10 items, then you would need to pass 10 as the offset to get the next set of 10 items. The default value is 0.
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        description: Limits the number of results returned in the list. The default value is 10.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: This resource represents a list of the store hours data for all stores.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/allStoreHoursInfoV1'
+              example:
+                limit: 0
+                offset: 0
+                count: 0
+                total: 0
+                data:
+                - '{"hoursBlocks":[{"type":"StoreOpenHours","hours":[{"dayOfWeek":"Sunday","startTime":"05:00:00","endTime":"22:00:00"},{"dayOfWeek":"Monday","startTime":"05:00:00","endTime":"22:00:00"},{"dayOfWeek":"Tuesday","startTime":"05:00:00","endTime":"22:00:00"},{"dayOfWeek":"Wednesday","startTime":"05:00:00","endTime":"22:00:00"},{"dayOfWeek":"Thursday","startTime":"05:00:00","endTime":"22:00:00"},{"dayOfWeek":"Friday","startTime":"05:00:00","endTime":"22:00:00"},{"dayOfWeek":"Saturday","startTime":"05:00:00","endTime":"22:00:00"}]},{"type":"CarryoutHours","hours":[{"dayOfWeek":"Sunday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Monday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Tuesday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Wednesday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Thursday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Friday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Saturday","startTime":"05:00:00","endTime":"22:30:00"}]},{"type":"DoorDashHours","hours":[{"dayOfWeek":"Sunday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Monday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Tuesday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Wednesday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Thursday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Friday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Saturday","startTime":"05:00:00","endTime":"22:30:00"}]},{"type":"PumpHours","hours":[{"dayOfWeek":"Sunday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Monday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Tuesday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Wednesday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Thursday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Friday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Saturday","startTime":"00:00:00","endTime":"1.00:00:00"}]},{"type":"CarWashHours","hours":[{"dayOfWeek":"Sunday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Monday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Tuesday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Wednesday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Thursday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Friday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Saturday","startTime":"00:00:00","endTime":"1.00:00:00"}]},{"type":"CurbSideHours","hours":[{"dayOfWeek":"Sunday","startTime":"06:00:00","endTime":"22:00:00"},{"dayOfWeek":"Monday","startTime":"06:00:00","endTime":"22:00:00"},{"dayOfWeek":"Tuesday","startTime":"06:00:00","endTime":"22:00:00"},{"dayOfWeek":"Wednesday","startTime":"06:00:00","endTime":"22:00:00"},{"dayOfWeek":"Thursday","startTime":"06:00:00","endTime":"22:00:00"},{"dayOfWeek":"Friday","startTime":"06:00:00","endTime":"22:00:00"},{"dayOfWeek":"Saturday","startTime":"06:00:00","endTime":"22:00:00"}]},{"type":"KitchenHours","hours":[{"dayOfWeek":"Sunday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Sunday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Sunday","startTime":"10:00:00","endTime":"11:00:00"},{"dayOfWeek":"Monday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Monday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Monday","startTime":"10:00:00","endTime":"11:00:00"},{"dayOfWeek":"Tuesday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Tuesday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Tuesday","startTime":"10:00:00","endTime":"11:00:00"},{"dayOfWeek":"Wednesday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Wednesday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Wednesday","startTime":"10:00:00","endTime":"11:00:00"},{"dayOfWeek":"Thursday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Thursday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Thursday","startTime":"10:00:00","endTime":"11:00:00"},{"dayOfWeek":"Friday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Friday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Friday","startTime":"10:00:00","endTime":"11:00:00"},{"dayOfWeek":"Saturday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Saturday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Saturday","startTime":"10:00:00","endTime":"11:00:00"}]}],"storeNumber":2}'
+        '400':
+          description: The request received was in an invalid state or format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/apiError'
+              example:
+                code: 0
+                message: string
+        '500':
+          description: An error occurred while processing the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/apiError'
+              example:
+                code: 0
+                message: string
+    servers:
+    - url: https://esl.caseys.io/oldstoreapi
+  /store/{storeNumber}/hours:
+    get:
+      tags:
+      - Hours
+      summary: v0 Gets a store's hours [DEPRECATED]
+      description: Gets the store hours data for a specific store.
+      operationId: getHoursByStoreV0
+      parameters:
+      - name: storeNumber
+        in: path
+        description: The unique identifier of the store to get data about.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: This resource represents the different working hours for a store.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/storeHoursInfoV0'
+              example:
+                hoursBlocks:
+                - type: StoreOpenHours
+                  hours:
+                  - dayOfWeek: Sunday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Monday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Tuesday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Wednesday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Thursday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Friday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Saturday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                - type: CarryoutHours
+                  hours:
+                  - dayOfWeek: Sunday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Monday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Tuesday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Wednesday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Thursday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Friday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Saturday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                - type: DoorDashHours
+                  hours:
+                  - dayOfWeek: Sunday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Monday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Tuesday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Wednesday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Thursday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Friday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Saturday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                - type: PumpHours
+                  hours:
+                  - dayOfWeek: Sunday
+                    startTime: '2026-09-05'
+                    endTime: 1.00:00:00
+                  - dayOfWeek: Monday
+                    startTime: '2026-09-05'
+                    endTime: 1.00:00:00
+                  - dayOfWeek: Tuesday
+                    startTime: '2026-09-05'
+                    endTime: 1.00:00:00
+                  - dayOfWeek: Wednesday
+                    startTime: '2026-09-05'
+                    endTime: 1.00:00:00
+                  - dayOfWeek: Thursday
+                    startTime: '2026-09-05'
+                    endTime: 1.00:00:00
+                  - dayOfWeek: Friday
+                    startTime: '2026-09-05'
+                    endTime: 1.00:00:00
+                  - dayOfWeek: Saturday
+                    startTime: '2026-09-05'
+                    endTime: 1.00:00:00
+                - type: CarWashHours
+                  hours:
+                  - dayOfWeek: Sunday
+                    startTime: '2026-09-05'
+                    endTime: 1.00:00:00
+                  - dayOfWeek: Monday
+                    startTime: '2026-09-05'
+                    endTime: 1.00:00:00
+                  - dayOfWeek: Tuesday
+                    startTime: '2026-09-05'
+                    endTime: 1.00:00:00
+                  - dayOfWeek: Wednesday
+                    startTime: '2026-09-05'
+                    endTime: 1.00:00:00
+                  - dayOfWeek: Thursday
+                    startTime: '2026-09-05'
+                    endTime: 1.00:00:00
+                  - dayOfWeek: Friday
+                    startTime: '2026-09-05'
+                    endTime: 1.00:00:00
+                  - dayOfWeek: Saturday
+                    startTime: '2026-09-05'
+                    endTime: 1.00:00:00
+                - type: CurbSideHours
+                  hours:
+                  - dayOfWeek: Sunday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Monday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Tuesday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Wednesday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Thursday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Friday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Saturday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                - type: KitchenHours
+                  hours:
+                  - dayOfWeek: Sunday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Sunday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Sunday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Monday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Monday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Monday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Tuesday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Tuesday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Tuesday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Wednesday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Wednesday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Wednesday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Thursday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Thursday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Thursday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Friday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Friday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Friday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Saturday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Saturday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                  - dayOfWeek: Saturday
+                    startTime: '2026-09-05'
+                    endTime: '2026-09-05'
+                storeNumber: 2
+        '404':
+          description: No resource was found for the given identifier.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/apiError'
+              example:
+                code: 0
+                message: string
+        '500':
+          description: An error occurred while processing the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/apiError'
+              example:
+                code: 0
+                message: string
+    servers:
+    - url: https://esl.caseys.io/oldstoreapi
+  /store/hours:
+    get:
+      tags:
+      - Hours
+      summary: v0 Gets all store hours for a list of paginated stores [DEPRECATED]
+      description: Gets store hours data for a list of paginated stores.
+      operationId: getAllStoreHoursV0
+      parameters:
+      - name: offset
+        in: query
+        description: Offsets the data in the list for use in pagination. If you make a request for the first 10 items, then you would need to pass 10 as the offset to get the next set of 10 items. The default value is 0.
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        description: Limits the number of results returned in the list. The default value is 10.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: This resource represents a list of the store hours data for all stores.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/allStoreHoursInfoV0'
+              example:
+                limit: 0
+                offset: 0
+                count: 0
+                total: 0
+                data:
+                - '{"hoursBlocks":[{"type":"StoreOpenHours","hours":[{"dayOfWeek":"Sunday","startTime":"05:00:00","endTime":"22:00:00"},{"dayOfWeek":"Monday","startTime":"05:00:00","endTime":"22:00:00"},{"dayOfWeek":"Tuesday","startTime":"05:00:00","endTime":"22:00:00"},{"dayOfWeek":"Wednesday","startTime":"05:00:00","endTime":"22:00:00"},{"dayOfWeek":"Thursday","startTime":"05:00:00","endTime":"22:00:00"},{"dayOfWeek":"Friday","startTime":"05:00:00","endTime":"22:00:00"},{"dayOfWeek":"Saturday","startTime":"05:00:00","endTime":"22:00:00"}]},{"type":"CarryoutHours","hours":[{"dayOfWeek":"Sunday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Monday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Tuesday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Wednesday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Thursday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Friday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Saturday","startTime":"05:00:00","endTime":"22:30:00"}]},{"type":"DoorDashHours","hours":[{"dayOfWeek":"Sunday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Monday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Tuesday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Wednesday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Thursday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Friday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Saturday","startTime":"05:00:00","endTime":"22:30:00"}]},{"type":"PumpHours","hours":[{"dayOfWeek":"Sunday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Monday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Tuesday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Wednesday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Thursday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Friday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Saturday","startTime":"00:00:00","endTime":"1.00:00:00"}]},{"type":"CarWashHours","hours":[{"dayOfWeek":"Sunday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Monday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Tuesday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Wednesday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Thursday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Friday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Saturday","startTime":"00:00:00","endTime":"1.00:00:00"}]},{"type":"CurbSideHours","hours":[{"dayOfWeek":"Sunday","startTime":"06:00:00","endTime":"22:00:00"},{"dayOfWeek":"Monday","startTime":"06:00:00","endTime":"22:00:00"},{"dayOfWeek":"Tuesday","startTime":"06:00:00","endTime":"22:00:00"},{"dayOfWeek":"Wednesday","startTime":"06:00:00","endTime":"22:00:00"},{"dayOfWeek":"Thursday","startTime":"06:00:00","endTime":"22:00:00"},{"dayOfWeek":"Friday","startTime":"06:00:00","endTime":"22:00:00"},{"dayOfWeek":"Saturday","startTime":"06:00:00","endTime":"22:00:00"}]},{"type":"KitchenHours","hours":[{"dayOfWeek":"Sunday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Sunday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Sunday","startTime":"10:00:00","endTime":"11:00:00"},{"dayOfWeek":"Monday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Monday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Monday","startTime":"10:00:00","endTime":"11:00:00"},{"dayOfWeek":"Tuesday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Tuesday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Tuesday","startTime":"10:00:00","endTime":"11:00:00"},{"dayOfWeek":"Wednesday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Wednesday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Wednesday","startTime":"10:00:00","endTime":"11:00:00"},{"dayOfWeek":"Thursday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Thursday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Thursday","startTime":"10:00:00","endTime":"11:00:00"},{"dayOfWeek":"Friday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Friday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Friday","startTime":"10:00:00","endTime":"11:00:00"},{"dayOfWeek":"Saturday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Saturday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Saturday","startTime":"10:00:00","endTime":"11:00:00"}]}],"storeNumber":2}'
+        '400':
+          description: The request received was in an invalid state or format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/apiError'
+              example:
+                code: 0
+                message: string
+        '500':
+          description: An error occurred while processing the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/apiError'
+              example:
+                code: 0
+                message: string
+    servers:
+    - url: https://esl.caseys.io/oldstoreapi
+components:
+  schemas:
+    hourV0:
+      type: object
+      properties:
+        dayOfWeek:
+          type: string
+          description: The day of the week for the hours.
+        startTime:
+          type: string
+          description: Hours start time for the day in the format 'hh:mm:ss'
+        endTime:
+          type: string
+          description: Hours end time for the day in the format 'hh:mm:ss'; an end time of midnight is represented as '1.00:00:00'
+    storeHoursInfoV1:
+      type: object
+      properties:
+        hoursBlocks:
+          type: array
+          items:
+            $ref: '#/components/schemas/hoursBlock'
+          description: The collection of store hours by hour type.
+        storeNumber:
+          type: integer
+          description: The number of the store.
+          format: int32
+      example: '{"hoursBlocks":[{"type":"StoreOpenHours","hours":[{"dayOfWeek":"Sunday","startTime":"05:00:00","endTime":"22:00:00"},{"dayOfWeek":"Monday","startTime":"05:00:00","endTime":"22:00:00"},{"dayOfWeek":"Tuesday","startTime":"05:00:00","endTime":"22:00:00"},{"dayOfWeek":"Wednesday","startTime":"05:00:00","endTime":"22:00:00"},{"dayOfWeek":"Thursday","startTime":"05:00:00","endTime":"22:00:00"},{"dayOfWeek":"Friday","startTime":"05:00:00","endTime":"22:00:00"},{"dayOfWeek":"Saturday","startTime":"05:00:00","endTime":"22:00:00"}]},{"type":"CarryoutHours","hours":[{"dayOfWeek":"Sunday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Monday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Tuesday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Wednesday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Thursday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Friday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Saturday","startTime":"05:00:00","endTime":"22:30:00"}]},{"type":"DoorDashHours","hours":[{"dayOfWeek":"Sunday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Monday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Tuesday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Wednesday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Thursday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Friday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Saturday","startTime":"05:00:00","endTime":"22:30:00"}]},{"type":"PumpHours","hours":[{"dayOfWeek":"Sunday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Monday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Tuesday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Wednesday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Thursday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Friday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Saturday","startTime":"00:00:00","endTime":"1.00:00:00"}]},{"type":"CarWashHours","hours":[{"dayOfWeek":"Sunday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Monday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Tuesday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Wednesday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Thursday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Friday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Saturday","startTime":"00:00:00","endTime":"1.00:00:00"}]},{"type":"CurbSideHours","hours":[{"dayOfWeek":"Sunday","startTime":"06:00:00","endTime":"22:00:00"},{"dayOfWeek":"Monday","startTime":"06:00:00","endTime":"22:00:00"},{"dayOfWeek":"Tuesday","startTime":"06:00:00","endTime":"22:00:00"},{"dayOfWeek":"Wednesday","startTime":"06:00:00","endTime":"22:00:00"},{"dayOfWeek":"Thursday","startTime":"06:00:00","endTime":"22:00:00"},{"dayOfWeek":"Friday","startTime":"06:00:00","endTime":"22:00:00"},{"dayOfWeek":"Saturday","startTime":"06:00:00","endTime":"22:00:00"}]},{"type":"KitchenHours","hours":[{"dayOfWeek":"Sunday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Sunday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Sunday","startTime":"10:00:00","endTime":"11:00:00"},{"dayOfWeek":"Monday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Monday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Monday","startTime":"10:00:00","endTime":"11:00:00"},{"dayOfWeek":"Tuesday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Tuesday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Tuesday","startTime":"10:00:00","endTime":"11:00:00"},{"dayOfWeek":"Wednesday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Wednesday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Wednesday","startTime":"10:00:00","endTime":"11:00:00"},{"dayOfWeek":"Thursday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Thursday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Thursday","startTime":"10:00:00","endTime":"11:00:00"},{"dayOfWeek":"Friday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Friday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Friday","startTime":"10:00:00","endTime":"11:00:00"},{"dayOfWeek":"Saturday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Saturday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Saturday","startTime":"10:00:00","endTime":"11:00:00"}]}],"storeNumber":2}'
+    storeHoursInfoV0:
+      type: object
+      properties:
+        hoursBlocks:
+          type: array
+          items:
+            $ref: '#/components/schemas/hoursBlockV0'
+          description: The collection of store hours by hour type.
+        storeNumber:
+          type: integer
+          description: The number of the store.
+          format: int32
+      example: '{"hoursBlocks":[{"type":"StoreOpenHours","hours":[{"dayOfWeek":"Sunday","startTime":"05:00:00","endTime":"22:00:00"},{"dayOfWeek":"Monday","startTime":"05:00:00","endTime":"22:00:00"},{"dayOfWeek":"Tuesday","startTime":"05:00:00","endTime":"22:00:00"},{"dayOfWeek":"Wednesday","startTime":"05:00:00","endTime":"22:00:00"},{"dayOfWeek":"Thursday","startTime":"05:00:00","endTime":"22:00:00"},{"dayOfWeek":"Friday","startTime":"05:00:00","endTime":"22:00:00"},{"dayOfWeek":"Saturday","startTime":"05:00:00","endTime":"22:00:00"}]},{"type":"CarryoutHours","hours":[{"dayOfWeek":"Sunday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Monday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Tuesday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Wednesday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Thursday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Friday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Saturday","startTime":"05:00:00","endTime":"22:30:00"}]},{"type":"DoorDashHours","hours":[{"dayOfWeek":"Sunday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Monday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Tuesday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Wednesday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Thursday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Friday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Saturday","startTime":"05:00:00","endTime":"22:30:00"}]},{"type":"PumpHours","hours":[{"dayOfWeek":"Sunday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Monday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Tuesday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Wednesday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Thursday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Friday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Saturday","startTime":"00:00:00","endTime":"1.00:00:00"}]},{"type":"CarWashHours","hours":[{"dayOfWeek":"Sunday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Monday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Tuesday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Wednesday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Thursday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Friday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Saturday","startTime":"00:00:00","endTime":"1.00:00:00"}]},{"type":"CurbSideHours","hours":[{"dayOfWeek":"Sunday","startTime":"06:00:00","endTime":"22:00:00"},{"dayOfWeek":"Monday","startTime":"06:00:00","endTime":"22:00:00"},{"dayOfWeek":"Tuesday","startTime":"06:00:00","endTime":"22:00:00"},{"dayOfWeek":"Wednesday","startTime":"06:00:00","endTime":"22:00:00"},{"dayOfWeek":"Thursday","startTime":"06:00:00","endTime":"22:00:00"},{"dayOfWeek":"Friday","startTime":"06:00:00","endTime":"22:00:00"},{"dayOfWeek":"Saturday","startTime":"06:00:00","endTime":"22:00:00"}]},{"type":"KitchenHours","hours":[{"dayOfWeek":"Sunday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Sunday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Sunday","startTime":"10:00:00","endTime":"11:00:00"},{"dayOfWeek":"Monday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Monday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Monday","startTime":"10:00:00","endTime":"11:00:00"},{"dayOfWeek":"Tuesday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Tuesday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Tuesday","startTime":"10:00:00","endTime":"11:00:00"},{"dayOfWeek":"Wednesday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Wednesday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Wednesday","startTime":"10:00:00","endTime":"11:00:00"},{"dayOfWeek":"Thursday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Thursday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Thursday","startTime":"10:00:00","endTime":"11:00:00"},{"dayOfWeek":"Friday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Friday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Friday","startTime":"10:00:00","endTime":"11:00:00"},{"dayOfWeek":"Saturday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Saturday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Saturday","startTime":"10:00:00","endTime":"11:00:00"}]}],"storeNumber":2}'
+    hoursBlockV0:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Describes the scenario type the hours are for.
+        hours:
+          type: array
+          items:
+            $ref: '#/components/schemas/hourV0'
+          description: Collection of hours for each day.
+    hoursBlock:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Describes the scenario type the hours are for.
+        hours:
+          type: array
+          items:
+            $ref: '#/components/schemas/hourV1'
+          description: Collection of hours for each day.
+    allStoreHoursInfoV0:
+      type: object
+      properties:
+        limit:
+          type: integer
+          description: The limited number of items returned.
+          format: int32
+        offset:
+          type: integer
+          description: The number of items skipped.
+          format: int32
+        count:
+          type: integer
+          description: The number of items returned.
+          format: int32
+        total:
+          type: integer
+          description: The total number of items.
+          format: int32
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/storeHoursInfoV0'
+    apiError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Status code of the error.
+          format: int32
+        message:
+          type: string
+          description: Message that describes the error.
+    allStoreHoursInfoV1:
+      type: object
+      properties:
+        limit:
+          type: integer
+          description: The limited number of items returned.
+          format: int32
+        offset:
+          type: integer
+          description: The number of items skipped.
+          format: int32
+        count:
+          type: integer
+          description: The number of items returned.
+          format: int32
+        total:
+          type: integer
+          description: The total number of items.
+          format: int32
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/storeHoursInfoV1'
+    hourV1:
+      type: object
+      properties:
+        dayOfWeek:
+          type: string
+          description: The day of the week for the hours.
+        startTime:
+          type: string
+          description: Hours start time for the day in the format 'hh:mm:ss'
+        endTime:
+          type: string
+          description: Hours end time for the day in the format 'hh:mm:ss'; an end time of midnight is represented as '1.00:00:00'
+    storeHoursInfoV0_2:
+      type: object
+      properties:
+        hoursBlocks:
+          type: array
+          items:
+            $ref: '#/components/schemas/hoursBlockV0'
+          description: The collection of store hours by hour type.
+        storeNumber:
+          type: integer
+          description: The number of the store.
+          format: int32
+      example:
+        hoursBlocks:
+        - type: StoreOpenHours
+          hours:
+          - dayOfWeek: Sunday
+            startTime: '2026-09-03T05:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:00:00.0000000+00:00'
+          - dayOfWeek: Monday
+            startTime: '2026-09-03T05:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:00:00.0000000+00:00'
+          - dayOfWeek: Tuesday
+            startTime: '2026-09-03T05:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:00:00.0000000+00:00'
+          - dayOfWeek: Wednesday
+            startTime: '2026-09-03T05:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:00:00.0000000+00:00'
+          - dayOfWeek: Thursday
+            startTime: '2026-09-03T05:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:00:00.0000000+00:00'
+          - dayOfWeek: Friday
+            startTime: '2026-09-03T05:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:00:00.0000000+00:00'
+          - dayOfWeek: Saturday
+            startTime: '2026-09-03T05:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:00:00.0000000+00:00'
+        - type: CarryoutHours
+          hours:
+          - dayOfWeek: Sunday
+            startTime: '2026-09-03T05:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:30:00.0000000+00:00'
+          - dayOfWeek: Monday
+            startTime: '2026-09-03T05:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:30:00.0000000+00:00'
+          - dayOfWeek: Tuesday
+            startTime: '2026-09-03T05:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:30:00.0000000+00:00'
+          - dayOfWeek: Wednesday
+            startTime: '2026-09-03T05:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:30:00.0000000+00:00'
+          - dayOfWeek: Thursday
+            startTime: '2026-09-03T05:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:30:00.0000000+00:00'
+          - dayOfWeek: Friday
+            startTime: '2026-09-03T05:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:30:00.0000000+00:00'
+          - dayOfWeek: Saturday
+            startTime: '2026-09-03T05:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:30:00.0000000+00:00'
+        - type: DoorDashHours
+          hours:
+          - dayOfWeek: Sunday
+            startTime: '2026-09-03T05:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:30:00.0000000+00:00'
+          - dayOfWeek: Monday
+            startTime: '2026-09-03T05:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:30:00.0000000+00:00'
+          - dayOfWeek: Tuesday
+            startTime: '2026-09-03T05:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:30:00.0000000+00:00'
+          - dayOfWeek: Wednesday
+            startTime: '2026-09-03T05:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:30:00.0000000+00:00'
+          - dayOfWeek: Thursday
+            startTime: '2026-09-03T05:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:30:00.0000000+00:00'
+          - dayOfWeek: Friday
+            startTime: '2026-09-03T05:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:30:00.0000000+00:00'
+          - dayOfWeek: Saturday
+            startTime: '2026-09-03T05:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:30:00.0000000+00:00'
+        - type: PumpHours
+          hours:
+          - dayOfWeek: Sunday
+            startTime: '2026-09-03'
+            endTime: 1.00:00:00
+          - dayOfWeek: Monday
+            startTime: '2026-09-03'
+            endTime: 1.00:00:00
+          - dayOfWeek: Tuesday
+            startTime: '2026-09-03'
+            endTime: 1.00:00:00
+          - dayOfWeek: Wednesday
+            startTime: '2026-09-03'
+            endTime: 1.00:00:00
+          - dayOfWeek: Thursday
+            startTime: '2026-09-03'
+            endTime: 1.00:00:00
+          - dayOfWeek: Friday
+            startTime: '2026-09-03'
+            endTime: 1.00:00:00
+          - dayOfWeek: Saturday
+            startTime: '2026-09-03'
+            endTime: 1.00:00:00
+        - type: CarWashHours
+          hours:
+          - dayOfWeek: Sunday
+            startTime: '2026-09-03'
+            endTime: 1.00:00:00
+          - dayOfWeek: Monday
+            startTime: '2026-09-03'
+            endTime: 1.00:00:00
+          - dayOfWeek: Tuesday
+            startTime: '2026-09-03'
+            endTime: 1.00:00:00
+          - dayOfWeek: Wednesday
+            startTime: '2026-09-03'
+            endTime: 1.00:00:00
+          - dayOfWeek: Thursday
+            startTime: '2026-09-03'
+            endTime: 1.00:00:00
+          - dayOfWeek: Friday
+            startTime: '2026-09-03'
+            endTime: 1.00:00:00
+          - dayOfWeek: Saturday
+            startTime: '2026-09-03'
+            endTime: 1.00:00:00
+        - type: CurbSideHours
+          hours:
+          - dayOfWeek: Sunday
+            startTime: '2026-09-03T06:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:00:00.0000000+00:00'
+          - dayOfWeek: Monday
+            startTime: '2026-09-03T06:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:00:00.0000000+00:00'
+          - dayOfWeek: Tuesday
+            startTime: '2026-09-03T06:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:00:00.0000000+00:00'
+          - dayOfWeek: Wednesday
+            startTime: '2026-09-03T06:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:00:00.0000000+00:00'
+          - dayOfWeek: Thursday
+            startTime: '2026-09-03T06:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:00:00.0000000+00:00'
+          - dayOfWeek: Friday
+            startTime: '2026-09-03T06:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:00:00.0000000+00:00'
+          - dayOfWeek: Saturday
+            startTime: '2026-09-03T06:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:00:00.0000000+00:00'
+        - type: KitchenHours
+          hours:
+          - dayOfWeek: Sunday
+            startTime: '2026-09-03T05:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:00:00.0000000+00:00'
+          - dayOfWeek: Sunday
+            startTime: '2026-09-03T04:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:00:00.0000000+00:00'
+          - dayOfWeek: Sunday
+            startTime: '2026-09-03T10:00:00.0000000+00:00'
+            endTime: '2026-09-03T11:00:00.0000000+00:00'
+          - dayOfWeek: Monday
+            startTime: '2026-09-03T05:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:00:00.0000000+00:00'
+          - dayOfWeek: Monday
+            startTime: '2026-09-03T04:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:00:00.0000000+00:00'
+          - dayOfWeek: Monday
+            startTime: '2026-09-03T10:00:00.0000000+00:00'
+            endTime: '2026-09-03T11:00:00.0000000+00:00'
+          - dayOfWeek: Tuesday
+            startTime: '2026-09-03T05:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:00:00.0000000+00:00'
+          - dayOfWeek: Tuesday
+            startTime: '2026-09-03T04:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:00:00.0000000+00:00'
+          - dayOfWeek: Tuesday
+            startTime: '2026-09-03T10:00:00.0000000+00:00'
+            endTime: '2026-09-03T11:00:00.0000000+00:00'
+          - dayOfWeek: Wednesday
+            startTime: '2026-09-03T05:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:00:00.0000000+00:00'
+          - dayOfWeek: Wednesday
+            startTime: '2026-09-03T04:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:00:00.0000000+00:00'
+          - dayOfWeek: Wednesday
+            startTime: '2026-09-03T10:00:00.0000000+00:00'
+            endTime: '2026-09-03T11:00:00.0000000+00:00'
+          - dayOfWeek: Thursday
+            startTime: '2026-09-03T05:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:00:00.0000000+00:00'
+          - dayOfWeek: Thursday
+            startTime: '2026-09-03T04:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:00:00.0000000+00:00'
+          - dayOfWeek: Thursday
+            startTime: '2026-09-03T10:00:00.0000000+00:00'
+            endTime: '2026-09-03T11:00:00.0000000+00:00'
+          - dayOfWeek: Friday
+            startTime: '2026-09-03T05:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:00:00.0000000+00:00'
+          - dayOfWeek: Friday
+            startTime: '2026-09-03T04:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:00:00.0000000+00:00'
+          - dayOfWeek: Friday
+            startTime: '2026-09-03T10:00:00.0000000+00:00'
+            endTime: '2026-09-03T11:00:00.0000000+00:00'
+          - dayOfWeek: Saturday
+            startTime: '2026-09-03T05:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:00:00.0000000+00:00'
+          - dayOfWeek: Saturday
+            startTime: '2026-09-03T04:00:00.0000000+00:00'
+            endTime: '2026-09-03T10:00:00.0000000+00:00'
+          - dayOfWeek: Saturday
+            startTime: '2026-09-03T10:00:00.0000000+00:00'
+            endTime: '2026-09-03T11:00:00.0000000+00:00'
+        storeNumber: 2
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+x-refined-from:
+- caseys-general-stores-old-store-api-openapi.json
+- caseys-general-stores-store-api-openapi.json

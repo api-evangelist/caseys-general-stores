@@ -1,7 +1,9 @@
 ---
 title: 'Q&A: The mind behind Casey''s digital transformation efforts'
 url: https://www.cstoredive.com/news/caseys-digital-transformation-art-sebastian-interview/636695/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Casey''s General Stores" press release artificial intelligence'
 position: 2
 source: serpapi-google

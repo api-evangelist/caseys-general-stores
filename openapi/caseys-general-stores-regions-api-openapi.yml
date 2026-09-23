@@ -1,0 +1,66 @@
+openapi: 3.2.0
+info:
+  title: Caseys General Stores Regions API
+  version: '1.0'
+  description: 'Operations tagged Regions across 2 of this provider''s published API definitions: caseys-general-stores-store-api-openapi.json, caseys-general-stores-store-details-api-openapi.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://esl.caseys.io/storeapi
+- url: https://esl.caseys.io/storedetailsapi
+security:
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Regions
+paths:
+  /v1/organizational/regions:
+    get:
+      tags:
+      - Regions
+      summary: /v1/organizational/regions - GET
+      operationId: get-v1-organizational-regions
+      parameters:
+      - name: offset
+        in: query
+        schema:
+          type: integer
+          default: 0
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 1000
+      responses:
+        '200':
+          description: OK
+    servers:
+    - url: https://esl.caseys.io/storeapi
+  /v1/organizational/regions/{regionId}:
+    get:
+      tags:
+      - Regions
+      summary: /v1/organizational/regions/{regionId} - GET
+      operationId: get-v1-organizational-regions-regionid
+      parameters:
+      - name: regionId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+    servers:
+    - url: https://esl.caseys.io/storeapi
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+x-refined-from:
+- caseys-general-stores-store-api-openapi.json
+- caseys-general-stores-store-details-api-openapi.json
