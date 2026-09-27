@@ -127,22 +127,6 @@ paths:
                 message: string
 components:
   schemas:
-    itemRetailPrice:
-      type: object
-      properties:
-        currentSellingUnitRetailPriceAmount:
-          type: number
-          description: The current selling price of the item.
-          format: double
-        currentSellingUnitRetailPriceEffectiveDate:
-          type: string
-          description: The date when the current selling price became effective.
-          format: date-time
-        currentSellingUnitRetailPriceExpirationDate:
-          type: string
-          description: The date when the current selling price will expire.
-          format: date-time
-      description: The current retail price of the item.
     storeItem:
       type: object
       properties:
@@ -188,29 +172,49 @@ components:
           format: int32
         restrictions:
           $ref: '#/components/schemas/restriction'
-    getStoreItemsResponseModelV2:
+    restriction:
       type: object
       properties:
-        limit:
+        id:
           type: integer
-          description: The limited number of items returned.
+          description: The ID of the restriction.
           format: int32
-        offset:
+        name:
+          type: string
+          description: The name describing the restriction.
+        forcePriceEntry:
+          type: boolean
+          description: Flag to determine if the cashier will be forced to enter a price.
+        allowFoodStampPurchase:
+          type: boolean
+          description: Flag to determine if the item can be bought with food stamps.
+        allowRefunds:
+          type: boolean
+          description: Flag to determine if the item can be returned.
+        allowDiscounts:
+          type: boolean
+          description: Flag to determine if a discount can be applied to the item.
+        minimumCustomerAge:
           type: integer
-          description: The number of items skipped.
+          description: The minimum age the customer must be to purchase this item.
           format: int32
-        count:
-          type: integer
-          description: The number of items returned.
-          format: int32
-        total:
-          type: integer
-          description: The total number of items.
-          format: int32
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/storeItem'
+      description: The restrictions for the item.
+    itemRetailPrice:
+      type: object
+      properties:
+        currentSellingUnitRetailPriceAmount:
+          type: number
+          description: The current selling price of the item.
+          format: double
+        currentSellingUnitRetailPriceEffectiveDate:
+          type: string
+          description: The date when the current selling price became effective.
+          format: date-time
+        currentSellingUnitRetailPriceExpirationDate:
+          type: string
+          description: The date when the current selling price will expire.
+          format: date-time
+      description: The current retail price of the item.
     itemSupplier:
       type: object
       properties:
@@ -251,33 +255,6 @@ components:
           description: The date when the status expires.
           format: date-time
       description: The current selling status of the item.
-    restriction:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The ID of the restriction.
-          format: int32
-        name:
-          type: string
-          description: The name describing the restriction.
-        forcePriceEntry:
-          type: boolean
-          description: Flag to determine if the cashier will be forced to enter a price.
-        allowFoodStampPurchase:
-          type: boolean
-          description: Flag to determine if the item can be bought with food stamps.
-        allowRefunds:
-          type: boolean
-          description: Flag to determine if the item can be returned.
-        allowDiscounts:
-          type: boolean
-          description: Flag to determine if a discount can be applied to the item.
-        minimumCustomerAge:
-          type: integer
-          description: The minimum age the customer must be to purchase this item.
-          format: int32
-      description: The restrictions for the item.
     itemCost:
       type: object
       properties:
@@ -307,6 +284,29 @@ components:
           - 'null'
           format: double
       description: The cost information of the item from the supplier.
+    getStoreItemsResponseModelV2:
+      type: object
+      properties:
+        limit:
+          type: integer
+          description: The limited number of items returned.
+          format: int32
+        offset:
+          type: integer
+          description: The number of items skipped.
+          format: int32
+        count:
+          type: integer
+          description: The number of items returned.
+          format: int32
+        total:
+          type: integer
+          description: The total number of items.
+          format: int32
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/storeItem'
   securitySchemes:
     apiKeyHeader:
       type: apiKey

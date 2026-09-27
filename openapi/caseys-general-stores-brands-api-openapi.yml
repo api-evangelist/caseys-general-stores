@@ -84,16 +84,6 @@ components:
           type: string
           description: The name of the brand.
       example: '{"id":1,"name":"Casey''s"}'
-    apiError:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: Status code of the error.
-          format: int32
-        message:
-          type: string
-          description: Message that describes the error.
     brandModelV1:
       type: object
       properties:
@@ -105,6 +95,16 @@ components:
           type: string
           description: The name of the brand.
       example: '{"id":1,"name":"Casey''s"}'
+    apiError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Status code of the error.
+          format: int32
+        message:
+          type: string
+          description: Message that describes the error.
     brandModelV0_2:
       type: object
       properties:

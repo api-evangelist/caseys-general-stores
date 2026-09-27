@@ -43,16 +43,6 @@ components:
           items:
             $ref: '#/components/schemas/registeredServiceModel'
           description: The data collection.
-    registeredServiceModel:
-      type: object
-      properties:
-        storeNumber:
-          type: integer
-          format: int32
-        services:
-          type: array
-          items:
-            $ref: '#/components/schemas/serviceModel'
     serviceModel:
       type: object
       properties:
@@ -69,6 +59,16 @@ components:
           - string
           - 'null'
           format: date-time
+    registeredServiceModel:
+      type: object
+      properties:
+        storeNumber:
+          type: integer
+          format: int32
+        services:
+          type: array
+          items:
+            $ref: '#/components/schemas/serviceModel'
   securitySchemes:
     apiKeyHeader:
       type: apiKey

@@ -311,16 +311,6 @@ components:
             $ref: '#/components/schemas/tankLevelViewModelV1'
           description: List of queried tank levels.
       example: '{"limit":10,"lastIndex":1086,"count":10,"hasMorePages":true,"data":[{"storeNumber":1,"tankNumber":1,"readingDate":"2024-12-10T16:13:59.5572491+00:00","fuelLevel":50.0,"waterLevel":0.0,"fuelVolume":2000,"temperature":10.0,"addedBy":"TLSTank","errors":null},{"storeNumber":1,"tankNumber":2,"readingDate":"2024-12-10T16:13:59.557254+00:00","fuelLevel":60.0,"waterLevel":1.0,"fuelVolume":1000,"temperature":20.0,"addedBy":"TLSTank","errors":null},{"storeNumber":1,"tankNumber":3,"readingDate":"2024-12-10T16:13:59.5572564+00:00","fuelLevel":70.0,"waterLevel":0.0,"fuelVolume":500,"temperature":30.0,"addedBy":"TLSTank","errors":null},{"storeNumber":2,"tankNumber":1,"readingDate":"2024-12-10T16:13:59.5572571+00:00","fuelLevel":90.0,"waterLevel":0.0,"fuelVolume":4000,"temperature":40.0,"addedBy":"TLSTank","errors":null},{"storeNumber":2,"tankNumber":2,"readingDate":"2024-12-10T16:13:59.5572587+00:00","fuelLevel":100.0,"waterLevel":0.0,"fuelVolume":5000,"temperature":50.0,"addedBy":"TLSTank","errors":null},{"storeNumber":3,"tankNumber":1,"readingDate":"2024-12-10T16:13:59.5572593+00:00","fuelLevel":200.0,"waterLevel":0.0,"fuelVolume":1000,"temperature":10.0,"addedBy":"Insite360","errors":null},{"storeNumber":4,"tankNumber":1,"readingDate":"2024-12-10T16:13:59.5572598+00:00","fuelLevel":300.0,"waterLevel":0.0,"fuelVolume":1000,"temperature":0.0,"addedBy":"TLSTank","errors":null},{"storeNumber":4,"tankNumber":2,"readingDate":"2024-12-10T16:13:59.5572602+00:00","fuelLevel":500.0,"waterLevel":0.0,"fuelVolume":1000,"temperature":0.0,"addedBy":"TLSTank","errors":null},{"storeNumber":4,"tankNumber":3,"readingDate":"2024-12-10T16:13:59.5572621+00:00","fuelLevel":600.0,"waterLevel":2.0,"fuelVolume":1000,"temperature":0.0,"addedBy":"TLSTank","errors":null},{"storeNumber":4,"tankNumber":4,"readingDate":"2024-12-10T16:13:59.5572633+00:00","fuelLevel":700.0,"waterLevel":0.0,"fuelVolume":1000,"temperature":0.0,"addedBy":"TLSTank","errors":null}]}'
-    apiError:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: Status code of the error.
-          format: int32
-        message:
-          type: string
-          description: Message that describes the error.
     tankLevelViewModelV1:
       required:
       - storeNumber
@@ -389,6 +379,16 @@ components:
             type: string
           description: List of validation errors encountered while processing incoming tank level readings.
       example: '{"storeNumber":63,"tankNumber":1,"readingDate":"2024-12-10T16:13:59.5309244+00:00","fuelLevel":9999.99,"waterLevel":999.99,"fuelVolume":9999,"temperature":9.0,"addedBy":"TLSTank","errors":null}'
+    apiError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Status code of the error.
+          format: int32
+        message:
+          type: string
+          description: Message that describes the error.
     tankLevelPostResponseV1:
       type: object
       properties:

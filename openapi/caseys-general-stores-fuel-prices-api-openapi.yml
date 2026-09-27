@@ -72,24 +72,22 @@ paths:
                 message: string
 components:
   schemas:
-    fuelPriceParameterModel:
+    fuelPriceModel:
       type: object
       properties:
         storeId:
+          type: integer
+          description: The number of the store.
+          format: int32
+        updateOn:
+          type: string
+          description: The date the fuel price was updated on.
+          format: date-time
+        products:
           type: array
           items:
-            type: integer
-            format: int32
-    apiError:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: Status code of the error.
-          format: int32
-        message:
-          type: string
-          description: Message that describes the error.
+            $ref: '#/components/schemas/fuelProductModel'
+          description: A collection of fuel price products.
     fuelProductModel:
       type: object
       properties:
@@ -110,22 +108,24 @@ components:
         streetFighter:
           type: boolean
           description: Indicates high selling fuel that is advertised more often.
-    fuelPriceModel:
+    apiError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Status code of the error.
+          format: int32
+        message:
+          type: string
+          description: Message that describes the error.
+    fuelPriceParameterModel:
       type: object
       properties:
         storeId:
-          type: integer
-          description: The number of the store.
-          format: int32
-        updateOn:
-          type: string
-          description: The date the fuel price was updated on.
-          format: date-time
-        products:
           type: array
           items:
-            $ref: '#/components/schemas/fuelProductModel'
-          description: A collection of fuel price products.
+            type: integer
+            format: int32
   securitySchemes:
     apiKeyHeader:
       type: apiKey

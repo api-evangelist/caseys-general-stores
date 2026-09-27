@@ -817,58 +817,6 @@ apis:
     url: https://esl.caseys.io/shelflabelprintapi/graphql
   - type: GraphQL
     url: https://esl.caseys.io/vendorcheckinapi/graphql
-- aid: caseys-general-stores:caseys-general-stores-v0-api
-  name: Casey's General Stores V0 API
-  description: The v0 API from Casey's General Stores — 1 operation(s) for v0.
-  humanURL: https://developer.esl.caseys.io/
-  baseURL: https://esl.caseys.io/casapi
-  tags:
-  - v0
-  properties:
-  - type: OpenAPI
-    url: openapi/caseys-general-stores-v0-api-openapi.yml
-  - type: DeveloperPortal
-    url: https://developer.esl.caseys.io/
-  - type: Authentication
-    url: authentication/caseys-general-stores-authentication.yml
-  - type: GraphQL
-    url: https://esl.caseys.io/digitalproductionplannerapi/graphql
-  - type: GraphQL
-    url: https://esl.caseys.io/kitchensupplyorderingapi/graphql
-  - type: GraphQL
-    url: https://esl.caseys.io/powerinventoryapi/graphql
-  - type: GraphQL
-    url: https://esl.caseys.io/productionplannerapi/graphql
-  - type: GraphQL
-    url: https://esl.caseys.io/shelflabelprintapi/graphql
-  - type: GraphQL
-    url: https://esl.caseys.io/vendorcheckinapi/graphql
-- aid: caseys-general-stores:caseys-general-stores-v1-api
-  name: Casey's General Stores V1 API
-  description: The v1 API from Casey's General Stores — 1 operation(s) for v1.
-  humanURL: https://developer.esl.caseys.io/
-  baseURL: https://esl.caseys.io/casapi
-  tags:
-  - v1
-  properties:
-  - type: OpenAPI
-    url: openapi/caseys-general-stores-v1-api-openapi.yml
-  - type: DeveloperPortal
-    url: https://developer.esl.caseys.io/
-  - type: Authentication
-    url: authentication/caseys-general-stores-authentication.yml
-  - type: GraphQL
-    url: https://esl.caseys.io/digitalproductionplannerapi/graphql
-  - type: GraphQL
-    url: https://esl.caseys.io/kitchensupplyorderingapi/graphql
-  - type: GraphQL
-    url: https://esl.caseys.io/powerinventoryapi/graphql
-  - type: GraphQL
-    url: https://esl.caseys.io/productionplannerapi/graphql
-  - type: GraphQL
-    url: https://esl.caseys.io/shelflabelprintapi/graphql
-  - type: GraphQL
-    url: https://esl.caseys.io/vendorcheckinapi/graphql
 - aid: caseys-general-stores:caseys-general-stores-v1storebyid-api
   name: Casey's General Stores V1 Store By ID API
   description: The V1StoreById API from Casey's General Stores — 1 operation(s) for v1storebyid.
@@ -974,16 +922,16 @@ apis:
     url: https://esl.caseys.io/shelflabelprintapi/graphql
   - type: GraphQL
     url: https://esl.caseys.io/vendorcheckinapi/graphql
-- aid: caseys-general-stores:caseys-general-stores-v2-api
-  name: Casey's General Stores V2 API
-  description: The v2 API from Casey's General Stores — 1 operation(s) for v2.
+- aid: caseys-general-stores:caseys-general-stores-version-api
+  name: Casey's General Stores Version API
+  description: The Version API from Casey's General Stores — 1 operation(s) for version.
   humanURL: https://developer.esl.caseys.io/
   baseURL: https://esl.caseys.io/casapi
   tags:
-  - v2
+  - Version
   properties:
   - type: OpenAPI
-    url: openapi/caseys-general-stores-v2-api-openapi.yml
+    url: openapi/caseys-general-stores-version-api-openapi.yml
   - type: DeveloperPortal
     url: https://developer.esl.caseys.io/
   - type: Authentication
@@ -1000,16 +948,120 @@ apis:
     url: https://esl.caseys.io/shelflabelprintapi/graphql
   - type: GraphQL
     url: https://esl.caseys.io/vendorcheckinapi/graphql
-- aid: caseys-general-stores:caseys-general-stores-version-api
-  name: Casey's General Stores Version API
-  description: The Version API from Casey's General Stores — 1 operation(s) for version.
+- aid: caseys-general-stores:caseys-general-stores-deprecated-api
+  name: Casey's General Stores Deprecated API
+  description: The deprecated API from Casey's General Stores — 12 operation(s) for deprecated.
   humanURL: https://developer.esl.caseys.io/
-  baseURL: https://esl.caseys.io/casapi
+  baseURL: https://esl.caseys.io/itemapi
   tags:
-  - Version
+  - deprecated
   properties:
   - type: OpenAPI
-    url: openapi/caseys-general-stores-version-api-openapi.yml
+    url: openapi/caseys-general-stores-deprecated-api-openapi.yml
+  - type: DeveloperPortal
+    url: https://developer.esl.caseys.io/
+  - type: Authentication
+    url: authentication/caseys-general-stores-authentication.yml
+  - type: GraphQL
+    url: https://esl.caseys.io/digitalproductionplannerapi/graphql
+  - type: GraphQL
+    url: https://esl.caseys.io/kitchensupplyorderingapi/graphql
+  - type: GraphQL
+    url: https://esl.caseys.io/powerinventoryapi/graphql
+  - type: GraphQL
+    url: https://esl.caseys.io/productionplannerapi/graphql
+  - type: GraphQL
+    url: https://esl.caseys.io/shelflabelprintapi/graphql
+  - type: GraphQL
+    url: https://esl.caseys.io/vendorcheckinapi/graphql
+- aid: caseys-general-stores:caseys-general-stores-region-api
+  name: Casey's General Stores Region API
+  description: The region API from Casey's General Stores — 1 operation(s) for region.
+  humanURL: https://developer.esl.caseys.io/
+  baseURL: https://esl.caseys.io/itemapi
+  tags:
+  - region
+  properties:
+  - type: OpenAPI
+    url: openapi/caseys-general-stores-region-api-openapi.yml
+  - type: DeveloperPortal
+    url: https://developer.esl.caseys.io/
+  - type: Authentication
+    url: authentication/caseys-general-stores-authentication.yml
+  - type: GraphQL
+    url: https://esl.caseys.io/digitalproductionplannerapi/graphql
+  - type: GraphQL
+    url: https://esl.caseys.io/kitchensupplyorderingapi/graphql
+  - type: GraphQL
+    url: https://esl.caseys.io/powerinventoryapi/graphql
+  - type: GraphQL
+    url: https://esl.caseys.io/productionplannerapi/graphql
+  - type: GraphQL
+    url: https://esl.caseys.io/shelflabelprintapi/graphql
+  - type: GraphQL
+    url: https://esl.caseys.io/vendorcheckinapi/graphql
+- aid: caseys-general-stores:caseys-general-stores-relateditems-api
+  name: Casey's General Stores Relateditems API
+  description: The Relateditems API from Casey's General Stores — 1 operation(s) for relateditems.
+  humanURL: https://developer.esl.caseys.io/
+  baseURL: https://esl.caseys.io/itemapi
+  tags:
+  - Relateditems
+  properties:
+  - type: OpenAPI
+    url: openapi/caseys-general-stores-relateditems-api-openapi.yml
+  - type: DeveloperPortal
+    url: https://developer.esl.caseys.io/
+  - type: Authentication
+    url: authentication/caseys-general-stores-authentication.yml
+  - type: GraphQL
+    url: https://esl.caseys.io/digitalproductionplannerapi/graphql
+  - type: GraphQL
+    url: https://esl.caseys.io/kitchensupplyorderingapi/graphql
+  - type: GraphQL
+    url: https://esl.caseys.io/powerinventoryapi/graphql
+  - type: GraphQL
+    url: https://esl.caseys.io/productionplannerapi/graphql
+  - type: GraphQL
+    url: https://esl.caseys.io/shelflabelprintapi/graphql
+  - type: GraphQL
+    url: https://esl.caseys.io/vendorcheckinapi/graphql
+- aid: caseys-general-stores:caseys-general-stores-storenumber-api
+  name: Casey's General Stores Store Number API
+  description: The StoreNumber API from Casey's General Stores — 1 operation(s) for storenumber.
+  humanURL: https://developer.esl.caseys.io/
+  baseURL: https://esl.caseys.io/itemapi
+  tags:
+  - StoreNumber
+  properties:
+  - type: OpenAPI
+    url: openapi/caseys-general-stores-storenumber-api-openapi.yml
+  - type: DeveloperPortal
+    url: https://developer.esl.caseys.io/
+  - type: Authentication
+    url: authentication/caseys-general-stores-authentication.yml
+  - type: GraphQL
+    url: https://esl.caseys.io/digitalproductionplannerapi/graphql
+  - type: GraphQL
+    url: https://esl.caseys.io/kitchensupplyorderingapi/graphql
+  - type: GraphQL
+    url: https://esl.caseys.io/powerinventoryapi/graphql
+  - type: GraphQL
+    url: https://esl.caseys.io/productionplannerapi/graphql
+  - type: GraphQL
+    url: https://esl.caseys.io/shelflabelprintapi/graphql
+  - type: GraphQL
+    url: https://esl.caseys.io/vendorcheckinapi/graphql
+- aid: caseys-general-stores:caseys-general-stores-upc-api
+  name: Casey's General Stores Upc API
+  description: The upc API from Casey's General Stores — 1 operation(s) for upc.
+  humanURL: https://developer.esl.caseys.io/
+  baseURL: https://esl.caseys.io/itemapi
+  tags:
+  - upc
+  properties:
+  - type: OpenAPI
+    url: openapi/caseys-general-stores-upc-api-openapi.yml
   - type: DeveloperPortal
     url: https://developer.esl.caseys.io/
   - type: Authentication
@@ -1058,8 +1110,6 @@ apis:
   humanURL: https://developer.esl.caseys.io/
   baseURL: https://esl.caseys.io/itemapi
   tags:
-  - GraphQL
-  tags_raw:
   - Graph QL
   properties:
   - type: OpenAPI
@@ -1086,8 +1136,6 @@ apis:
   humanURL: https://developer.esl.caseys.io/
   baseURL: https://esl.caseys.io/itemapi
   tags:
-  - OpenAPI
-  tags_raw:
   - Open API
   properties:
   - type: OpenAPI

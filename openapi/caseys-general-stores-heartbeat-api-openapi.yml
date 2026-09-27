@@ -2,13 +2,17 @@ openapi: 3.2.0
 info:
   title: Caseys General Stores Heartbeat API
   version: '1.0'
-  description: 'Operations tagged heartbeat across 5 of this provider''s published API definitions: caseys-general-stores-cas-api-openapi.json, caseys-general-stores-cas-gateway-api-openapi.json, caseys-general-stores-fuel-price-api-openapi.json, caseys-general-stores-itsm-api-openapi.json, caseys-general-stores-store-messaging-api-openapi.json. Each path carries the servers of the definition it was published in.'
+  description: 'Operations tagged heartbeat across 9 of this provider''s published API definitions: caseys-general-stores-cas-api-openapi.json, caseys-general-stores-cas-gateway-api-openapi.json, caseys-general-stores-fuel-price-api-openapi.json, caseys-general-stores-itsm-api-openapi.json, caseys-general-stores-old-store-api-openapi.json, caseys-general-stores-store-api-openapi.json, caseys-general-stores-store-messaging-api-openapi.json, caseys-general-stores-supplier-api-openapi.json…'
 servers:
 - url: https://esl.caseys.io/casapi
 - url: https://esl.caseys.io/casgatewayapi
 - url: https://esl.caseys.io/fuelpriceapi
 - url: https://esl.caseys.io/itsmapi
+- url: https://esl.caseys.io/oldstoreapi
+- url: https://esl.caseys.io/storeapi
 - url: https://esl.caseys.io/storemessagingapi
+- url: https://esl.caseys.io/supplierapi
+- url: https://esl.caseys.io/tanklevelapi
 security:
 - apiKeyHeader: []
 - apiKeyQuery: []
@@ -67,6 +71,46 @@ components:
         status:
           type: string
           description: Description of the current status of dependencies of the API.
+    heartbeatReportV1:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Description of the current status of dependencies of the API.
+      example: '{"status":"Healthy"}'
+    heartbeatReportV0:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Description of the current status of dependencies of the API.
+      example: '{"status":"Healthy"}'
+    heartbeatReportV1_2:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Description of the current status of dependencies of the API.
+      example:
+        status: Healthy
+    heartbeatReportV0_2:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Description of the current status of dependencies of the API.
+      example:
+        status: Healthy
+    heartbeatReportV1_3:
+      type: object
+      properties:
+        status:
+          type: string
+    heartbeatReportV1_4:
+      type: object
+      properties:
+        status:
+          type: string
   securitySchemes:
     apiKeyHeader:
       type: apiKey
@@ -81,4 +125,8 @@ x-refined-from:
 - caseys-general-stores-cas-gateway-api-openapi.json
 - caseys-general-stores-fuel-price-api-openapi.json
 - caseys-general-stores-itsm-api-openapi.json
+- caseys-general-stores-old-store-api-openapi.json
+- caseys-general-stores-store-api-openapi.json
 - caseys-general-stores-store-messaging-api-openapi.json
+- caseys-general-stores-supplier-api-openapi.json
+- caseys-general-stores-tank-level-api-openapi.json

@@ -58,30 +58,6 @@ paths:
       - Print
 components:
   schemas:
-    validationProblemDetails:
-      type: object
-      properties:
-        errors:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/list_string'
-        type:
-          type: string
-        title:
-          type: string
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type: string
-        instance:
-          type: string
-        extensions:
-          type: object
-          additionalProperties:
-            type: object
     printTicketsInput:
       type: object
       properties:
@@ -111,6 +87,30 @@ components:
       type: array
       items:
         type: string
+    validationProblemDetails:
+      type: object
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/list_string'
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type: string
+        instance:
+          type: string
+        extensions:
+          type: object
+          additionalProperties:
+            type: object
   securitySchemes:
     apiKeyHeader:
       type: apiKey

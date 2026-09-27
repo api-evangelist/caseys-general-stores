@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: ItemApi V2 API
+  title: ItemApi Upc API
   description: An API to obtain item information.
   version: '1.0'
 servers:
@@ -9,12 +9,12 @@ security:
 - apiKeyHeader: []
 - apiKeyQuery: []
 tags:
-- name: v2
+- name: upc
 paths:
   /v2/related-items:
     get:
       tags:
-      - v2
+      - upc
       summary: v2 Gets retrieval of related items from the Item Master(Pricebook), Providing…
       description: Gets the related data for a specific upc.
       operationId: getRelatedItemsByUpcV2
@@ -70,16 +70,15 @@ paths:
                 message: string
 components:
   schemas:
-    apiError:
+    relatedItem:
       type: object
       properties:
-        code:
-          type: integer
-          description: Status code of the error.
-          format: int32
-        message:
+        upc:
           type: string
-          description: Message that describes the error.
+          description: The Universal Product Code of the related item.
+        description:
+          type: string
+          description: A brief description of the related item.
     getRelatedItemsResponseModelV2:
       type: object
       properties:
@@ -103,15 +102,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/relatedItem'
-    relatedItem:
+    apiError:
       type: object
       properties:
-        upc:
+        code:
+          type: integer
+          description: Status code of the error.
+          format: int32
+        message:
           type: string
-          description: The Universal Product Code of the related item.
-        description:
-          type: string
-          description: A brief description of the related item.
+          description: Message that describes the error.
   securitySchemes:
     apiKeyHeader:
       type: apiKey

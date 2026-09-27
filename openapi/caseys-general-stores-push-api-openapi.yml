@@ -278,10 +278,13 @@ paths:
     - url: https://esl.caseys.io/casgatewayapi
 components:
   schemas:
-    movementReportPeriod:
+    statusReturn:
       type: object
       properties:
-        interval:
+        timestamp:
+          type: string
+          format: date-time
+        result:
           enum:
           - 0
           - 1
@@ -294,25 +297,13 @@ components:
           - 8
           - 9
           - 10
-          type:
-          - integer
-          - 'null'
-          format: int32
-          default: 0
-        value:
-          type: string
-    reportRange:
-      type: object
-      properties:
-        value:
-          enum:
-          - 0
-          - 1
-          - 2
-          - -1
+          - 11
+          - 12
           type: integer
           format: int32
           default: 0
+        message:
+          type: string
     posMovementReportHeader:
       required:
       - reportSequenceNumber
@@ -345,18 +336,18 @@ components:
           - string
           - 'null'
           format: date-time
-    posMovementReport:
-      required:
-      - posMovementReportHeader
-      - posMovementReportGroup
+    reportRange:
       type: object
       properties:
-        posMovementReportHeader:
-          $ref: '#/components/schemas/posMovementReportHeader'
-        posMovementReportGroup:
-          type: array
-          items:
-            $ref: '#/components/schemas/movementReport'
+        value:
+          enum:
+          - 0
+          - 1
+          - 2
+          - -1
+          type: integer
+          format: int32
+          default: 0
     transmissionHeader:
       required:
       - storeLocationId
@@ -377,8 +368,41 @@ components:
         organizationId:
           minLength: 1
           type: string
-    movementReport:
+    posMovementReport:
+      required:
+      - posMovementReportHeader
+      - posMovementReportGroup
       type: object
+      properties:
+        posMovementReportHeader:
+          $ref: '#/components/schemas/posMovementReportHeader'
+        posMovementReportGroup:
+          type: array
+          items:
+            $ref: '#/components/schemas/movementReport'
+    movementReportPeriod:
+      type: object
+      properties:
+        interval:
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          - 7
+          - 8
+          - 9
+          - 10
+          type:
+          - integer
+          - 'null'
+          format: int32
+          default: 0
+        value:
+          type: string
     posMovement:
       required:
       - transmissionHeader
@@ -393,32 +417,8 @@ components:
           $ref: '#/components/schemas/transmissionHeader'
         posMovementReport:
           $ref: '#/components/schemas/posMovementReport'
-    statusReturn:
+    movementReport:
       type: object
-      properties:
-        timestamp:
-          type: string
-          format: date-time
-        result:
-          enum:
-          - 0
-          - 1
-          - 2
-          - 3
-          - 4
-          - 5
-          - 6
-          - 7
-          - 8
-          - 9
-          - 10
-          - 11
-          - 12
-          type: integer
-          format: int32
-          default: 0
-        message:
-          type: string
     statusReturn_2:
       type: object
       properties:

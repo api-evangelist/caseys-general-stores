@@ -662,18 +662,418 @@ paths:
     - url: https://esl.caseys.io/oldstoreapi
 components:
   schemas:
-    deliveryVendorsInfoV1:
+    allStoresOrganizationalInfoV1:
+      type: object
+      properties:
+        limit:
+          type: integer
+          description: The limited number of items returned.
+          format: int32
+        offset:
+          type: integer
+          description: The number of items skipped.
+          format: int32
+        count:
+          type: integer
+          description: The number of items returned.
+          format: int32
+        total:
+          type: integer
+          description: The total number of items.
+          format: int32
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/organizationalModelV1'
+    organizationalModelV1:
+      type: object
+      properties:
+        storeNumber:
+          type: integer
+          description: The number of the store.
+          format: int32
+        districtNumber:
+          type:
+          - integer
+          - 'null'
+          description: The number of the district to which this store belongs in the store organizational structure.
+          format: int32
+        districtName:
+          type: string
+          description: The name of the district to which this store belongs in the store organizational structure.
+        divisionDirectorNumber:
+          type:
+          - integer
+          - 'null'
+          description: The Regional Manager mailer ID.
+          format: int64
+        divisionDirectorName:
+          type: string
+          description: The name of the Regional Manager.
+        divisionDirectorEmail:
+          type: string
+          description: The email of the Regional Manager over this store.
+        divisionDirectorExtension:
+          type: integer
+          description: The Regional Manager store extension number.
+          format: int32
+        divisionDirectorHomeStore:
+          type: integer
+          description: The number of the home store for the Regional Manager.
+          format: int32
+        regionNumber:
+          type:
+          - integer
+          - 'null'
+          description: The number of the region to which this store belongs in the store organizational structure.
+          format: int32
+        regionName:
+          type: string
+          description: The name of the region to which this store belongs in the store organizational structure.
+        regionDirectorNumber:
+          type:
+          - integer
+          - 'null'
+          description: District Manager mailer ID.
+          format: int64
+        regionDirectorName:
+          type: string
+          description: The name of the District Manager.
+        regionDirectorEmail:
+          type: string
+          description: The email of the District Manager over this store.
+        regionDirectorExtension:
+          type: integer
+          description: The District Manager store extension number.
+          format: int32
+        regionDirectorHomeStore:
+          type: integer
+          description: The number of the home store for the District Manager.
+          format: int32
+        divisionNumber:
+          type:
+          - integer
+          - 'null'
+          description: The number of the division to which this store belongs in the store organizational structure.
+          format: int32
+        divisionName:
+          type: string
+          description: The name of the division to which this store belongs in the store organizational structure.
+        districtSupervisorNumber:
+          type:
+          - integer
+          - 'null'
+          description: Area Supervisor mailer ID.
+          format: int64
+        districtSupervisorName:
+          type: string
+          description: The name of the Area Supervisor.
+        districtSupervisorEmail:
+          type: string
+          description: The email of the Area Supervisor over this store.
+        districtSupervisorExtension:
+          type: integer
+          description: The Area Supervisor store extension number.
+          format: int32
+        districtSupervisorHomeStore:
+          type: integer
+          description: The number of the home store for the Area Supervisor.
+          format: int32
+        managerNumber:
+          type:
+          - integer
+          - 'null'
+          description: Store Manager mailer ID.
+          format: int64
+        managerName:
+          type: string
+          description: The name of the Store Manager.
+        managerEmail:
+          type: string
+          description: The email of the Store Manager over this store.
+        regionalMerchandisingManagerName:
+          type: string
+          description: The name of the Regional Merchandising Manager.
+      example: '{"storeNumber":2,"districtNumber":57,"districtName":"District 57","divisionDirectorNumber":910714062,"divisionDirectorName":"DAVE JOHNSON","divisionDirectorEmail":"dave.johnson@caseys.com","divisionDirectorExtension":0,"divisionDirectorHomeStore":9085,"regionNumber":9,"regionName":"Region 9","regionDirectorNumber":910714062,"regionDirectorName":"JOHN GRAVES","regionDirectorEmail":"John.Graves@caseys.com","regionDirectorExtension":0,"regionDirectorHomeStore":2654,"divisionNumber":9085,"divisionName":"Division 1","districtSupervisorNumber":910714062,"districtSupervisorName":"DEBORAH AHRENS","districtSupervisorEmail":"DEBORAH.AHRENS@CASEYS.COM","districtSupervisorExtension":18702,"districtSupervisorHomeStore":24,"managerNumber":910250996,"managerName":"LAURIE GARRETT","managerEmail":null,"regionalMerchandisingManagerName":"WILSON WILLIAMS"}'
+    storeInfoV0:
+      type: object
+      properties:
+        storeNumber:
+          type: integer
+          description: The number of the store.
+          format: int32
+        storeName:
+          type: string
+          description: The name of the CGS subsidiary company operating this Store.
+        storeShortName:
+          type: string
+          description: 'City of operation, and cardinality within city/town if applicable, e.g. ANKENY #2, ANKENY #3, etc.'
+        timeZone:
+          type: string
+          description: C = Central; E = Eastern.
+        longitude:
+          type: number
+          description: The longitude of the Store address.
+          format: double
+        latitude:
+          type: number
+          description: The latitude of the Store address.
+          format: double
+        street:
+          type: string
+          description: Street address of this Store.
+        cityId:
+          type: integer
+          description: Reference identity to the city the store is located in.
+          format: int32
+        cityName:
+          type: string
+          description: Name of the city the store is located in.
+        stateId:
+          type: integer
+          description: Reference identity to the state the store is located in.
+          format: int32
+        stateAbbreviation:
+          type: string
+          description: Abbreviation of the state the store is located in.
+        countyId:
+          type: integer
+          description: Reference identity to the county the store is located in.
+          format: int32
+        countyName:
+          type: string
+          description: Name of the county the store is located in.
+        zipCode:
+          type: string
+          description: ZIP postal code.
+        poBox:
+          type: string
+          description: PO Box number, if applicable.
+        status:
+          type: string
+          description: 'Name of the current status of availability of the store.<br>Enum: `"Unknown"` `"Prospective"` `"Pending"` `"Open"` `"Closed"` `"TemporarilyClosed"` `"Canceled"`'
+        statusId:
+          type: integer
+          description: Id of the current status of availability of the store.
+          format: int32
+        phone:
+          type: integer
+          description: Ten digit main phone number for Store.
+          format: int64
+        orderPhone:
+          type: integer
+          description: Ten digit phone number for pizza orders.
+          format: int64
+        hasATM:
+          type: boolean
+          description: Does this Store have a third-party supplied ATM inside?
+        hasBakery:
+          type: boolean
+          description: Does this Store sell NO-BAKE bakery items, e.g. puppy chow or pb/choc krispy bars, or other non-donut/pizza baked goods?
+        sellsAlcohol:
+          type: boolean
+          description: Does this store sell alcohol?
+        sellsTobacco:
+          type: boolean
+          description: Does this store sell tobacco?
+        sellsDiesel:
+          type: boolean
+          description: Does this Store sell diesel fuel, either at car pump islands or at truck fueling islands, or both?
+        sellsDonuts:
+          type: boolean
+          description: Does this Store sell donuts, either made on-site or vendor-supplied?
+        sellsSoftServeIceCream:
+          type: boolean
+          description: Does this Store sell soft-serve ice cream?
+        sellsBreakfastSandwiches:
+          type: boolean
+          description: Does this Store sell breakfast sandwiches (biscuit/croissant)?
+        sellsPreparedSandwiches:
+          type: boolean
+          description: Does this Store sell prepared (non-breakfast) sandwiches?
+        sellsSignatureSubs:
+          type: boolean
+          description: Does this Store sell Signature Subs (separate counter-top closed cooler case or open-case cooler; not MTO!)?
+        sellsMTOSubs:
+          type: boolean
+          description: Does this Store sell MTO (made-to-order) sub sandwiches?
+        sellsPizza:
+          type: boolean
+          description: Does this Store sell pizza, either made on-site or vendor supplied?
+        sellsNoonPizza:
+          type: boolean
+          description: Does this Store sell pizza slices at lunch rush time?
+        sellsEveningPizza:
+          type: boolean
+          description: Does this Store sell pizza slices at dinner rush time?
+        hasPayAtPump:
+          type: boolean
+          description: Is pay-at-the-pump turned on and functional at this Store?
+        hasKitchen:
+          type: boolean
+          description: Does this store have a kitchen?
+        hasThirdPartyDelivery:
+          type: boolean
+          description: Does this store use a third party to make deliveries?
+        hasCurbsidePickup:
+          type: boolean
+          description: Does this store do curbside pickup?
+        hasInStorePickup:
+          type: boolean
+          description: Does this store have in-store pickup?
+        style:
+          type: string
+          description: StoreStyle code for this Store.
+        floorPlan:
+          type: string
+          description: Description of the Store floor plan or interior layout.
+        originalOpenDate:
+          type: string
+          description: Format - ISO8601 Date on which this Store was FIRST opened.
+        lastOpenDate:
+          type: string
+          description: Format - ISO8601 Date on which this Store was LAST opened, as in after a remodel or site-scrape.
+        acquisitionName:
+          type: string
+          description: If this Store was an acquisition, who was it acquired from (chain-name/trade-name)?
+        isLeftHand:
+          type: boolean
+          description: Every once in a while, we used to build a store *backwards* or LEFT-hand. Indicates whether the counter is on the left as one walks into the Store. This no longer happens.
+        shelvingStyle:
+          type: string
+          description: Style of retail shelving in use at this Store.
+        closeDate:
+          type: string
+          description: Format - ISO8601 Date on which this Store was last closed.
+        budgetedHours:
+          type:
+          - integer
+          - 'null'
+          description: The number of hours the store has budgeted for employees in a week.
+          format: int32
+        subBarDate:
+          type: string
+          description: Format - ISO8601 Date on which we completed a G or E remodel that included installing a MTO Sub Sandwich bar. Note that G/E-style remodels are very similar as the floor-plans are similar.
+        hasFax:
+          type: boolean
+          description: Can a store receive faxes?
+        pizzaOpenDate:
+          type: string
+          description: Format - ISO8601 Date on which pizza was first made and sold in this Store.
+        deliveryStartDate:
+          type: string
+          description: Format - ISO8601 Date on which pizza delivery last started.
+        deliveryEndDate:
+          type: string
+          description: Format - ISO8601 Date on which pizza delivery last ended.
+        isLeased:
+          type: boolean
+          description: Is the store being leased?
+        leaseAmount:
+          type:
+          - number
+          - 'null'
+          description: Lease amount per month, if applicable.
+          format: double
+        hasCarWash:
+          type: boolean
+          description: Does this store have a car wash?
+        gasBuddyId:
+          type:
+          - integer
+          - 'null'
+          description: The store's identity in Gas Buddy.
+          format: int32
+        brandId:
+          type: integer
+          description: The store's brand id.
+          format: int32
+        brandName:
+          type: string
+          description: The store's brand name.
+        is24Hours:
+          type: boolean
+          description: Is the store open 24 hours?
+        isFirstPartyDelivery:
+          type: boolean
+          description: Does this store offer Casey's delivery?
+        hasOnlineOrdering:
+          type: boolean
+          description: The store's delivery software.
+        loyaltyPrograms:
+          type: array
+          items:
+            $ref: '#/components/schemas/storeLoyaltyProgramInfoV0'
+          description: The store's loyalty programs.
+        deliveryVendors:
+          type: array
+          items:
+            $ref: '#/components/schemas/deliveryVendorsInfoV0'
+          description: A collection of available delivery vendors for the store.
+        carWash:
+          $ref: '#/components/schemas/carWashV0'
+      example: '{"storeNumber":2,"storeName":"CASEY''S GENERAL STORES","storeShortName":"BOONE #1","timeZone":"C","longitude":-93.83917299,"latitude":42.0593372,"street":"114 MAMIE EISENHOWER AVE","cityId":31004,"cityName":"BOONE","stateId":994,"stateAbbreviation":"IA","countyId":22867,"countyName":"BOONE","zipCode":"500363424","poBox":"PO BOX 492","status":"Open","statusId":3,"phone":5551234567,"orderPhone":5557654321,"hasATM":true,"hasBakery":true,"sellsAlcohol":true,"sellsTobacco":true,"sellsDiesel":true,"sellsDonuts":true,"sellsSoftServeIceCream":true,"sellsBreakfastSandwiches":true,"sellsPreparedSandwiches":true,"sellsSignatureSubs":true,"sellsMTOSubs":true,"sellsPizza":true,"sellsNoonPizza":true,"sellsEveningPizza":true,"hasPayAtPump":true,"hasKitchen":true,"hasThirdPartyDelivery":true,"hasCurbsidePickup":true,"hasInStorePickup":true,"style":"SE","floorPlan":null,"originalOpenDate":"2022-6-14T00:00:00.000Z","lastOpenDate":"1991-06-26T00:00:00.000Z","acquisitionName":null,"isLeftHand":false,"shelvingStyle":"L","closeDate":null,"budgetedHours":950,"subBarDate":"2012-07-20T00:00:00.000Z","hasFax":false,"pizzaOpenDate":"1986-03-19T00:00:00.000Z","deliveryStartDate":"2021-06-28T00:00:00.000Z","deliveryEndDate":"2049-12-31T00:00:00.000Z","isLeased":false,"leaseAmount":null,"hasCarWash":true,"gasBuddyId":144554,"brandId":1,"brandName":"Casey''s","is24Hours":false,"isFirstPartyDelivery":false,"hasOnlineOrdering":true,"loyaltyPrograms":[{"name":"Hyvee"}],"deliveryVendors":[{"name":"Doordash delivery"}],"carWash":{"type":"Touch Free in-bay x2"}}'
+    allStoreInfoV0:
+      type: object
+      properties:
+        limit:
+          type: integer
+          description: The limited number of items returned.
+          format: int32
+        offset:
+          type: integer
+          description: The number of items skipped.
+          format: int32
+        count:
+          type: integer
+          description: The number of items returned.
+          format: int32
+        total:
+          type: integer
+          description: The total number of items.
+          format: int32
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/storeInfoV0'
+    allStoreInfoV1:
+      type: object
+      properties:
+        limit:
+          type: integer
+          description: The limited number of items returned.
+          format: int32
+        offset:
+          type: integer
+          description: The number of items skipped.
+          format: int32
+        count:
+          type: integer
+          description: The number of items returned.
+          format: int32
+        total:
+          type: integer
+          description: The total number of items.
+          format: int32
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/storeInfoV1'
+    storeLoyaltyProgramInfoV0:
       type: object
       properties:
         name:
           type: string
-          description: The name of the delivery vendor.
-    deliveryVendorsInfoV0:
+    apiError:
       type: object
       properties:
-        name:
+        code:
+          type: integer
+          description: Status code of the error.
+          format: int32
+        message:
           type: string
-          description: The name of the delivery vendor.
+          description: Message that describes the error.
     storeInfoV1:
       type: object
       properties:
@@ -918,13 +1318,11 @@ components:
         storeTruckStop:
           $ref: '#/components/schemas/truckStopStoreEntity'
       example: '{"storeNumber":2,"storeName":"CASEY''S GENERAL STORES","storeShortName":"BOONE #1","timeZone":"C","longitude":-93.83917299,"latitude":42.0593372,"street":"114 MAMIE EISENHOWER AVE","cityId":31004,"cityName":"BOONE","stateId":994,"stateAbbreviation":"IA","countyId":22867,"countyName":"BOONE","zipCode":"500363424","poBox":"PO BOX 492","status":"Open","statusId":3,"phone":5551234567,"orderPhone":5557654321,"hasATM":true,"hasBakery":true,"sellsAlcohol":true,"sellsTobacco":true,"sellsDiesel":true,"sellsDonuts":true,"sellsSoftServeIceCream":true,"sellsBreakfastSandwiches":true,"sellsPreparedSandwiches":true,"sellsSignatureSubs":true,"sellsMTOSubs":true,"sellsPizza":true,"sellsNoonPizza":true,"sellsEveningPizza":true,"hasPayAtPump":true,"hasKitchen":true,"hasThirdPartyDelivery":true,"hasCurbsidePickup":true,"hasInStorePickup":true,"style":"SE","floorPlan":null,"originalOpenDate":"2022-6-14T00:00:00.000Z","lastOpenDate":"1991-06-26T00:00:00.000Z","acquisitionName":null,"isLeftHand":false,"shelvingStyle":"L","closeDate":null,"budgetedHours":950,"subBarDate":"2012-07-20T00:00:00.000Z","hasFax":false,"pizzaOpenDate":"1986-03-19T00:00:00.000Z","deliveryStartDate":"2021-06-28T00:00:00.000Z","deliveryEndDate":"2049-12-31T00:00:00.000Z","isLeased":false,"leaseAmount":null,"hasCarWash":true,"gasBuddyId":144554,"brandId":1,"brandName":"Casey''s","is24Hours":false,"isFirstPartyDelivery":false,"hasOnlineOrdering":true,"loyaltyPrograms":[{"name":"Hyvee"}],"deliveryVendors":[{"name":"Doordash delivery"}],"carWash":{"type":"Touch Free in-bay x2"},"autoAttendantBypassPhoneNumber":5557654328,"companyId":10,"location":"00002","costCenter":"0000","classification":"S","corporateCompany":505,"businessUnit":"Casey''s Retail Business Unit","storeTruckStop":null}'
-    carWashV0:
+    storeLoyaltyProgramInfoV1:
       type: object
       properties:
-        type:
+        name:
           type: string
-          description: The type of car wash services at the store.
-      description: The store's car wash services.
     organizationalModelV0:
       type: object
       properties:
@@ -1035,116 +1433,32 @@ components:
           type: string
           description: The name of the Regional Merchandising Manager.
       example: '{"storeNumber":2,"districtNumber":57,"districtName":"District 57","divisionDirectorNumber":910714062,"divisionDirectorName":"DAVE JOHNSON","divisionDirectorEmail":"dave.johnson@caseys.com","divisionDirectorExtension":0,"divisionDirectorHomeStore":9085,"regionNumber":9,"regionName":"Region 9","regionDirectorNumber":910714062,"regionDirectorName":"JOHN GRAVES","regionDirectorEmail":"John.Graves@caseys.com","regionDirectorExtension":0,"regionDirectorHomeStore":2654,"divisionNumber":9085,"divisionName":"Division 1","districtSupervisorNumber":910714062,"districtSupervisorName":"DEBORAH AHRENS","districtSupervisorEmail":"DEBORAH.AHRENS@CASEYS.COM","districtSupervisorExtension":18702,"districtSupervisorHomeStore":24,"managerNumber":910250996,"managerName":"LAURIE GARRETT","managerEmail":null,"regionalMerchandisingManagerName":"WILSON WILLIAMS"}'
-    organizationalModelV1:
+    carWashV1:
       type: object
       properties:
-        storeNumber:
-          type: integer
-          description: The number of the store.
-          format: int32
-        districtNumber:
-          type:
-          - integer
-          - 'null'
-          description: The number of the district to which this store belongs in the store organizational structure.
-          format: int32
-        districtName:
+        type:
           type: string
-          description: The name of the district to which this store belongs in the store organizational structure.
-        divisionDirectorNumber:
-          type:
-          - integer
-          - 'null'
-          description: The Regional Manager mailer ID.
-          format: int64
-        divisionDirectorName:
+          description: The type of car wash services at the store.
+      description: The store's car wash services.
+    carWashV0:
+      type: object
+      properties:
+        type:
           type: string
-          description: The name of the Regional Manager.
-        divisionDirectorEmail:
+          description: The type of car wash services at the store.
+      description: The store's car wash services.
+    deliveryVendorsInfoV1:
+      type: object
+      properties:
+        name:
           type: string
-          description: The email of the Regional Manager over this store.
-        divisionDirectorExtension:
-          type: integer
-          description: The Regional Manager store extension number.
-          format: int32
-        divisionDirectorHomeStore:
-          type: integer
-          description: The number of the home store for the Regional Manager.
-          format: int32
-        regionNumber:
-          type:
-          - integer
-          - 'null'
-          description: The number of the region to which this store belongs in the store organizational structure.
-          format: int32
-        regionName:
+          description: The name of the delivery vendor.
+    deliveryVendorsInfoV0:
+      type: object
+      properties:
+        name:
           type: string
-          description: The name of the region to which this store belongs in the store organizational structure.
-        regionDirectorNumber:
-          type:
-          - integer
-          - 'null'
-          description: District Manager mailer ID.
-          format: int64
-        regionDirectorName:
-          type: string
-          description: The name of the District Manager.
-        regionDirectorEmail:
-          type: string
-          description: The email of the District Manager over this store.
-        regionDirectorExtension:
-          type: integer
-          description: The District Manager store extension number.
-          format: int32
-        regionDirectorHomeStore:
-          type: integer
-          description: The number of the home store for the District Manager.
-          format: int32
-        divisionNumber:
-          type:
-          - integer
-          - 'null'
-          description: The number of the division to which this store belongs in the store organizational structure.
-          format: int32
-        divisionName:
-          type: string
-          description: The name of the division to which this store belongs in the store organizational structure.
-        districtSupervisorNumber:
-          type:
-          - integer
-          - 'null'
-          description: Area Supervisor mailer ID.
-          format: int64
-        districtSupervisorName:
-          type: string
-          description: The name of the Area Supervisor.
-        districtSupervisorEmail:
-          type: string
-          description: The email of the Area Supervisor over this store.
-        districtSupervisorExtension:
-          type: integer
-          description: The Area Supervisor store extension number.
-          format: int32
-        districtSupervisorHomeStore:
-          type: integer
-          description: The number of the home store for the Area Supervisor.
-          format: int32
-        managerNumber:
-          type:
-          - integer
-          - 'null'
-          description: Store Manager mailer ID.
-          format: int64
-        managerName:
-          type: string
-          description: The name of the Store Manager.
-        managerEmail:
-          type: string
-          description: The email of the Store Manager over this store.
-        regionalMerchandisingManagerName:
-          type: string
-          description: The name of the Regional Merchandising Manager.
-      example: '{"storeNumber":2,"districtNumber":57,"districtName":"District 57","divisionDirectorNumber":910714062,"divisionDirectorName":"DAVE JOHNSON","divisionDirectorEmail":"dave.johnson@caseys.com","divisionDirectorExtension":0,"divisionDirectorHomeStore":9085,"regionNumber":9,"regionName":"Region 9","regionDirectorNumber":910714062,"regionDirectorName":"JOHN GRAVES","regionDirectorEmail":"John.Graves@caseys.com","regionDirectorExtension":0,"regionDirectorHomeStore":2654,"divisionNumber":9085,"divisionName":"Division 1","districtSupervisorNumber":910714062,"districtSupervisorName":"DEBORAH AHRENS","districtSupervisorEmail":"DEBORAH.AHRENS@CASEYS.COM","districtSupervisorExtension":18702,"districtSupervisorHomeStore":24,"managerNumber":910250996,"managerName":"LAURIE GARRETT","managerEmail":null,"regionalMerchandisingManagerName":"WILSON WILLIAMS"}'
+          description: The name of the delivery vendor.
     truckStopStoreEntity:
       type: object
       properties:
@@ -1254,456 +1568,6 @@ components:
           - 'null'
           format: int32
       description: Store is a truck stop
-    storeLoyaltyProgramInfoV1:
-      type: object
-      properties:
-        name:
-          type: string
-    storeInfoV0:
-      type: object
-      properties:
-        storeNumber:
-          type: integer
-          description: The number of the store.
-          format: int32
-        storeName:
-          type: string
-          description: The name of the CGS subsidiary company operating this Store.
-        storeShortName:
-          type: string
-          description: 'City of operation, and cardinality within city/town if applicable, e.g. ANKENY #2, ANKENY #3, etc.'
-        timeZone:
-          type: string
-          description: C = Central; E = Eastern.
-        longitude:
-          type: number
-          description: The longitude of the Store address.
-          format: double
-        latitude:
-          type: number
-          description: The latitude of the Store address.
-          format: double
-        street:
-          type: string
-          description: Street address of this Store.
-        cityId:
-          type: integer
-          description: Reference identity to the city the store is located in.
-          format: int32
-        cityName:
-          type: string
-          description: Name of the city the store is located in.
-        stateId:
-          type: integer
-          description: Reference identity to the state the store is located in.
-          format: int32
-        stateAbbreviation:
-          type: string
-          description: Abbreviation of the state the store is located in.
-        countyId:
-          type: integer
-          description: Reference identity to the county the store is located in.
-          format: int32
-        countyName:
-          type: string
-          description: Name of the county the store is located in.
-        zipCode:
-          type: string
-          description: ZIP postal code.
-        poBox:
-          type: string
-          description: PO Box number, if applicable.
-        status:
-          type: string
-          description: 'Name of the current status of availability of the store.<br>Enum: `"Unknown"` `"Prospective"` `"Pending"` `"Open"` `"Closed"` `"TemporarilyClosed"` `"Canceled"`'
-        statusId:
-          type: integer
-          description: Id of the current status of availability of the store.
-          format: int32
-        phone:
-          type: integer
-          description: Ten digit main phone number for Store.
-          format: int64
-        orderPhone:
-          type: integer
-          description: Ten digit phone number for pizza orders.
-          format: int64
-        hasATM:
-          type: boolean
-          description: Does this Store have a third-party supplied ATM inside?
-        hasBakery:
-          type: boolean
-          description: Does this Store sell NO-BAKE bakery items, e.g. puppy chow or pb/choc krispy bars, or other non-donut/pizza baked goods?
-        sellsAlcohol:
-          type: boolean
-          description: Does this store sell alcohol?
-        sellsTobacco:
-          type: boolean
-          description: Does this store sell tobacco?
-        sellsDiesel:
-          type: boolean
-          description: Does this Store sell diesel fuel, either at car pump islands or at truck fueling islands, or both?
-        sellsDonuts:
-          type: boolean
-          description: Does this Store sell donuts, either made on-site or vendor-supplied?
-        sellsSoftServeIceCream:
-          type: boolean
-          description: Does this Store sell soft-serve ice cream?
-        sellsBreakfastSandwiches:
-          type: boolean
-          description: Does this Store sell breakfast sandwiches (biscuit/croissant)?
-        sellsPreparedSandwiches:
-          type: boolean
-          description: Does this Store sell prepared (non-breakfast) sandwiches?
-        sellsSignatureSubs:
-          type: boolean
-          description: Does this Store sell Signature Subs (separate counter-top closed cooler case or open-case cooler; not MTO!)?
-        sellsMTOSubs:
-          type: boolean
-          description: Does this Store sell MTO (made-to-order) sub sandwiches?
-        sellsPizza:
-          type: boolean
-          description: Does this Store sell pizza, either made on-site or vendor supplied?
-        sellsNoonPizza:
-          type: boolean
-          description: Does this Store sell pizza slices at lunch rush time?
-        sellsEveningPizza:
-          type: boolean
-          description: Does this Store sell pizza slices at dinner rush time?
-        hasPayAtPump:
-          type: boolean
-          description: Is pay-at-the-pump turned on and functional at this Store?
-        hasKitchen:
-          type: boolean
-          description: Does this store have a kitchen?
-        hasThirdPartyDelivery:
-          type: boolean
-          description: Does this store use a third party to make deliveries?
-        hasCurbsidePickup:
-          type: boolean
-          description: Does this store do curbside pickup?
-        hasInStorePickup:
-          type: boolean
-          description: Does this store have in-store pickup?
-        style:
-          type: string
-          description: StoreStyle code for this Store.
-        floorPlan:
-          type: string
-          description: Description of the Store floor plan or interior layout.
-        originalOpenDate:
-          type: string
-          description: Format - ISO8601 Date on which this Store was FIRST opened.
-        lastOpenDate:
-          type: string
-          description: Format - ISO8601 Date on which this Store was LAST opened, as in after a remodel or site-scrape.
-        acquisitionName:
-          type: string
-          description: If this Store was an acquisition, who was it acquired from (chain-name/trade-name)?
-        isLeftHand:
-          type: boolean
-          description: Every once in a while, we used to build a store *backwards* or LEFT-hand. Indicates whether the counter is on the left as one walks into the Store. This no longer happens.
-        shelvingStyle:
-          type: string
-          description: Style of retail shelving in use at this Store.
-        closeDate:
-          type: string
-          description: Format - ISO8601 Date on which this Store was last closed.
-        budgetedHours:
-          type:
-          - integer
-          - 'null'
-          description: The number of hours the store has budgeted for employees in a week.
-          format: int32
-        subBarDate:
-          type: string
-          description: Format - ISO8601 Date on which we completed a G or E remodel that included installing a MTO Sub Sandwich bar. Note that G/E-style remodels are very similar as the floor-plans are similar.
-        hasFax:
-          type: boolean
-          description: Can a store receive faxes?
-        pizzaOpenDate:
-          type: string
-          description: Format - ISO8601 Date on which pizza was first made and sold in this Store.
-        deliveryStartDate:
-          type: string
-          description: Format - ISO8601 Date on which pizza delivery last started.
-        deliveryEndDate:
-          type: string
-          description: Format - ISO8601 Date on which pizza delivery last ended.
-        isLeased:
-          type: boolean
-          description: Is the store being leased?
-        leaseAmount:
-          type:
-          - number
-          - 'null'
-          description: Lease amount per month, if applicable.
-          format: double
-        hasCarWash:
-          type: boolean
-          description: Does this store have a car wash?
-        gasBuddyId:
-          type:
-          - integer
-          - 'null'
-          description: The store's identity in Gas Buddy.
-          format: int32
-        brandId:
-          type: integer
-          description: The store's brand id.
-          format: int32
-        brandName:
-          type: string
-          description: The store's brand name.
-        is24Hours:
-          type: boolean
-          description: Is the store open 24 hours?
-        isFirstPartyDelivery:
-          type: boolean
-          description: Does this store offer Casey's delivery?
-        hasOnlineOrdering:
-          type: boolean
-          description: The store's delivery software.
-        loyaltyPrograms:
-          type: array
-          items:
-            $ref: '#/components/schemas/storeLoyaltyProgramInfoV0'
-          description: The store's loyalty programs.
-        deliveryVendors:
-          type: array
-          items:
-            $ref: '#/components/schemas/deliveryVendorsInfoV0'
-          description: A collection of available delivery vendors for the store.
-        carWash:
-          $ref: '#/components/schemas/carWashV0'
-      example: '{"storeNumber":2,"storeName":"CASEY''S GENERAL STORES","storeShortName":"BOONE #1","timeZone":"C","longitude":-93.83917299,"latitude":42.0593372,"street":"114 MAMIE EISENHOWER AVE","cityId":31004,"cityName":"BOONE","stateId":994,"stateAbbreviation":"IA","countyId":22867,"countyName":"BOONE","zipCode":"500363424","poBox":"PO BOX 492","status":"Open","statusId":3,"phone":5551234567,"orderPhone":5557654321,"hasATM":true,"hasBakery":true,"sellsAlcohol":true,"sellsTobacco":true,"sellsDiesel":true,"sellsDonuts":true,"sellsSoftServeIceCream":true,"sellsBreakfastSandwiches":true,"sellsPreparedSandwiches":true,"sellsSignatureSubs":true,"sellsMTOSubs":true,"sellsPizza":true,"sellsNoonPizza":true,"sellsEveningPizza":true,"hasPayAtPump":true,"hasKitchen":true,"hasThirdPartyDelivery":true,"hasCurbsidePickup":true,"hasInStorePickup":true,"style":"SE","floorPlan":null,"originalOpenDate":"2022-6-14T00:00:00.000Z","lastOpenDate":"1991-06-26T00:00:00.000Z","acquisitionName":null,"isLeftHand":false,"shelvingStyle":"L","closeDate":null,"budgetedHours":950,"subBarDate":"2012-07-20T00:00:00.000Z","hasFax":false,"pizzaOpenDate":"1986-03-19T00:00:00.000Z","deliveryStartDate":"2021-06-28T00:00:00.000Z","deliveryEndDate":"2049-12-31T00:00:00.000Z","isLeased":false,"leaseAmount":null,"hasCarWash":true,"gasBuddyId":144554,"brandId":1,"brandName":"Casey''s","is24Hours":false,"isFirstPartyDelivery":false,"hasOnlineOrdering":true,"loyaltyPrograms":[{"name":"Hyvee"}],"deliveryVendors":[{"name":"Doordash delivery"}],"carWash":{"type":"Touch Free in-bay x2"}}'
-    allStoresOrganizationalInfoV1:
-      type: object
-      properties:
-        limit:
-          type: integer
-          description: The limited number of items returned.
-          format: int32
-        offset:
-          type: integer
-          description: The number of items skipped.
-          format: int32
-        count:
-          type: integer
-          description: The number of items returned.
-          format: int32
-        total:
-          type: integer
-          description: The total number of items.
-          format: int32
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/organizationalModelV1'
-    carWashV1:
-      type: object
-      properties:
-        type:
-          type: string
-          description: The type of car wash services at the store.
-      description: The store's car wash services.
-    allStoreInfoV1:
-      type: object
-      properties:
-        limit:
-          type: integer
-          description: The limited number of items returned.
-          format: int32
-        offset:
-          type: integer
-          description: The number of items skipped.
-          format: int32
-        count:
-          type: integer
-          description: The number of items returned.
-          format: int32
-        total:
-          type: integer
-          description: The total number of items.
-          format: int32
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/storeInfoV1'
-    apiError:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: Status code of the error.
-          format: int32
-        message:
-          type: string
-          description: Message that describes the error.
-    allStoreInfoV0:
-      type: object
-      properties:
-        limit:
-          type: integer
-          description: The limited number of items returned.
-          format: int32
-        offset:
-          type: integer
-          description: The number of items skipped.
-          format: int32
-        count:
-          type: integer
-          description: The number of items returned.
-          format: int32
-        total:
-          type: integer
-          description: The total number of items.
-          format: int32
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/storeInfoV0'
-    storeLoyaltyProgramInfoV0:
-      type: object
-      properties:
-        name:
-          type: string
-    organizationalModelV0_2:
-      type: object
-      properties:
-        storeNumber:
-          type: integer
-          description: The number of the store.
-          format: int32
-        districtNumber:
-          type:
-          - integer
-          - 'null'
-          description: The number of the district to which this store belongs in the store organizational structure.
-          format: int32
-        districtName:
-          type: string
-          description: The name of the district to which this store belongs in the store organizational structure.
-        divisionDirectorNumber:
-          type:
-          - integer
-          - 'null'
-          description: The Regional Manager mailer ID.
-          format: int64
-        divisionDirectorName:
-          type: string
-          description: The name of the Regional Manager.
-        divisionDirectorEmail:
-          type: string
-          description: The email of the Regional Manager over this store.
-        divisionDirectorExtension:
-          type: integer
-          description: The Regional Manager store extension number.
-          format: int32
-        divisionDirectorHomeStore:
-          type: integer
-          description: The number of the home store for the Regional Manager.
-          format: int32
-        regionNumber:
-          type:
-          - integer
-          - 'null'
-          description: The number of the region to which this store belongs in the store organizational structure.
-          format: int32
-        regionName:
-          type: string
-          description: The name of the region to which this store belongs in the store organizational structure.
-        regionDirectorNumber:
-          type:
-          - integer
-          - 'null'
-          description: District Manager mailer ID.
-          format: int64
-        regionDirectorName:
-          type: string
-          description: The name of the District Manager.
-        regionDirectorEmail:
-          type: string
-          description: The email of the District Manager over this store.
-        regionDirectorExtension:
-          type: integer
-          description: The District Manager store extension number.
-          format: int32
-        regionDirectorHomeStore:
-          type: integer
-          description: The number of the home store for the District Manager.
-          format: int32
-        divisionNumber:
-          type:
-          - integer
-          - 'null'
-          description: The number of the division to which this store belongs in the store organizational structure.
-          format: int32
-        divisionName:
-          type: string
-          description: The name of the division to which this store belongs in the store organizational structure.
-        districtSupervisorNumber:
-          type:
-          - integer
-          - 'null'
-          description: Area Supervisor mailer ID.
-          format: int64
-        districtSupervisorName:
-          type: string
-          description: The name of the Area Supervisor.
-        districtSupervisorEmail:
-          type: string
-          description: The email of the Area Supervisor over this store.
-        districtSupervisorExtension:
-          type: integer
-          description: The Area Supervisor store extension number.
-          format: int32
-        districtSupervisorHomeStore:
-          type: integer
-          description: The number of the home store for the Area Supervisor.
-          format: int32
-        managerNumber:
-          type:
-          - integer
-          - 'null'
-          description: Store Manager mailer ID.
-          format: int64
-        managerName:
-          type: string
-          description: The name of the Store Manager.
-        managerEmail:
-          type: string
-          description: The email of the Store Manager over this store.
-        regionalMerchandisingManagerName:
-          type: string
-          description: The name of the Regional Merchandising Manager.
-      example:
-        storeNumber: 2
-        districtNumber: 57
-        districtName: District 57
-        divisionDirectorNumber: 910714062
-        divisionDirectorName: DAVE JOHNSON
-        divisionDirectorEmail: dave.johnson@caseys.com
-        divisionDirectorExtension: 0
-        divisionDirectorHomeStore: 9085
-        regionNumber: 9
-        regionName: Region 9
-        regionDirectorNumber: 910714062
-        regionDirectorName: JOHN GRAVES
-        regionDirectorEmail: John.Graves@caseys.com
-        regionDirectorExtension: 0
-        regionDirectorHomeStore: 2654
-        divisionNumber: 9085
-        divisionName: Division 1
-        districtSupervisorNumber: 910714062
-        districtSupervisorName: DEBORAH AHRENS
-        districtSupervisorEmail: DEBORAH.AHRENS@CASEYS.COM
-        districtSupervisorExtension: 18702
-        districtSupervisorHomeStore: 24
-        managerNumber: 910250996
-        managerName: LAURIE GARRETT
-        managerEmail: null
-        regionalMerchandisingManagerName: WILSON WILLIAMS
     storeInfoV0_2:
       type: object
       properties:
@@ -1989,6 +1853,142 @@ components:
         - name: Doordash delivery
         carWash:
           type: Touch Free in-bay x2
+    organizationalModelV0_2:
+      type: object
+      properties:
+        storeNumber:
+          type: integer
+          description: The number of the store.
+          format: int32
+        districtNumber:
+          type:
+          - integer
+          - 'null'
+          description: The number of the district to which this store belongs in the store organizational structure.
+          format: int32
+        districtName:
+          type: string
+          description: The name of the district to which this store belongs in the store organizational structure.
+        divisionDirectorNumber:
+          type:
+          - integer
+          - 'null'
+          description: The Regional Manager mailer ID.
+          format: int64
+        divisionDirectorName:
+          type: string
+          description: The name of the Regional Manager.
+        divisionDirectorEmail:
+          type: string
+          description: The email of the Regional Manager over this store.
+        divisionDirectorExtension:
+          type: integer
+          description: The Regional Manager store extension number.
+          format: int32
+        divisionDirectorHomeStore:
+          type: integer
+          description: The number of the home store for the Regional Manager.
+          format: int32
+        regionNumber:
+          type:
+          - integer
+          - 'null'
+          description: The number of the region to which this store belongs in the store organizational structure.
+          format: int32
+        regionName:
+          type: string
+          description: The name of the region to which this store belongs in the store organizational structure.
+        regionDirectorNumber:
+          type:
+          - integer
+          - 'null'
+          description: District Manager mailer ID.
+          format: int64
+        regionDirectorName:
+          type: string
+          description: The name of the District Manager.
+        regionDirectorEmail:
+          type: string
+          description: The email of the District Manager over this store.
+        regionDirectorExtension:
+          type: integer
+          description: The District Manager store extension number.
+          format: int32
+        regionDirectorHomeStore:
+          type: integer
+          description: The number of the home store for the District Manager.
+          format: int32
+        divisionNumber:
+          type:
+          - integer
+          - 'null'
+          description: The number of the division to which this store belongs in the store organizational structure.
+          format: int32
+        divisionName:
+          type: string
+          description: The name of the division to which this store belongs in the store organizational structure.
+        districtSupervisorNumber:
+          type:
+          - integer
+          - 'null'
+          description: Area Supervisor mailer ID.
+          format: int64
+        districtSupervisorName:
+          type: string
+          description: The name of the Area Supervisor.
+        districtSupervisorEmail:
+          type: string
+          description: The email of the Area Supervisor over this store.
+        districtSupervisorExtension:
+          type: integer
+          description: The Area Supervisor store extension number.
+          format: int32
+        districtSupervisorHomeStore:
+          type: integer
+          description: The number of the home store for the Area Supervisor.
+          format: int32
+        managerNumber:
+          type:
+          - integer
+          - 'null'
+          description: Store Manager mailer ID.
+          format: int64
+        managerName:
+          type: string
+          description: The name of the Store Manager.
+        managerEmail:
+          type: string
+          description: The email of the Store Manager over this store.
+        regionalMerchandisingManagerName:
+          type: string
+          description: The name of the Regional Merchandising Manager.
+      example:
+        storeNumber: 2
+        districtNumber: 57
+        districtName: District 57
+        divisionDirectorNumber: 910714062
+        divisionDirectorName: DAVE JOHNSON
+        divisionDirectorEmail: dave.johnson@caseys.com
+        divisionDirectorExtension: 0
+        divisionDirectorHomeStore: 9085
+        regionNumber: 9
+        regionName: Region 9
+        regionDirectorNumber: 910714062
+        regionDirectorName: JOHN GRAVES
+        regionDirectorEmail: John.Graves@caseys.com
+        regionDirectorExtension: 0
+        regionDirectorHomeStore: 2654
+        divisionNumber: 9085
+        divisionName: Division 1
+        districtSupervisorNumber: 910714062
+        districtSupervisorName: DEBORAH AHRENS
+        districtSupervisorEmail: DEBORAH.AHRENS@CASEYS.COM
+        districtSupervisorExtension: 18702
+        districtSupervisorHomeStore: 24
+        managerNumber: 910250996
+        managerName: LAURIE GARRETT
+        managerEmail: null
+        regionalMerchandisingManagerName: WILSON WILLIAMS
   securitySchemes:
     apiKeyHeader:
       type: apiKey
