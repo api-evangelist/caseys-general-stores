@@ -195,138 +195,6 @@ paths:
     - url: https://esl.caseys.io/casgatewayapi
 components:
   schemas:
-    statusReturn:
-      type: object
-      properties:
-        timestamp:
-          type: string
-          format: date-time
-        result:
-          enum:
-          - 0
-          - 1
-          - 2
-          - 3
-          - 4
-          - 5
-          - 6
-          - 7
-          - 8
-          - 9
-          - 10
-          - 11
-          - 12
-          type: integer
-          format: int32
-          default: 0
-        message:
-          type: string
-    movementReportStatusReturn:
-      type: object
-      properties:
-        status:
-          $ref: '#/components/schemas/reportResponseStatus'
-        posMovement:
-          $ref: '#/components/schemas/posMovement'
-    posMovementReportHeader:
-      required:
-      - reportSequenceNumber
-      - primaryReportPeriod
-      - beginDateTime
-      - endDateTime
-      type: object
-      properties:
-        reportSequenceNumber:
-          maximum: 99999999
-          minimum: 0
-          type: integer
-          format: int32
-        primaryReportPeriod:
-          $ref: '#/components/schemas/movementReportPeriod'
-        secondaryReportPeriod:
-          $ref: '#/components/schemas/movementReportPeriod'
-        beginDateTime:
-          minLength: 1
-          type: string
-          format: date-time
-        endDateTime:
-          minLength: 1
-          type: string
-          format: date-time
-        reportRange:
-          $ref: '#/components/schemas/reportRange'
-        businessDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-    reportRange:
-      type: object
-      properties:
-        value:
-          enum:
-          - 0
-          - 1
-          - 2
-          - -1
-          type: integer
-          format: int32
-          default: 0
-    transmissionHeader:
-      required:
-      - storeLocationId
-      - vendorName
-      - vendorModelVersion
-      - organizationId
-      type: object
-      properties:
-        storeLocationId:
-          minLength: 1
-          type: string
-        vendorName:
-          minLength: 1
-          type: string
-        vendorModelVersion:
-          minLength: 1
-          type: string
-        organizationId:
-          minLength: 1
-          type: string
-    posMovementReport:
-      required:
-      - posMovementReportHeader
-      - posMovementReportGroup
-      type: object
-      properties:
-        posMovementReportHeader:
-          $ref: '#/components/schemas/posMovementReportHeader'
-        posMovementReportGroup:
-          type: array
-          items:
-            $ref: '#/components/schemas/movementReport'
-    movementReportPeriod:
-      type: object
-      properties:
-        interval:
-          enum:
-          - 0
-          - 1
-          - 2
-          - 3
-          - 4
-          - 5
-          - 6
-          - 7
-          - 8
-          - 9
-          - 10
-          type:
-          - integer
-          - 'null'
-          format: int32
-          default: 0
-        value:
-          type: string
     posMovement:
       required:
       - transmissionHeader
@@ -368,8 +236,140 @@ components:
           type: integer
           format: int32
           default: 0
+    reportRange:
+      type: object
+      properties:
+        value:
+          enum:
+          - 0
+          - 1
+          - 2
+          - -1
+          type: integer
+          format: int32
+          default: 0
+    posMovementReportHeader:
+      required:
+      - reportSequenceNumber
+      - primaryReportPeriod
+      - beginDateTime
+      - endDateTime
+      type: object
+      properties:
+        reportSequenceNumber:
+          maximum: 99999999
+          minimum: 0
+          type: integer
+          format: int32
+        primaryReportPeriod:
+          $ref: '#/components/schemas/movementReportPeriod'
+        secondaryReportPeriod:
+          $ref: '#/components/schemas/movementReportPeriod'
+        beginDateTime:
+          minLength: 1
+          type: string
+          format: date-time
+        endDateTime:
+          minLength: 1
+          type: string
+          format: date-time
+        reportRange:
+          $ref: '#/components/schemas/reportRange'
+        businessDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+    movementReportStatusReturn:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/reportResponseStatus'
+        posMovement:
+          $ref: '#/components/schemas/posMovement'
     movementReport:
       type: object
+    posMovementReport:
+      required:
+      - posMovementReportHeader
+      - posMovementReportGroup
+      type: object
+      properties:
+        posMovementReportHeader:
+          $ref: '#/components/schemas/posMovementReportHeader'
+        posMovementReportGroup:
+          type: array
+          items:
+            $ref: '#/components/schemas/movementReport'
+    transmissionHeader:
+      required:
+      - storeLocationId
+      - vendorName
+      - vendorModelVersion
+      - organizationId
+      type: object
+      properties:
+        storeLocationId:
+          minLength: 1
+          type: string
+        vendorName:
+          minLength: 1
+          type: string
+        vendorModelVersion:
+          minLength: 1
+          type: string
+        organizationId:
+          minLength: 1
+          type: string
+    statusReturn:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        result:
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          - 7
+          - 8
+          - 9
+          - 10
+          - 11
+          - 12
+          type: integer
+          format: int32
+          default: 0
+        message:
+          type: string
+    movementReportPeriod:
+      type: object
+      properties:
+        interval:
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          - 7
+          - 8
+          - 9
+          - 10
+          type:
+          - integer
+          - 'null'
+          format: int32
+          default: 0
+        value:
+          type: string
     statusReturn_2:
       type: object
       properties:

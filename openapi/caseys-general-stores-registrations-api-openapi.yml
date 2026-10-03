@@ -35,14 +35,6 @@ paths:
       - Registrations
 components:
   schemas:
-    apiCollection_registeredServiceModel:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/registeredServiceModel'
-          description: The data collection.
     serviceModel:
       type: object
       properties:
@@ -69,6 +61,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/serviceModel'
+    apiCollection_registeredServiceModel:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/registeredServiceModel'
+          description: The data collection.
   securitySchemes:
     apiKeyHeader:
       type: apiKey

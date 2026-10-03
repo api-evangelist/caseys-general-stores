@@ -60,7 +60,7 @@
     "caseys-general-stores-taxes-api-openapi.yml"
   ],
   "archived": [
-    "deleted 6 superseded output(s) from the previous generation"
+    "deleted 3 superseded output(s) from the previous generation"
   ],
   "errors": [],
   "warnings": [],
@@ -226,8 +226,8 @@
     "tag 'V1Stores' spans 2 source specs (caseys-general-stores-store-api-openapi.json, caseys-general-stores-store-details-api-openapi.json): per-path servers applied",
     "tag 'Version' spans 2 source specs (caseys-general-stores-store-api-openapi.json, caseys-general-stores-store-details-api-openapi.json): per-path servers applied",
     "tag 'Stores' spans 3 source specs (caseys-general-stores-store-messaging-api-openapi.json, caseys-general-stores-store-number-api-openapi.json, caseys-general-stores-tax-api-openapi.json): per-path servers applied",
-    "superseded outputs removed: caseys-general-stores-fuel-prices-api-openapi.yml, caseys-general-stores-graph-ql-api-openapi.yml, caseys-general-stores-open-api-api-openapi.yml, caseys-general-stores-v0-api-openapi.yml, caseys-general-stores-v1-api-openapi.yml \u2026",
-    "apis.yml register: written (+8 apis, 41 total)"
+    "superseded outputs removed: caseys-general-stores-fuel-prices-api-openapi.yml, caseys-general-stores-graph-ql-api-openapi.yml, caseys-general-stores-open-api-api-openapi.yml",
+    "apis.yml register: written (+3 apis, 41 total)"
   ],
   "skipped": [
     "_original/caseys-general-stores-vendor-checkin-api-openapi.json: archived document superseded by a larger archived document",
@@ -240,6 +240,7 @@
     "caseys-general-stores-brands-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "caseys-general-stores-caseys-storeapi-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "caseys-general-stores-caseys-storenumbergenerator-api-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "caseys-general-stores-deprecated-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "caseys-general-stores-districts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "caseys-general-stores-divisions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "caseys-general-stores-fuel-prices-api-openapi.yml: previously refined output, superseded by openapi/_original/",
@@ -256,11 +257,14 @@
     "caseys-general-stores-print-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "caseys-general-stores-pull-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "caseys-general-stores-push-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "caseys-general-stores-region-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "caseys-general-stores-regions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "caseys-general-stores-register-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "caseys-general-stores-registrations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "caseys-general-stores-relateditems-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "caseys-general-stores-store-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "caseys-general-stores-storeamenities-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "caseys-general-stores-storenumber-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "caseys-general-stores-storeorganizational-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "caseys-general-stores-stores-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "caseys-general-stores-supplier-api-openapi.yml: previously refined output, superseded by openapi/_original/",
@@ -268,13 +272,11 @@
     "caseys-general-stores-tanklevels-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "caseys-general-stores-taxes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "caseys-general-stores-unbuffered-store-items-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "caseys-general-stores-v0-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "caseys-general-stores-v1-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "caseys-general-stores-upc-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "caseys-general-stores-v1storebyid-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "caseys-general-stores-v1storehours-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "caseys-general-stores-v1storehoursbystorenumber-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "caseys-general-stores-v1stores-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "caseys-general-stores-v2-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "caseys-general-stores-version-api-openapi.yml: previously refined output, superseded by openapi/_original/"
   ]
 }

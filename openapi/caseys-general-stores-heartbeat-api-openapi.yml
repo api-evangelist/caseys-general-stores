@@ -71,13 +71,6 @@ components:
         status:
           type: string
           description: Description of the current status of dependencies of the API.
-    heartbeatReportV1:
-      type: object
-      properties:
-        status:
-          type: string
-          description: Description of the current status of dependencies of the API.
-      example: '{"status":"Healthy"}'
     heartbeatReportV0:
       type: object
       properties:
@@ -85,7 +78,14 @@ components:
           type: string
           description: Description of the current status of dependencies of the API.
       example: '{"status":"Healthy"}'
-    heartbeatReportV1_2:
+    heartbeatReportV1:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Description of the current status of dependencies of the API.
+      example: '{"status":"Healthy"}'
+    heartbeatReportV0_2:
       type: object
       properties:
         status:
@@ -93,7 +93,7 @@ components:
           description: Description of the current status of dependencies of the API.
       example:
         status: Healthy
-    heartbeatReportV0_2:
+    heartbeatReportV1_2:
       type: object
       properties:
         status:

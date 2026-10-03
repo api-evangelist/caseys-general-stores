@@ -72,6 +72,14 @@ paths:
                 message: string
 components:
   schemas:
+    fuelPriceParameterModel:
+      type: object
+      properties:
+        storeId:
+          type: array
+          items:
+            type: integer
+            format: int32
     fuelPriceModel:
       type: object
       properties:
@@ -118,14 +126,6 @@ components:
         message:
           type: string
           description: Message that describes the error.
-    fuelPriceParameterModel:
-      type: object
-      properties:
-        storeId:
-          type: array
-          items:
-            type: integer
-            format: int32
   securitySchemes:
     apiKeyHeader:
       type: apiKey

@@ -67,12 +67,6 @@ paths:
                 message: string
 components:
   schemas:
-    link:
-      type: object
-      properties:
-        href:
-          type: string
-          description: URL definition to a defined object.
     regionModelV0:
       type: object
       properties:
@@ -100,16 +94,12 @@ components:
           - href: /organizational/districts/116
           - href: /organizational/districts/117
           - href: /organizational/districts/197
-    apiError:
+    link:
       type: object
       properties:
-        code:
-          type: integer
-          description: Status code of the error.
-          format: int32
-        message:
+        href:
           type: string
-          description: Message that describes the error.
+          description: URL definition to a defined object.
     linkModel:
       type: object
       properties:
@@ -121,6 +111,16 @@ components:
             $ref: '#/components/schemas/link'
           description: URLs of the children objects.
       description: URLs that are related to the current object.
+    apiError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Status code of the error.
+          format: int32
+        message:
+          type: string
+          description: Message that describes the error.
   securitySchemes:
     apiKeyHeader:
       type: apiKey

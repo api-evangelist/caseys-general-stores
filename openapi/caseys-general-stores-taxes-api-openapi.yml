@@ -77,14 +77,6 @@ paths:
       - Taxes
 components:
   schemas:
-    getTaxRequestModel:
-      type: object
-      properties:
-        taxes:
-          type: array
-          items:
-            $ref: '#/components/schemas/taxRequestModel'
-          description: List of items to get tax information for.
     problemDetails:
       type: object
       properties:
@@ -105,55 +97,14 @@ components:
           type: object
           additionalProperties:
             type: object
-    getTaxResponseModel:
+    getTaxRequestModel:
       type: object
       properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/itemResponseModel'
-          description: List of returned tax information broken out by jurisdiction.
-    itemResponseModel:
-      type: object
-      properties:
-        uniqueIdentifier:
-          type: string
-          description: The identifier provided by the request.
-          format: uuid
-        itemUpc:
-          type: string
-        storeNumber:
-          type: integer
-          description: A valid PriceBook store number.
-          format: int32
-        saleDate:
-          type: string
-          description: The date the item was sold.
-          format: date-time
         taxes:
           type: array
           items:
-            $ref: '#/components/schemas/taxResponseModel'
-    taxRequestModel:
-      type: object
-      properties:
-        uniqueIdentifier:
-          type: string
-          description: Used to make each item unique even if they share the same upc.
-          format: uuid
-        itemUpc:
-          type: string
-        taxCollected:
-          type: number
-          description: The full amount of tax collected for the item.
-          format: double
-        storeNumber:
-          type: integer
-          format: int32
-        saleDate:
-          type: string
-          description: The date the item was sold.
-          format: date-time
+            $ref: '#/components/schemas/taxRequestModel'
+          description: List of items to get tax information for.
     list_string:
       type: array
       items:
@@ -176,6 +127,34 @@ components:
           type: number
           description: The portion of tax that goes to the jurisdiction.
           format: double
+    taxRequestModel:
+      type: object
+      properties:
+        uniqueIdentifier:
+          type: string
+          description: Used to make each item unique even if they share the same upc.
+          format: uuid
+        itemUpc:
+          type: string
+        taxCollected:
+          type: number
+          description: The full amount of tax collected for the item.
+          format: double
+        storeNumber:
+          type: integer
+          format: int32
+        saleDate:
+          type: string
+          description: The date the item was sold.
+          format: date-time
+    getTaxResponseModel:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/itemResponseModel'
+          description: List of returned tax information broken out by jurisdiction.
     validationProblemDetails:
       type: object
       properties:
@@ -200,6 +179,27 @@ components:
           type: object
           additionalProperties:
             type: object
+    itemResponseModel:
+      type: object
+      properties:
+        uniqueIdentifier:
+          type: string
+          description: The identifier provided by the request.
+          format: uuid
+        itemUpc:
+          type: string
+        storeNumber:
+          type: integer
+          description: A valid PriceBook store number.
+          format: int32
+        saleDate:
+          type: string
+          description: The date the item was sold.
+          format: date-time
+        taxes:
+          type: array
+          items:
+            $ref: '#/components/schemas/taxResponseModel'
   securitySchemes:
     apiKeyHeader:
       type: apiKey

@@ -278,32 +278,52 @@ paths:
     - url: https://esl.caseys.io/casgatewayapi
 components:
   schemas:
-    statusReturn:
+    posMovement:
+      required:
+      - transmissionHeader
+      - posMovementReport
       type: object
       properties:
-        timestamp:
+        version:
           type: string
-          format: date-time
-        result:
+        release:
+          type: string
+        transmissionHeader:
+          $ref: '#/components/schemas/transmissionHeader'
+        posMovementReport:
+          $ref: '#/components/schemas/posMovementReport'
+    transmissionHeader:
+      required:
+      - storeLocationId
+      - vendorName
+      - vendorModelVersion
+      - organizationId
+      type: object
+      properties:
+        storeLocationId:
+          minLength: 1
+          type: string
+        vendorName:
+          minLength: 1
+          type: string
+        vendorModelVersion:
+          minLength: 1
+          type: string
+        organizationId:
+          minLength: 1
+          type: string
+    reportRange:
+      type: object
+      properties:
+        value:
           enum:
           - 0
           - 1
           - 2
-          - 3
-          - 4
-          - 5
-          - 6
-          - 7
-          - 8
-          - 9
-          - 10
-          - 11
-          - 12
+          - -1
           type: integer
           format: int32
           default: 0
-        message:
-          type: string
     posMovementReportHeader:
       required:
       - reportSequenceNumber
@@ -336,38 +356,6 @@ components:
           - string
           - 'null'
           format: date-time
-    reportRange:
-      type: object
-      properties:
-        value:
-          enum:
-          - 0
-          - 1
-          - 2
-          - -1
-          type: integer
-          format: int32
-          default: 0
-    transmissionHeader:
-      required:
-      - storeLocationId
-      - vendorName
-      - vendorModelVersion
-      - organizationId
-      type: object
-      properties:
-        storeLocationId:
-          minLength: 1
-          type: string
-        vendorName:
-          minLength: 1
-          type: string
-        vendorModelVersion:
-          minLength: 1
-          type: string
-        organizationId:
-          minLength: 1
-          type: string
     posMovementReport:
       required:
       - posMovementReportHeader
@@ -380,6 +368,34 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/movementReport'
+    movementReport:
+      type: object
+    statusReturn:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        result:
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          - 7
+          - 8
+          - 9
+          - 10
+          - 11
+          - 12
+          type: integer
+          format: int32
+          default: 0
+        message:
+          type: string
     movementReportPeriod:
       type: object
       properties:
@@ -403,22 +419,6 @@ components:
           default: 0
         value:
           type: string
-    posMovement:
-      required:
-      - transmissionHeader
-      - posMovementReport
-      type: object
-      properties:
-        version:
-          type: string
-        release:
-          type: string
-        transmissionHeader:
-          $ref: '#/components/schemas/transmissionHeader'
-        posMovementReport:
-          $ref: '#/components/schemas/posMovementReport'
-    movementReport:
-      type: object
     statusReturn_2:
       type: object
       properties:

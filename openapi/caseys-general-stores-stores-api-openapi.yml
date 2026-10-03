@@ -235,38 +235,10 @@ paths:
     - url: https://esl.caseys.io/taxapi
 components:
   schemas:
-    registrationInputV2:
-      type: object
-      properties:
-        storeNumber:
-          type: integer
-          format: int32
-        service:
-          type: string
-          description: 'The store agent service to register. Ex: print-service'
-        messagesToHandle:
-          type: array
-          items:
-            type: string
-          description: A collection of message types to handle for the service
-        owningTeamEmail:
-          type: string
-          description: Email address of the team who owns the service
-    registrationOutput:
-      type: object
-      properties:
-        storeNumber:
-          type: integer
-          format: int32
-        storeAgentClientId:
-          type: string
-          description: The store agent client id to use for authentication
-        storeAgentClientSecret:
-          type: string
-          description: The store agent client secret to use for authentication
-        clientName:
-          type: string
-          description: The display name of the app registration in Azure AD.
+    list_string:
+      type: array
+      items:
+        type: string
     storeMessageInput:
       type: object
       properties:
@@ -288,10 +260,23 @@ components:
           description: The amount of time, in seconds, before the request is expired and not sent to the store. This value defaults to 300 seconds, which is the maximum time allowed.
           format: int32
           default: 300
-    list_string:
-      type: array
-      items:
-        type: string
+    registrationInputV2:
+      type: object
+      properties:
+        storeNumber:
+          type: integer
+          format: int32
+        service:
+          type: string
+          description: 'The store agent service to register. Ex: print-service'
+        messagesToHandle:
+          type: array
+          items:
+            type: string
+          description: A collection of message types to handle for the service
+        owningTeamEmail:
+          type: string
+          description: Email address of the team who owns the service
     validationProblemDetails:
       type: object
       properties:
@@ -316,34 +301,21 @@ components:
           type: object
           additionalProperties:
             type: object
-    compoundTaxResponseModel:
+    registrationOutput:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/compoundTax'
-          description: The data collection.
-    taxLevelResponseModel:
-      type: object
-      properties:
-        taxId:
-          type: string
-          description: The identifier of the tax information.
         storeNumber:
           type: integer
-          description: The store identifier.
           format: int32
-        description:
+        storeAgentClientId:
           type: string
-          description: The definition of the tax level.
-        rate:
-          type: number
-          description: The rate of taxes.
-          format: double
-        isActive:
-          type: boolean
-          description: A flag to determine if the tax level is active or inactive.
+          description: The store agent client id to use for authentication
+        storeAgentClientSecret:
+          type: string
+          description: The store agent client secret to use for authentication
+        clientName:
+          type: string
+          description: The display name of the app registration in Azure AD.
     taxStrategy:
       type: object
       properties:
@@ -361,13 +333,13 @@ components:
         isActive:
           type: boolean
           description: A flag to determine if the tax strategy is active or inactive.
-    taxStrategyResponseModel:
+    compoundTaxResponseModel:
       type: object
       properties:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/taxStrategy'
+            $ref: '#/components/schemas/compoundTax'
           description: The data collection.
     compoundTax:
       type: object
@@ -395,6 +367,34 @@ components:
           type: integer
           description: The identifier of the compound tax.
           format: int32
+    taxLevelResponseModel:
+      type: object
+      properties:
+        taxId:
+          type: string
+          description: The identifier of the tax information.
+        storeNumber:
+          type: integer
+          description: The store identifier.
+          format: int32
+        description:
+          type: string
+          description: The definition of the tax level.
+        rate:
+          type: number
+          description: The rate of taxes.
+          format: double
+        isActive:
+          type: boolean
+          description: A flag to determine if the tax level is active or inactive.
+    taxStrategyResponseModel:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/taxStrategy'
+          description: The data collection.
   securitySchemes:
     apiKeyHeader:
       type: apiKey

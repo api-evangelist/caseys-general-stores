@@ -63,6 +63,15 @@ paths:
                 extensions: {}
 components:
   schemas:
+    supplier:
+      type: object
+      properties:
+        partitionKey:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
     problemDetails:
       type: object
       properties:
@@ -83,15 +92,6 @@ components:
           type: object
           additionalProperties:
             type: object
-    supplier:
-      type: object
-      properties:
-        partitionKey:
-          type: string
-        id:
-          type: string
-        name:
-          type: string
   securitySchemes:
     apiKeyHeader:
       type: apiKey

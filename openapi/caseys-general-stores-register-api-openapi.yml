@@ -83,15 +83,6 @@ paths:
       - Register
 components:
   schemas:
-    registrationInput:
-      type: object
-      properties:
-        storeNumber:
-          type: integer
-          format: int32
-        service:
-          type: string
-          description: 'The store agent service to register. Ex: print-service'
     registrationOutput:
       type: object
       properties:
@@ -107,6 +98,15 @@ components:
         clientName:
           type: string
           description: The display name of the app registration in Azure AD.
+    registrationInput:
+      type: object
+      properties:
+        storeNumber:
+          type: integer
+          format: int32
+        service:
+          type: string
+          description: 'The store agent service to register. Ex: print-service'
   securitySchemes:
     apiKeyHeader:
       type: apiKey

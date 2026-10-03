@@ -58,6 +58,34 @@ paths:
       - Print
 components:
   schemas:
+    validationProblemDetails:
+      type: object
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/list_string'
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type: string
+        instance:
+          type: string
+        extensions:
+          type: object
+          additionalProperties:
+            type: object
+    list_string:
+      type: array
+      items:
+        type: string
     printTicketsInput:
       type: object
       properties:
@@ -83,34 +111,6 @@ components:
           description: The amount of time, in seconds, before the request is expired and not sent to the store. This value defaults to 300 seconds, which is the maximum time allowed.
           format: int32
           default: 300
-    list_string:
-      type: array
-      items:
-        type: string
-    validationProblemDetails:
-      type: object
-      properties:
-        errors:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/list_string'
-        type:
-          type: string
-        title:
-          type: string
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type: string
-        instance:
-          type: string
-        extensions:
-          type: object
-          additionalProperties:
-            type: object
   securitySchemes:
     apiKeyHeader:
       type: apiKey

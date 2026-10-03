@@ -70,15 +70,6 @@ paths:
                 message: string
 components:
   schemas:
-    relatedItem:
-      type: object
-      properties:
-        upc:
-          type: string
-          description: The Universal Product Code of the related item.
-        description:
-          type: string
-          description: A brief description of the related item.
     getRelatedItemsResponseModelV2:
       type: object
       properties:
@@ -102,6 +93,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/relatedItem'
+    relatedItem:
+      type: object
+      properties:
+        upc:
+          type: string
+          description: The Universal Product Code of the related item.
+        description:
+          type: string
+          description: A brief description of the related item.
     apiError:
       type: object
       properties:
