@@ -954,6 +954,8 @@ apis:
   humanURL: https://developer.esl.caseys.io/
   baseURL: https://esl.caseys.io/itemapi
   tags:
+  - Deprecated
+  tags_raw:
   - deprecated
   properties:
   - type: OpenAPI
@@ -980,6 +982,8 @@ apis:
   humanURL: https://developer.esl.caseys.io/
   baseURL: https://esl.caseys.io/itemapi
   tags:
+  - Region
+  tags_raw:
   - region
   properties:
   - type: OpenAPI
@@ -1006,6 +1010,8 @@ apis:
   humanURL: https://developer.esl.caseys.io/
   baseURL: https://esl.caseys.io/itemapi
   tags:
+  - Related-items
+  tags_raw:
   - Relateditems
   properties:
   - type: OpenAPI
@@ -1058,6 +1064,8 @@ apis:
   humanURL: https://developer.esl.caseys.io/
   baseURL: https://esl.caseys.io/itemapi
   tags:
+  - UPC
+  tags_raw:
   - upc
   properties:
   - type: OpenAPI
@@ -1110,6 +1118,8 @@ apis:
   humanURL: https://developer.esl.caseys.io/
   baseURL: https://esl.caseys.io/itemapi
   tags:
+  - GraphQL
+  tags_raw:
   - Graph QL
   properties:
   - type: OpenAPI
@@ -1136,6 +1146,8 @@ apis:
   humanURL: https://developer.esl.caseys.io/
   baseURL: https://esl.caseys.io/itemapi
   tags:
+  - OpenAPI
+  tags_raw:
   - Open API
   properties:
   - type: OpenAPI
@@ -1157,6 +1169,9 @@ apis:
   - type: GraphQL
     url: https://esl.caseys.io/vendorcheckinapi/graphql
 common:
+- type: CapabilityMap
+  url: capabilities/caseys-general-stores-capability-edges.yml
+  name: Casey's General Stores Business Capability Map
 - type: Overlay
   url: overlays/caseys-general-stores-cas-api-overlay.yaml
 - type: Overlay
