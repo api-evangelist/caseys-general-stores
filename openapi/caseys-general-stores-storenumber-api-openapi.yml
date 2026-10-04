@@ -136,6 +136,27 @@ components:
           format: int32
         cost:
           $ref: '#/components/schemas/itemCost'
+    itemStatus:
+      type: object
+      properties:
+        status:
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          type: integer
+          description: The status code of the item. (0 = Deleted, 1 = Active, 2 = Discontinued, 3 = Inactive)
+          format: int32
+        effectiveDate:
+          type: string
+          description: The date when the status becomes effective.
+          format: date-time
+        expirationDate:
+          type: string
+          description: The date when the status expires.
+          format: date-time
+      description: The current selling status of the item.
     getStoreItemsResponseModelV2:
       type: object
       properties:
@@ -159,37 +180,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/storeItem'
-    itemStatus:
-      type: object
-      properties:
-        status:
-          enum:
-          - 0
-          - 1
-          - 2
-          - 3
-          type: integer
-          description: The status code of the item. (0 = Deleted, 1 = Active, 2 = Discontinued, 3 = Inactive)
-          format: int32
-        effectiveDate:
-          type: string
-          description: The date when the status becomes effective.
-          format: date-time
-        expirationDate:
-          type: string
-          description: The date when the status expires.
-          format: date-time
-      description: The current selling status of the item.
-    apiError:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: Status code of the error.
-          format: int32
-        message:
-          type: string
-          description: Message that describes the error.
     itemCost:
       type: object
       properties:
@@ -219,6 +209,32 @@ components:
           - 'null'
           format: double
       description: The cost information of the item from the supplier.
+    apiError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Status code of the error.
+          format: int32
+        message:
+          type: string
+          description: Message that describes the error.
+    itemRetailPrice:
+      type: object
+      properties:
+        currentSellingUnitRetailPriceAmount:
+          type: number
+          description: The current selling price of the item.
+          format: double
+        currentSellingUnitRetailPriceEffectiveDate:
+          type: string
+          description: The date when the current selling price became effective.
+          format: date-time
+        currentSellingUnitRetailPriceExpirationDate:
+          type: string
+          description: The date when the current selling price will expire.
+          format: date-time
+      description: The current retail price of the item.
     restriction:
       type: object
       properties:
@@ -246,22 +262,6 @@ components:
           description: The minimum age the customer must be to purchase this item.
           format: int32
       description: The restrictions for the item.
-    itemRetailPrice:
-      type: object
-      properties:
-        currentSellingUnitRetailPriceAmount:
-          type: number
-          description: The current selling price of the item.
-          format: double
-        currentSellingUnitRetailPriceEffectiveDate:
-          type: string
-          description: The date when the current selling price became effective.
-          format: date-time
-        currentSellingUnitRetailPriceExpirationDate:
-          type: string
-          description: The date when the current selling price will expire.
-          format: date-time
-      description: The current retail price of the item.
     storeItem:
       type: object
       properties:

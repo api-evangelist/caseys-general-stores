@@ -235,48 +235,21 @@ paths:
     - url: https://esl.caseys.io/taxapi
 components:
   schemas:
-    list_string:
-      type: array
-      items:
-        type: string
-    storeMessageInput:
-      type: object
-      properties:
-        messageType:
-          type: string
-          description: The type of message being sent to the store. This value is blindly passed-through by the API. It is up to the producer and consumer of the message to agree on this value.
-        eventTime:
-          type: string
-          description: The time the event was created or sent to the API. Defaults to the current time UTC.
-        requestedBy:
-          type: string
-        data:
-          type: array
-          items:
-            type: string
-          description: A list of messages payloads to send to the store. This value is sent as a single message to the store. It is up to the consumer to know how to deserialize and handle the list of messages.
-        timeToLive:
-          type: integer
-          description: The amount of time, in seconds, before the request is expired and not sent to the store. This value defaults to 300 seconds, which is the maximum time allowed.
-          format: int32
-          default: 300
-    registrationInputV2:
+    registrationOutput:
       type: object
       properties:
         storeNumber:
           type: integer
           format: int32
-        service:
+        storeAgentClientId:
           type: string
-          description: 'The store agent service to register. Ex: print-service'
-        messagesToHandle:
-          type: array
-          items:
-            type: string
-          description: A collection of message types to handle for the service
-        owningTeamEmail:
+          description: The store agent client id to use for authentication
+        storeAgentClientSecret:
           type: string
-          description: Email address of the team who owns the service
+          description: The store agent client secret to use for authentication
+        clientName:
+          type: string
+          description: The display name of the app registration in Azure AD.
     validationProblemDetails:
       type: object
       properties:
@@ -301,21 +274,56 @@ components:
           type: object
           additionalProperties:
             type: object
-    registrationOutput:
+    storeMessageInput:
+      type: object
+      properties:
+        messageType:
+          type: string
+          description: The type of message being sent to the store. This value is blindly passed-through by the API. It is up to the producer and consumer of the message to agree on this value.
+        eventTime:
+          type: string
+          description: The time the event was created or sent to the API. Defaults to the current time UTC.
+        requestedBy:
+          type: string
+        data:
+          type: array
+          items:
+            type: string
+          description: A list of messages payloads to send to the store. This value is sent as a single message to the store. It is up to the consumer to know how to deserialize and handle the list of messages.
+        timeToLive:
+          type: integer
+          description: The amount of time, in seconds, before the request is expired and not sent to the store. This value defaults to 300 seconds, which is the maximum time allowed.
+          format: int32
+          default: 300
+    list_string:
+      type: array
+      items:
+        type: string
+    registrationInputV2:
       type: object
       properties:
         storeNumber:
           type: integer
           format: int32
-        storeAgentClientId:
+        service:
           type: string
-          description: The store agent client id to use for authentication
-        storeAgentClientSecret:
+          description: 'The store agent service to register. Ex: print-service'
+        messagesToHandle:
+          type: array
+          items:
+            type: string
+          description: A collection of message types to handle for the service
+        owningTeamEmail:
           type: string
-          description: The store agent client secret to use for authentication
-        clientName:
-          type: string
-          description: The display name of the app registration in Azure AD.
+          description: Email address of the team who owns the service
+    taxStrategyResponseModel:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/taxStrategy'
+          description: The data collection.
     taxStrategy:
       type: object
       properties:
@@ -333,14 +341,6 @@ components:
         isActive:
           type: boolean
           description: A flag to determine if the tax strategy is active or inactive.
-    compoundTaxResponseModel:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/compoundTax'
-          description: The data collection.
     compoundTax:
       type: object
       properties:
@@ -367,6 +367,14 @@ components:
           type: integer
           description: The identifier of the compound tax.
           format: int32
+    compoundTaxResponseModel:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/compoundTax'
+          description: The data collection.
     taxLevelResponseModel:
       type: object
       properties:
@@ -387,14 +395,6 @@ components:
         isActive:
           type: boolean
           description: A flag to determine if the tax level is active or inactive.
-    taxStrategyResponseModel:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/taxStrategy'
-          description: The data collection.
   securitySchemes:
     apiKeyHeader:
       type: apiKey

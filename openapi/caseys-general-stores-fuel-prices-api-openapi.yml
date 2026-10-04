@@ -72,30 +72,16 @@ paths:
                 message: string
 components:
   schemas:
-    fuelPriceParameterModel:
+    apiError:
       type: object
       properties:
-        storeId:
-          type: array
-          items:
-            type: integer
-            format: int32
-    fuelPriceModel:
-      type: object
-      properties:
-        storeId:
+        code:
           type: integer
-          description: The number of the store.
+          description: Status code of the error.
           format: int32
-        updateOn:
+        message:
           type: string
-          description: The date the fuel price was updated on.
-          format: date-time
-        products:
-          type: array
-          items:
-            $ref: '#/components/schemas/fuelProductModel'
-          description: A collection of fuel price products.
+          description: Message that describes the error.
     fuelProductModel:
       type: object
       properties:
@@ -116,16 +102,30 @@ components:
         streetFighter:
           type: boolean
           description: Indicates high selling fuel that is advertised more often.
-    apiError:
+    fuelPriceModel:
       type: object
       properties:
-        code:
+        storeId:
           type: integer
-          description: Status code of the error.
+          description: The number of the store.
           format: int32
-        message:
+        updateOn:
           type: string
-          description: Message that describes the error.
+          description: The date the fuel price was updated on.
+          format: date-time
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/fuelProductModel'
+          description: A collection of fuel price products.
+    fuelPriceParameterModel:
+      type: object
+      properties:
+        storeId:
+          type: array
+          items:
+            type: integer
+            format: int32
   securitySchemes:
     apiKeyHeader:
       type: apiKey

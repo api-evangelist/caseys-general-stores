@@ -590,72 +590,19 @@ paths:
     - url: https://esl.caseys.io/storeapi
 components:
   schemas:
-    districtListModelV1:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/districtModelV1'
-          description: The data collection.
-    divisionListModelV0:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/divisionModelV0'
-          description: The data collection.
-    divisionModelV1:
+    districtModelV0:
       type: object
       properties:
         id:
           type: integer
-          description: The unique identifier of the division.
+          description: The unique identifier of the district.
           format: int32
         name:
           type: string
-          description: The name of the division.
+          description: The name of the district.
         _links:
           $ref: '#/components/schemas/linkModel'
-      example: '{"id":9088,"name":"Division 3","_links":{"parent":null,"children":[{"href":"/v1/organizational/regions/13"},{"href":"/v1/organizational/regions/14"},{"href":"/v1/organizational/regions/15"},{"href":"/v1/organizational/regions/16"},{"href":"/v1/organizational/regions/17"},{"href":"/v1/organizational/regions/18"}]}}'
-    divisionListModelV1:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/divisionModelV1'
-          description: The data collection.
-    link:
-      type: object
-      properties:
-        href:
-          type: string
-          description: URL definition to a defined object.
-    apiError:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: Status code of the error.
-          format: int32
-        message:
-          type: string
-          description: Message that describes the error.
-    regionModelV0:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The unique identifier of the region.
-          format: int32
-        name:
-          type: string
-          description: The name of the region.
-        _links:
-          $ref: '#/components/schemas/linkModel'
-      example: '{"id":13,"name":"Region 13","_links":{"parent":{"href":"/organizational/divisions/9088"},"children":[{"href":"/organizational/districts/13"},{"href":"/organizational/districts/14"},{"href":"/organizational/districts/107"},{"href":"/organizational/districts/114"},{"href":"/organizational/districts/115"},{"href":"/organizational/districts/116"},{"href":"/organizational/districts/117"},{"href":"/organizational/districts/197"}]}}'
+      example: '{"id":13,"name":"District 13","_links":{"parent":{"href":"/organizational/regions/13"},"children":[{"href":"/store/1906"},{"href":"/store/1930"},{"href":"/store/1954"},{"href":"/store/1957"},{"href":"/store/1958"},{"href":"/store/2291"},{"href":"/store/2295"},{"href":"/store/2945"},{"href":"/store/2959"},{"href":"/store/2984"},{"href":"/store/3842"},{"href":"/store/3894"},{"href":"/store/2951"}]}}'
     districtListModelV0:
       type: object
       properties:
@@ -677,40 +624,35 @@ components:
         _links:
           $ref: '#/components/schemas/linkModel'
       example: '{"id":9088,"name":"Division 3","_links":{"parent":null,"children":[{"href":"/organizational/regions/13"},{"href":"/organizational/regions/14"},{"href":"/organizational/regions/15"},{"href":"/organizational/regions/16"},{"href":"/organizational/regions/17"},{"href":"/organizational/regions/18"}]}}'
-    districtModelV0:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The unique identifier of the district.
-          format: int32
-        name:
-          type: string
-          description: The name of the district.
-        _links:
-          $ref: '#/components/schemas/linkModel'
-      example: '{"id":13,"name":"District 13","_links":{"parent":{"href":"/organizational/regions/13"},"children":[{"href":"/store/1906"},{"href":"/store/1930"},{"href":"/store/1954"},{"href":"/store/1957"},{"href":"/store/1958"},{"href":"/store/2291"},{"href":"/store/2295"},{"href":"/store/2945"},{"href":"/store/2959"},{"href":"/store/2984"},{"href":"/store/3842"},{"href":"/store/3894"},{"href":"/store/2951"}]}}'
-    regionListModelV1:
+    districtListModelV1:
       type: object
       properties:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/regionModelV1'
+            $ref: '#/components/schemas/districtModelV1'
           description: The data collection.
-    regionModelV1:
+    divisionListModelV1:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/divisionModelV1'
+          description: The data collection.
+    divisionModelV1:
       type: object
       properties:
         id:
           type: integer
-          description: The unique identifier of the region.
+          description: The unique identifier of the division.
           format: int32
         name:
           type: string
-          description: The name of the region.
+          description: The name of the division.
         _links:
           $ref: '#/components/schemas/linkModel'
-      example: '{"id":13,"name":"Region 13","_links":{"parent":{"href":"/v1/organizational/divisions/9088"},"children":[{"href":"/v1/organizational/districts/13"},{"href":"/v1/organizational/districts/14"},{"href":"/v1/organizational/districts/107"},{"href":"/v1/organizational/districts/114"},{"href":"/v1/organizational/districts/115"},{"href":"/v1/organizational/districts/116"},{"href":"/v1/organizational/districts/117"},{"href":"/v1/organizational/districts/197"}]}}'
+      example: '{"id":9088,"name":"Division 3","_links":{"parent":null,"children":[{"href":"/v1/organizational/regions/13"},{"href":"/v1/organizational/regions/14"},{"href":"/v1/organizational/regions/15"},{"href":"/v1/organizational/regions/16"},{"href":"/v1/organizational/regions/17"},{"href":"/v1/organizational/regions/18"}]}}'
     districtModelV1:
       type: object
       properties:
@@ -724,6 +666,14 @@ components:
         _links:
           $ref: '#/components/schemas/linkModel'
       example: '{"id":13,"name":"District 13","_links":{"parent":{"href":"/v1/organizational/regions/13"},"children":[{"href":"/v1/store/1906"},{"href":"/v1/store/1930"},{"href":"/v1/store/1954"},{"href":"/v1/store/1957"},{"href":"/v1/store/1958"},{"href":"/v1/store/2291"},{"href":"/v1/store/2295"},{"href":"/v1/store/2945"},{"href":"/v1/store/2959"},{"href":"/v1/store/2984"},{"href":"/v1/store/3842"},{"href":"/v1/store/3894"},{"href":"/v1/store/2951"}]}}'
+    divisionListModelV0:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/divisionModelV0'
+          description: The data collection.
     linkModel:
       type: object
       properties:
@@ -735,6 +685,22 @@ components:
             $ref: '#/components/schemas/link'
           description: URLs of the children objects.
       description: URLs that are related to the current object.
+    link:
+      type: object
+      properties:
+        href:
+          type: string
+          description: URL definition to a defined object.
+    apiError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Status code of the error.
+          format: int32
+        message:
+          type: string
+          description: Message that describes the error.
     regionListModelV0:
       type: object
       properties:
@@ -743,31 +709,15 @@ components:
           items:
             $ref: '#/components/schemas/regionModelV0'
           description: The data collection.
-    divisionModelV1_2:
+    regionListModelV1:
       type: object
       properties:
-        id:
-          type: integer
-          description: The unique identifier of the division.
-          format: int32
-        name:
-          type: string
-          description: The name of the division.
-        _links:
-          $ref: '#/components/schemas/linkModel'
-      example:
-        id: 9088
-        name: Division 3
-        _links:
-          parent: null
-          children:
-          - href: /v1/organizational/regions/13
-          - href: /v1/organizational/regions/14
-          - href: /v1/organizational/regions/15
-          - href: /v1/organizational/regions/16
-          - href: /v1/organizational/regions/17
-          - href: /v1/organizational/regions/18
-    regionModelV0_2:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/regionModelV1'
+          description: The data collection.
+    regionModelV0:
       type: object
       properties:
         id:
@@ -779,45 +729,20 @@ components:
           description: The name of the region.
         _links:
           $ref: '#/components/schemas/linkModel'
-      example:
-        id: 13
-        name: Region 13
-        _links:
-          parent:
-            href: /organizational/divisions/9088
-          children:
-          - href: /organizational/districts/13
-          - href: /organizational/districts/14
-          - href: /organizational/districts/107
-          - href: /organizational/districts/114
-          - href: /organizational/districts/115
-          - href: /organizational/districts/116
-          - href: /organizational/districts/117
-          - href: /organizational/districts/197
-    divisionModelV0_2:
+      example: '{"id":13,"name":"Region 13","_links":{"parent":{"href":"/organizational/divisions/9088"},"children":[{"href":"/organizational/districts/13"},{"href":"/organizational/districts/14"},{"href":"/organizational/districts/107"},{"href":"/organizational/districts/114"},{"href":"/organizational/districts/115"},{"href":"/organizational/districts/116"},{"href":"/organizational/districts/117"},{"href":"/organizational/districts/197"}]}}'
+    regionModelV1:
       type: object
       properties:
         id:
           type: integer
-          description: The unique identifier of the division.
+          description: The unique identifier of the region.
           format: int32
         name:
           type: string
-          description: The name of the division.
+          description: The name of the region.
         _links:
           $ref: '#/components/schemas/linkModel'
-      example:
-        id: 9088
-        name: Division 3
-        _links:
-          parent: null
-          children:
-          - href: /organizational/regions/13
-          - href: /organizational/regions/14
-          - href: /organizational/regions/15
-          - href: /organizational/regions/16
-          - href: /organizational/regions/17
-          - href: /organizational/regions/18
+      example: '{"id":13,"name":"Region 13","_links":{"parent":{"href":"/v1/organizational/divisions/9088"},"children":[{"href":"/v1/organizational/districts/13"},{"href":"/v1/organizational/districts/14"},{"href":"/v1/organizational/districts/107"},{"href":"/v1/organizational/districts/114"},{"href":"/v1/organizational/districts/115"},{"href":"/v1/organizational/districts/116"},{"href":"/v1/organizational/districts/117"},{"href":"/v1/organizational/districts/197"}]}}'
     districtModelV0_2:
       type: object
       properties:
@@ -850,6 +775,86 @@ components:
           - href: /store/3842
           - href: /store/3894
           - href: /store/2951
+    divisionModelV0_2:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the division.
+          format: int32
+        name:
+          type: string
+          description: The name of the division.
+        _links:
+          $ref: '#/components/schemas/linkModel'
+      example:
+        id: 9088
+        name: Division 3
+        _links:
+          parent: null
+          children:
+          - href: /organizational/regions/13
+          - href: /organizational/regions/14
+          - href: /organizational/regions/15
+          - href: /organizational/regions/16
+          - href: /organizational/regions/17
+          - href: /organizational/regions/18
+    districtModelV1_2:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the district.
+          format: int32
+        name:
+          type: string
+          description: The name of the district.
+        _links:
+          $ref: '#/components/schemas/linkModel'
+      example:
+        id: 13
+        name: District 13
+        _links:
+          parent:
+            href: /v1/organizational/regions/13
+          children:
+          - href: /v1/store/1906
+          - href: /v1/store/1930
+          - href: /v1/store/1954
+          - href: /v1/store/1957
+          - href: /v1/store/1958
+          - href: /v1/store/2291
+          - href: /v1/store/2295
+          - href: /v1/store/2945
+          - href: /v1/store/2959
+          - href: /v1/store/2984
+          - href: /v1/store/3842
+          - href: /v1/store/3894
+          - href: /v1/store/2951
+    divisionModelV1_2:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the division.
+          format: int32
+        name:
+          type: string
+          description: The name of the division.
+        _links:
+          $ref: '#/components/schemas/linkModel'
+      example:
+        id: 9088
+        name: Division 3
+        _links:
+          parent: null
+          children:
+          - href: /v1/organizational/regions/13
+          - href: /v1/organizational/regions/14
+          - href: /v1/organizational/regions/15
+          - href: /v1/organizational/regions/16
+          - href: /v1/organizational/regions/17
+          - href: /v1/organizational/regions/18
     organizationalModelV0:
       type: object
       properties:
@@ -986,38 +991,33 @@ components:
         managerName: LAURIE GARRETT
         managerEmail: null
         regionalMerchandisingManagerName: WILSON WILLIAMS
-    districtModelV1_2:
+    regionModelV0_2:
       type: object
       properties:
         id:
           type: integer
-          description: The unique identifier of the district.
+          description: The unique identifier of the region.
           format: int32
         name:
           type: string
-          description: The name of the district.
+          description: The name of the region.
         _links:
           $ref: '#/components/schemas/linkModel'
       example:
         id: 13
-        name: District 13
+        name: Region 13
         _links:
           parent:
-            href: /v1/organizational/regions/13
+            href: /organizational/divisions/9088
           children:
-          - href: /v1/store/1906
-          - href: /v1/store/1930
-          - href: /v1/store/1954
-          - href: /v1/store/1957
-          - href: /v1/store/1958
-          - href: /v1/store/2291
-          - href: /v1/store/2295
-          - href: /v1/store/2945
-          - href: /v1/store/2959
-          - href: /v1/store/2984
-          - href: /v1/store/3842
-          - href: /v1/store/3894
-          - href: /v1/store/2951
+          - href: /organizational/districts/13
+          - href: /organizational/districts/14
+          - href: /organizational/districts/107
+          - href: /organizational/districts/114
+          - href: /organizational/districts/115
+          - href: /organizational/districts/116
+          - href: /organizational/districts/117
+          - href: /organizational/districts/197
   securitySchemes:
     apiKeyHeader:
       type: apiKey

@@ -93,15 +93,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/relatedItem'
-    relatedItem:
-      type: object
-      properties:
-        upc:
-          type: string
-          description: The Universal Product Code of the related item.
-        description:
-          type: string
-          description: A brief description of the related item.
     apiError:
       type: object
       properties:
@@ -112,6 +103,15 @@ components:
         message:
           type: string
           description: Message that describes the error.
+    relatedItem:
+      type: object
+      properties:
+        upc:
+          type: string
+          description: The Universal Product Code of the related item.
+        description:
+          type: string
+          description: A brief description of the related item.
   securitySchemes:
     apiKeyHeader:
       type: apiKey

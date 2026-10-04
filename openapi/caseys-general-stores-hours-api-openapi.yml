@@ -612,65 +612,6 @@ paths:
     - url: https://esl.caseys.io/oldstoreapi
 components:
   schemas:
-    storeHoursInfoV1:
-      type: object
-      properties:
-        hoursBlocks:
-          type: array
-          items:
-            $ref: '#/components/schemas/hoursBlock'
-          description: The collection of store hours by hour type.
-        storeNumber:
-          type: integer
-          description: The number of the store.
-          format: int32
-      example: '{"hoursBlocks":[{"type":"StoreOpenHours","hours":[{"dayOfWeek":"Sunday","startTime":"05:00:00","endTime":"22:00:00"},{"dayOfWeek":"Monday","startTime":"05:00:00","endTime":"22:00:00"},{"dayOfWeek":"Tuesday","startTime":"05:00:00","endTime":"22:00:00"},{"dayOfWeek":"Wednesday","startTime":"05:00:00","endTime":"22:00:00"},{"dayOfWeek":"Thursday","startTime":"05:00:00","endTime":"22:00:00"},{"dayOfWeek":"Friday","startTime":"05:00:00","endTime":"22:00:00"},{"dayOfWeek":"Saturday","startTime":"05:00:00","endTime":"22:00:00"}]},{"type":"CarryoutHours","hours":[{"dayOfWeek":"Sunday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Monday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Tuesday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Wednesday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Thursday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Friday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Saturday","startTime":"05:00:00","endTime":"22:30:00"}]},{"type":"DoorDashHours","hours":[{"dayOfWeek":"Sunday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Monday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Tuesday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Wednesday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Thursday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Friday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Saturday","startTime":"05:00:00","endTime":"22:30:00"}]},{"type":"PumpHours","hours":[{"dayOfWeek":"Sunday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Monday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Tuesday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Wednesday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Thursday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Friday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Saturday","startTime":"00:00:00","endTime":"1.00:00:00"}]},{"type":"CarWashHours","hours":[{"dayOfWeek":"Sunday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Monday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Tuesday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Wednesday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Thursday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Friday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Saturday","startTime":"00:00:00","endTime":"1.00:00:00"}]},{"type":"CurbSideHours","hours":[{"dayOfWeek":"Sunday","startTime":"06:00:00","endTime":"22:00:00"},{"dayOfWeek":"Monday","startTime":"06:00:00","endTime":"22:00:00"},{"dayOfWeek":"Tuesday","startTime":"06:00:00","endTime":"22:00:00"},{"dayOfWeek":"Wednesday","startTime":"06:00:00","endTime":"22:00:00"},{"dayOfWeek":"Thursday","startTime":"06:00:00","endTime":"22:00:00"},{"dayOfWeek":"Friday","startTime":"06:00:00","endTime":"22:00:00"},{"dayOfWeek":"Saturday","startTime":"06:00:00","endTime":"22:00:00"}]},{"type":"KitchenHours","hours":[{"dayOfWeek":"Sunday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Sunday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Sunday","startTime":"10:00:00","endTime":"11:00:00"},{"dayOfWeek":"Monday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Monday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Monday","startTime":"10:00:00","endTime":"11:00:00"},{"dayOfWeek":"Tuesday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Tuesday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Tuesday","startTime":"10:00:00","endTime":"11:00:00"},{"dayOfWeek":"Wednesday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Wednesday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Wednesday","startTime":"10:00:00","endTime":"11:00:00"},{"dayOfWeek":"Thursday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Thursday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Thursday","startTime":"10:00:00","endTime":"11:00:00"},{"dayOfWeek":"Friday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Friday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Friday","startTime":"10:00:00","endTime":"11:00:00"},{"dayOfWeek":"Saturday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Saturday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Saturday","startTime":"10:00:00","endTime":"11:00:00"}]}],"storeNumber":2}'
-    hourV1:
-      type: object
-      properties:
-        dayOfWeek:
-          type: string
-          description: The day of the week for the hours.
-        startTime:
-          type: string
-          description: Hours start time for the day in the format 'hh:mm:ss'
-        endTime:
-          type: string
-          description: Hours end time for the day in the format 'hh:mm:ss'; an end time of midnight is represented as '1.00:00:00'
-    hoursBlockV0:
-      type: object
-      properties:
-        type:
-          type: string
-          description: Describes the scenario type the hours are for.
-        hours:
-          type: array
-          items:
-            $ref: '#/components/schemas/hourV0'
-          description: Collection of hours for each day.
-    allStoreHoursInfoV1:
-      type: object
-      properties:
-        limit:
-          type: integer
-          description: The limited number of items returned.
-          format: int32
-        offset:
-          type: integer
-          description: The number of items skipped.
-          format: int32
-        count:
-          type: integer
-          description: The number of items returned.
-          format: int32
-        total:
-          type: integer
-          description: The total number of items.
-          format: int32
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/storeHoursInfoV1'
     allStoreHoursInfoV0:
       type: object
       properties:
@@ -694,16 +635,42 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/storeHoursInfoV0'
-    apiError:
+    hourV1:
       type: object
       properties:
-        code:
-          type: integer
-          description: Status code of the error.
-          format: int32
-        message:
+        dayOfWeek:
           type: string
-          description: Message that describes the error.
+          description: The day of the week for the hours.
+        startTime:
+          type: string
+          description: Hours start time for the day in the format 'hh:mm:ss'
+        endTime:
+          type: string
+          description: Hours end time for the day in the format 'hh:mm:ss'; an end time of midnight is represented as '1.00:00:00'
+    storeHoursInfoV0:
+      type: object
+      properties:
+        hoursBlocks:
+          type: array
+          items:
+            $ref: '#/components/schemas/hoursBlockV0'
+          description: The collection of store hours by hour type.
+        storeNumber:
+          type: integer
+          description: The number of the store.
+          format: int32
+      example: '{"hoursBlocks":[{"type":"StoreOpenHours","hours":[{"dayOfWeek":"Sunday","startTime":"05:00:00","endTime":"22:00:00"},{"dayOfWeek":"Monday","startTime":"05:00:00","endTime":"22:00:00"},{"dayOfWeek":"Tuesday","startTime":"05:00:00","endTime":"22:00:00"},{"dayOfWeek":"Wednesday","startTime":"05:00:00","endTime":"22:00:00"},{"dayOfWeek":"Thursday","startTime":"05:00:00","endTime":"22:00:00"},{"dayOfWeek":"Friday","startTime":"05:00:00","endTime":"22:00:00"},{"dayOfWeek":"Saturday","startTime":"05:00:00","endTime":"22:00:00"}]},{"type":"CarryoutHours","hours":[{"dayOfWeek":"Sunday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Monday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Tuesday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Wednesday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Thursday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Friday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Saturday","startTime":"05:00:00","endTime":"22:30:00"}]},{"type":"DoorDashHours","hours":[{"dayOfWeek":"Sunday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Monday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Tuesday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Wednesday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Thursday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Friday","startTime":"05:00:00","endTime":"22:30:00"},{"dayOfWeek":"Saturday","startTime":"05:00:00","endTime":"22:30:00"}]},{"type":"PumpHours","hours":[{"dayOfWeek":"Sunday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Monday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Tuesday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Wednesday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Thursday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Friday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Saturday","startTime":"00:00:00","endTime":"1.00:00:00"}]},{"type":"CarWashHours","hours":[{"dayOfWeek":"Sunday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Monday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Tuesday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Wednesday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Thursday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Friday","startTime":"00:00:00","endTime":"1.00:00:00"},{"dayOfWeek":"Saturday","startTime":"00:00:00","endTime":"1.00:00:00"}]},{"type":"CurbSideHours","hours":[{"dayOfWeek":"Sunday","startTime":"06:00:00","endTime":"22:00:00"},{"dayOfWeek":"Monday","startTime":"06:00:00","endTime":"22:00:00"},{"dayOfWeek":"Tuesday","startTime":"06:00:00","endTime":"22:00:00"},{"dayOfWeek":"Wednesday","startTime":"06:00:00","endTime":"22:00:00"},{"dayOfWeek":"Thursday","startTime":"06:00:00","endTime":"22:00:00"},{"dayOfWeek":"Friday","startTime":"06:00:00","endTime":"22:00:00"},{"dayOfWeek":"Saturday","startTime":"06:00:00","endTime":"22:00:00"}]},{"type":"KitchenHours","hours":[{"dayOfWeek":"Sunday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Sunday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Sunday","startTime":"10:00:00","endTime":"11:00:00"},{"dayOfWeek":"Monday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Monday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Monday","startTime":"10:00:00","endTime":"11:00:00"},{"dayOfWeek":"Tuesday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Tuesday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Tuesday","startTime":"10:00:00","endTime":"11:00:00"},{"dayOfWeek":"Wednesday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Wednesday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Wednesday","startTime":"10:00:00","endTime":"11:00:00"},{"dayOfWeek":"Thursday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Thursday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Thursday","startTime":"10:00:00","endTime":"11:00:00"},{"dayOfWeek":"Friday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Friday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Friday","startTime":"10:00:00","endTime":"11:00:00"},{"dayOfWeek":"Saturday","startTime":"05:00:00","endTime":"10:00:00"},{"dayOfWeek":"Saturday","startTime":"16:00:00","endTime":"22:00:00"},{"dayOfWeek":"Saturday","startTime":"10:00:00","endTime":"11:00:00"}]}],"storeNumber":2}'
+    hoursBlockV0:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Describes the scenario type the hours are for.
+        hours:
+          type: array
+          items:
+            $ref: '#/components/schemas/hourV0'
+          description: Collection of hours for each day.
     hourV0:
       type: object
       properties:
@@ -716,6 +683,39 @@ components:
         endTime:
           type: string
           description: Hours end time for the day in the format 'hh:mm:ss'; an end time of midnight is represented as '1.00:00:00'
+    allStoreHoursInfoV1:
+      type: object
+      properties:
+        limit:
+          type: integer
+          description: The limited number of items returned.
+          format: int32
+        offset:
+          type: integer
+          description: The number of items skipped.
+          format: int32
+        count:
+          type: integer
+          description: The number of items returned.
+          format: int32
+        total:
+          type: integer
+          description: The total number of items.
+          format: int32
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/storeHoursInfoV1'
+    apiError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Status code of the error.
+          format: int32
+        message:
+          type: string
+          description: Message that describes the error.
     hoursBlock:
       type: object
       properties:
@@ -727,13 +727,13 @@ components:
           items:
             $ref: '#/components/schemas/hourV1'
           description: Collection of hours for each day.
-    storeHoursInfoV0:
+    storeHoursInfoV1:
       type: object
       properties:
         hoursBlocks:
           type: array
           items:
-            $ref: '#/components/schemas/hoursBlockV0'
+            $ref: '#/components/schemas/hoursBlock'
           description: The collection of store hours by hour type.
         storeNumber:
           type: integer

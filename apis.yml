@@ -1118,8 +1118,6 @@ apis:
   humanURL: https://developer.esl.caseys.io/
   baseURL: https://esl.caseys.io/itemapi
   tags:
-  - GraphQL
-  tags_raw:
   - Graph QL
   properties:
   - type: OpenAPI
@@ -1146,8 +1144,6 @@ apis:
   humanURL: https://developer.esl.caseys.io/
   baseURL: https://esl.caseys.io/itemapi
   tags:
-  - OpenAPI
-  tags_raw:
   - Open API
   properties:
   - type: OpenAPI

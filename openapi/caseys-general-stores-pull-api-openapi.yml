@@ -195,20 +195,62 @@ paths:
     - url: https://esl.caseys.io/casgatewayapi
 components:
   schemas:
-    posMovement:
-      required:
-      - transmissionHeader
-      - posMovementReport
+    statusReturn:
       type: object
       properties:
-        version:
+        timestamp:
           type: string
-        release:
+          format: date-time
+        result:
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          - 7
+          - 8
+          - 9
+          - 10
+          - 11
+          - 12
+          type: integer
+          format: int32
+          default: 0
+        message:
           type: string
-        transmissionHeader:
-          $ref: '#/components/schemas/transmissionHeader'
-        posMovementReport:
-          $ref: '#/components/schemas/posMovementReport'
+    movementReportStatusReturn:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/reportResponseStatus'
+        posMovement:
+          $ref: '#/components/schemas/posMovement'
+    movementReportPeriod:
+      type: object
+      properties:
+        interval:
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          - 7
+          - 8
+          - 9
+          - 10
+          type:
+          - integer
+          - 'null'
+          format: int32
+          default: 0
+        value:
+          type: string
     reportResponseStatus:
       type: object
       properties:
@@ -236,6 +278,54 @@ components:
           type: integer
           format: int32
           default: 0
+    movementReport:
+      type: object
+    posMovementReport:
+      required:
+      - posMovementReportHeader
+      - posMovementReportGroup
+      type: object
+      properties:
+        posMovementReportHeader:
+          $ref: '#/components/schemas/posMovementReportHeader'
+        posMovementReportGroup:
+          type: array
+          items:
+            $ref: '#/components/schemas/movementReport'
+    transmissionHeader:
+      required:
+      - storeLocationId
+      - vendorName
+      - vendorModelVersion
+      - organizationId
+      type: object
+      properties:
+        storeLocationId:
+          minLength: 1
+          type: string
+        vendorName:
+          minLength: 1
+          type: string
+        vendorModelVersion:
+          minLength: 1
+          type: string
+        organizationId:
+          minLength: 1
+          type: string
+    posMovement:
+      required:
+      - transmissionHeader
+      - posMovementReport
+      type: object
+      properties:
+        version:
+          type: string
+        release:
+          type: string
+        transmissionHeader:
+          $ref: '#/components/schemas/transmissionHeader'
+        posMovementReport:
+          $ref: '#/components/schemas/posMovementReport'
     reportRange:
       type: object
       properties:
@@ -280,96 +370,6 @@ components:
           - string
           - 'null'
           format: date-time
-    movementReportStatusReturn:
-      type: object
-      properties:
-        status:
-          $ref: '#/components/schemas/reportResponseStatus'
-        posMovement:
-          $ref: '#/components/schemas/posMovement'
-    movementReport:
-      type: object
-    posMovementReport:
-      required:
-      - posMovementReportHeader
-      - posMovementReportGroup
-      type: object
-      properties:
-        posMovementReportHeader:
-          $ref: '#/components/schemas/posMovementReportHeader'
-        posMovementReportGroup:
-          type: array
-          items:
-            $ref: '#/components/schemas/movementReport'
-    transmissionHeader:
-      required:
-      - storeLocationId
-      - vendorName
-      - vendorModelVersion
-      - organizationId
-      type: object
-      properties:
-        storeLocationId:
-          minLength: 1
-          type: string
-        vendorName:
-          minLength: 1
-          type: string
-        vendorModelVersion:
-          minLength: 1
-          type: string
-        organizationId:
-          minLength: 1
-          type: string
-    statusReturn:
-      type: object
-      properties:
-        timestamp:
-          type: string
-          format: date-time
-        result:
-          enum:
-          - 0
-          - 1
-          - 2
-          - 3
-          - 4
-          - 5
-          - 6
-          - 7
-          - 8
-          - 9
-          - 10
-          - 11
-          - 12
-          type: integer
-          format: int32
-          default: 0
-        message:
-          type: string
-    movementReportPeriod:
-      type: object
-      properties:
-        interval:
-          enum:
-          - 0
-          - 1
-          - 2
-          - 3
-          - 4
-          - 5
-          - 6
-          - 7
-          - 8
-          - 9
-          - 10
-          type:
-          - integer
-          - 'null'
-          format: int32
-          default: 0
-        value:
-          type: string
     statusReturn_2:
       type: object
       properties:

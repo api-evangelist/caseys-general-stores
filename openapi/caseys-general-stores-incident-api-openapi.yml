@@ -357,40 +357,13 @@ paths:
                 examples: {}
 components:
   schemas:
-    openApiReference:
+    createIncidentBadRequestExample:
       type: object
       properties:
-        externalResource:
-          type: string
-        type:
-          enum:
-          - 0
-          - 1
-          - 2
-          - 3
-          - 4
-          - 5
-          - 6
-          - 7
-          - 8
-          - 9
-          type:
-          - integer
-          - 'null'
-          format: int32
-          default: 0
-        id:
-          type: string
-        isExternal:
-          type: boolean
-        isLocal:
-          type: boolean
-        referenceV3:
-          type: string
-        referenceV2:
-          type: string
-    iOpenApiExtension:
-      type: object
+        examples:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/openApiExample'
     assignedToModel:
       type: object
       properties:
@@ -404,25 +377,6 @@ components:
           type: string
           description: Assigned to user email id.
       description: Assigned to User details.
-    addAttachmentBadRequestExample:
-      type: object
-      properties:
-        examples:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/openApiExample'
-    iOpenApiAny:
-      type: object
-      properties:
-        anyType:
-          enum:
-          - 0
-          - 1
-          - 2
-          - 3
-          type: integer
-          format: int32
-          default: 0
     attachmentParameterModel:
       required:
       - incidentId
@@ -469,6 +423,124 @@ components:
         contentType:
           type: string
           description: Attachment content type
+    createIncidentParameterModel:
+      required:
+      - incidentId
+      - operation
+      - origin
+      - target
+      - summary
+      - description
+      - assignmentGroup
+      - status
+      - requestedBy
+      type: object
+      properties:
+        incidentId:
+          minLength: 1
+          type: string
+          description: The unique identifier of the incident to get data about.
+        operation:
+          minLength: 1
+          type: string
+          description: Operation indicates create or update
+        origin:
+          minLength: 1
+          type: string
+          description: The origin of the incident.
+        target:
+          minLength: 1
+          type: string
+          description: The target of the incident.
+        externalId:
+          type: string
+          description: Unique Correlation Id of incident.
+        location:
+          type: string
+          description: Location of incident.
+        summary:
+          minLength: 1
+          type: string
+          description: The summary of the incident.
+        description:
+          minLength: 1
+          type: string
+          description: The description of the incident.
+        category:
+          type: string
+          description: The category of incident.
+        subcategory:
+          type: string
+          description: The subcategory of incident.
+        assignmentGroup:
+          minLength: 1
+          type: string
+          description: The assignment group of incident.
+        comment:
+          $ref: '#/components/schemas/commentModel'
+        priority:
+          type: string
+          description: The priority of the incident.
+        techOnSite:
+          type: boolean
+          description: The TechOnSite of incident.
+        status:
+          minLength: 1
+          type: string
+          description: Status of incident.
+        lastUpdated:
+          type: string
+          description: Last Update of incident.
+        assignedTo:
+          $ref: '#/components/schemas/assignedToModel'
+        requestedBy:
+          $ref: '#/components/schemas/requestedByModel'
+    iOpenApiExtension:
+      type: object
+    iOpenApiAny:
+      type: object
+      properties:
+        anyType:
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          type: integer
+          format: int32
+          default: 0
+    openApiReference:
+      type: object
+      properties:
+        externalResource:
+          type: string
+        type:
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          - 7
+          - 8
+          - 9
+          type:
+          - integer
+          - 'null'
+          format: int32
+          default: 0
+        id:
+          type: string
+        isExternal:
+          type: boolean
+        isLocal:
+          type: boolean
+        referenceV3:
+          type: string
+        referenceV2:
+          type: string
     commentModel:
       type: object
       properties:
@@ -491,32 +563,6 @@ components:
           type: string
           description: Comment posted on.
       description: The Comment of incident.
-    openApiExample:
-      type: object
-      properties:
-        summary:
-          type: string
-        description:
-          type: string
-        value:
-          $ref: '#/components/schemas/iOpenApiAny'
-        externalValue:
-          type: string
-        extensions:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/iOpenApiExtension'
-        reference:
-          $ref: '#/components/schemas/openApiReference'
-        unresolvedReference:
-          type: boolean
-    updateIncidentBadRequestExample:
-      type: object
-      properties:
-        examples:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/openApiExample'
     requestedByModel:
       type: object
       properties:
@@ -530,7 +576,7 @@ components:
           type: string
           description: Requested by user email id.
       description: Requested User details.
-    createIncidentBadRequestExample:
+    addAttachmentBadRequestExample:
       type: object
       properties:
         examples:
@@ -609,78 +655,32 @@ components:
           $ref: '#/components/schemas/assignedToModel'
         requestedBy:
           $ref: '#/components/schemas/requestedByModel'
-    createIncidentParameterModel:
-      required:
-      - incidentId
-      - operation
-      - origin
-      - target
-      - summary
-      - description
-      - assignmentGroup
-      - status
-      - requestedBy
+    updateIncidentBadRequestExample:
       type: object
       properties:
-        incidentId:
-          minLength: 1
-          type: string
-          description: The unique identifier of the incident to get data about.
-        operation:
-          minLength: 1
-          type: string
-          description: Operation indicates create or update
-        origin:
-          minLength: 1
-          type: string
-          description: The origin of the incident.
-        target:
-          minLength: 1
-          type: string
-          description: The target of the incident.
-        externalId:
-          type: string
-          description: Unique Correlation Id of incident.
-        location:
-          type: string
-          description: Location of incident.
+        examples:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/openApiExample'
+    openApiExample:
+      type: object
+      properties:
         summary:
-          minLength: 1
           type: string
-          description: The summary of the incident.
         description:
-          minLength: 1
           type: string
-          description: The description of the incident.
-        category:
+        value:
+          $ref: '#/components/schemas/iOpenApiAny'
+        externalValue:
           type: string
-          description: The category of incident.
-        subcategory:
-          type: string
-          description: The subcategory of incident.
-        assignmentGroup:
-          minLength: 1
-          type: string
-          description: The assignment group of incident.
-        comment:
-          $ref: '#/components/schemas/commentModel'
-        priority:
-          type: string
-          description: The priority of the incident.
-        techOnSite:
+        extensions:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/iOpenApiExtension'
+        reference:
+          $ref: '#/components/schemas/openApiReference'
+        unresolvedReference:
           type: boolean
-          description: The TechOnSite of incident.
-        status:
-          minLength: 1
-          type: string
-          description: Status of incident.
-        lastUpdated:
-          type: string
-          description: Last Update of incident.
-        assignedTo:
-          $ref: '#/components/schemas/assignedToModel'
-        requestedBy:
-          $ref: '#/components/schemas/requestedByModel'
   securitySchemes:
     apiKeyHeader:
       type: apiKey

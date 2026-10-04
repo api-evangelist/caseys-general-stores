@@ -97,56 +97,6 @@ components:
           type: object
           additionalProperties:
             type: object
-    getTaxRequestModel:
-      type: object
-      properties:
-        taxes:
-          type: array
-          items:
-            $ref: '#/components/schemas/taxRequestModel'
-          description: List of items to get tax information for.
-    list_string:
-      type: array
-      items:
-        type: string
-    taxResponseModel:
-      type: object
-      properties:
-        taxId:
-          type: integer
-          description: The identifier of the tax jurisdiction.
-          format: int32
-        taxCode:
-          type: string
-          description: 'The tax jurisdiction (ex: ST, CO, LO). This is not guaranteed to be unique.'
-        taxRate:
-          type: number
-          description: The tax percentage for the jurisdiction; represented as a decimal between 0 and 1.
-          format: double
-        taxAmount:
-          type: number
-          description: The portion of tax that goes to the jurisdiction.
-          format: double
-    taxRequestModel:
-      type: object
-      properties:
-        uniqueIdentifier:
-          type: string
-          description: Used to make each item unique even if they share the same upc.
-          format: uuid
-        itemUpc:
-          type: string
-        taxCollected:
-          type: number
-          description: The full amount of tax collected for the item.
-          format: double
-        storeNumber:
-          type: integer
-          format: int32
-        saleDate:
-          type: string
-          description: The date the item was sold.
-          format: date-time
     getTaxResponseModel:
       type: object
       properties:
@@ -179,6 +129,38 @@ components:
           type: object
           additionalProperties:
             type: object
+    list_string:
+      type: array
+      items:
+        type: string
+    getTaxRequestModel:
+      type: object
+      properties:
+        taxes:
+          type: array
+          items:
+            $ref: '#/components/schemas/taxRequestModel'
+          description: List of items to get tax information for.
+    taxRequestModel:
+      type: object
+      properties:
+        uniqueIdentifier:
+          type: string
+          description: Used to make each item unique even if they share the same upc.
+          format: uuid
+        itemUpc:
+          type: string
+        taxCollected:
+          type: number
+          description: The full amount of tax collected for the item.
+          format: double
+        storeNumber:
+          type: integer
+          format: int32
+        saleDate:
+          type: string
+          description: The date the item was sold.
+          format: date-time
     itemResponseModel:
       type: object
       properties:
@@ -200,6 +182,24 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/taxResponseModel'
+    taxResponseModel:
+      type: object
+      properties:
+        taxId:
+          type: integer
+          description: The identifier of the tax jurisdiction.
+          format: int32
+        taxCode:
+          type: string
+          description: 'The tax jurisdiction (ex: ST, CO, LO). This is not guaranteed to be unique.'
+        taxRate:
+          type: number
+          description: The tax percentage for the jurisdiction; represented as a decimal between 0 and 1.
+          format: double
+        taxAmount:
+          type: number
+          description: The portion of tax that goes to the jurisdiction.
+          format: double
   securitySchemes:
     apiKeyHeader:
       type: apiKey
