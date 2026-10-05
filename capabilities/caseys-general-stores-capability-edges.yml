@@ -1,0 +1,36 @@
+slug: caseys-general-stores
+provider: Casey's General Stores
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Incident
+  spec_file: caseys-general-stores-incident-api-openapi.yml
+  capability_id: BC-600.30
+  capability_id_l1: BC-600
+  capability_name: IT Service Management
+  confidence: 0.9
+  evidence: '"An API to manage incidents in ITSM tool." / "v1 Creates an incident''s data", "v1 Add an
+    attachment to an existing incident"; schemas assignedToModel, requestedByModel, commentModel'
+  reason: The description explicitly names an ITSM tool and the operations create/update incidents with
+    assignee, requester and comments — textbook IT Service Management incident handling, not HSE or security
+    incidents.
+- tag: Taxes
+  spec_file: caseys-general-stores-taxes-api-openapi.yml
+  capability_id: BC-220.20
+  capability_id_l1: BC-220
+  capability_name: Indirect Tax Management
+  confidence: 0.7
+  evidence: POST /Taxes getTaxes; schemas "taxRequestModel", "taxResponseModel", "itemResponseModel"
+  reason: Request/response tax calculation keyed on items for a convenience retailer, i.e. sales-tax determination
+    on goods, which is indirect tax. Thin single-operation evidence keeps confidence moderate; it is a
+    calculation service rather than filing/compliance.
