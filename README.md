@@ -1,4 +1,4 @@
-# Casey's General Stores (caseys-general-stores)
+# Casey's General Stores
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,88 +66,169 @@
 
 Casey's General Stores (NASDAQ: CASY) is one of the largest convenience-store chains in the United States, operating more than 2,900 stores selling fuel, made-from-scratch pizza, prepared food and convenience items, primarily in small midwestern communities. Behind the consumer brand Casey's runs a B2B API estate on Azure API Management at esl.caseys.io: 21 published OpenAPI 3.0.1 contracts and 158 operations covering stores and the division/region/district hierarchy, the Item Master (Pricebook), fuel pricing, per-store tax configuration, fuel tank telemetry, suppliers, vendor check-in, kitchen production planning, shelf-label printing, in-store messaging and IT service-management incidents — plus Conexxus POS Back Office Interface document ingestion carrying Conexxus Open Retailing identifiers. Access is by Azure APIM subscription key requested through the developer portal at developer.esl.caseys.io; a UAT environment mirrors the estate. No pricing, rate limits, SDKs, status page, changelog, deprecation policy or MCP server are published.
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/caseys-general-stores/refs/heads/main/apis.yml)
+**Areas:** Azure API Management · Conexxus · Convenience Stores · Food Service · Fortune 500 · Fuel Pricing · Fuel Retail · GraphQL · Item Data · Loyalty · OpenAPI · Pizza
 
-## Scope
+## Casey's General Stores on APIs.io
 
-- **Type:** Contract
-- **Position:** Producing
-- **Access:** 3rd-Party
+Everything profiled for Casey's General Stores is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/caseys-general-stores/](https://apis.io/providers/caseys-general-stores/)** — or go straight to one of the APIs or properties below.
 
-## Tags:
+### APIs (41)
 
- - APIs, Azure API Management, Conexxus, Convenience Stores, Food Service, Fortune 500, Fuel Pricing, Fuel Retail, GraphQL, Item Data, Loyalty, OpenAPI, Pizza, Point of Sale, Retail, Store Locations, Supply Chain, Tax
+- [Casey's ItemApi](https://apis.io/apis/caseys-general-stores/caseys-itemapi/) — Item Master (Pricebook) API. Returns up-to-date item data for a store, related items by UPC, and an unbuffered variant of the store-items read, alongside a…
+- [Casey's StoreApi](https://apis.io/apis/caseys-general-stores/caseys-storeapi/) — The Store API represents key points of information about Casey's stores. Thirty-seven operations cover stores, store hours, amenities, brands, locations,…
+- [Casey's SupplierApi](https://apis.io/apis/caseys-general-stores/caseys-supplierapi/) — Returns the list of suppliers for a given store and exposes a GraphQL endpoint for supplier data, plus a v1 heartbeat health check.
+- [Casey's General Stores Brands API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-brands-api/) — The brands API from Casey's General Stores — 2 operation(s) for brands.
+- [Casey's General Stores Caseys.Store API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-caseys-storeapi-api/) — The Caseys.StoreApi API from Casey's General Stores — 1 operation(s) for caseys.storeapi.
+- [Casey's General Stores Caseys.Store Number Generator.Api API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-caseys-storenumbergenerator-api-api/) — The Caseys.StoreNumberGenerator.Api API from Casey's General Stores — 2 operation(s) for caseys.storenumbergenerator.api.
+- [Casey's General Stores Districts API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-districts-api/) — The Districts API from Casey's General Stores — 2 operation(s) for districts.
+- [Casey's General Stores Divisions API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-divisions-api/) — The Divisions API from Casey's General Stores — 2 operation(s) for divisions.
+- [Casey's General Stores Health API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-health-api/) — The Health API from Casey's General Stores — 1 operation(s) for health.
+- [Casey's General Stores Heartbeat API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-heartbeat-api/) — The heartbeat API from Casey's General Stores — 2 operation(s) for heartbeat.
+- [Casey's General Stores Hours API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-hours-api/) — The hours API from Casey's General Stores — 4 operation(s) for hours.
+- [Casey's General Stores Incident API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-incident-api/) — The incident API from Casey's General Stores — 2 operation(s) for incident.
+- [Casey's General Stores Location API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-location-api/) — The Location API from Casey's General Stores — 2 operation(s) for location.
+- [Casey's General Stores organization hierarchy API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-organization-hierarchy-api/) — The organization hierarchy API from Casey's General Stores — 12 operation(s) for organization hierarchy.
+- [Casey's General Stores Organizational API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-organizational-api/) — The Organizational API from Casey's General Stores — 3 operation(s) for organizational.
+- [Casey's General Stores Print API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-print-api/) — The Print API from Casey's General Stores — 1 operation(s) for print.
+- [Casey's General Stores Pull API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-pull-api/) — The pull API from Casey's General Stores — 2 operation(s) for pull.
+- [Casey's General Stores Push API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-push-api/) — The push API from Casey's General Stores — 3 operation(s) for push.
+- [Casey's General Stores Regions API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-regions-api/) — The Regions API from Casey's General Stores — 2 operation(s) for regions.
+- [Casey's General Stores Register API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-register-api/) — The Register API from Casey's General Stores — 2 operation(s) for register.
+- [Casey's General Stores Registrations API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-registrations-api/) — The Registrations API from Casey's General Stores — 1 operation(s) for registrations.
+- [Casey's General Stores Store Amenities API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-storeamenities-api/) — The StoreAmenities API from Casey's General Stores — 1 operation(s) for storeamenities.
+- [Casey's General Stores Store Organizational API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-storeorganizational-api/) — The StoreOrganizational API from Casey's General Stores — 2 operation(s) for storeorganizational.
+- [Casey's General Stores Stores API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-stores-api/) — The Stores API from Casey's General Stores — 6 operation(s) for stores.
+- [Casey's General Stores Swagger API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-swagger-api/) — The Swagger API from Casey's General Stores — 1 operation(s) for swagger.
+- [Casey's General Stores Tank Levels API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-tanklevels-api/) — The tankLevels API from Casey's General Stores — 2 operation(s) for tanklevels.
+- [Casey's General Stores Taxes API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-taxes-api/) — The Taxes API from Casey's General Stores — 1 operation(s) for taxes.
+- [Casey's General Stores Unbuffered Store Items API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-unbuffered-store-items-api/) — The Unbuffered Store Items API from Casey's General Stores — 1 operation(s) for unbuffered store items.
+- [Casey's General Stores V1 Store By ID API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-v1storebyid-api/) — The V1StoreById API from Casey's General Stores — 1 operation(s) for v1storebyid.
+- [Casey's General Stores V1 Store Hours API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-v1storehours-api/) — The V1StoreHours API from Casey's General Stores — 1 operation(s) for v1storehours.
+- [Casey's General Stores V1 Store Hours By Store Number API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-v1storehoursbystorenumber-api/) — The V1StoreHoursByStoreNumber API from Casey's General Stores — 1 operation(s) for v1storehoursbystorenumber.
+- [Casey's General Stores V1 Stores API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-v1stores-api/) — The V1Stores API from Casey's General Stores — 1 operation(s) for v1stores.
+- [Casey's General Stores Version API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-version-api/) — The Version API from Casey's General Stores — 1 operation(s) for version.
+- [Casey's General Stores Deprecated API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-deprecated-api/) — The deprecated API from Casey's General Stores — 12 operation(s) for deprecated.
+- [Casey's General Stores Region API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-region-api/) — The region API from Casey's General Stores — 1 operation(s) for region.
+- [Casey's General Stores Relateditems API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-relateditems-api/) — The Relateditems API from Casey's General Stores — 1 operation(s) for relateditems.
+- [Casey's General Stores Store Number API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-storenumber-api/) — The StoreNumber API from Casey's General Stores — 1 operation(s) for storenumber.
+- [Casey's General Stores Upc API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-upc-api/) — The upc API from Casey's General Stores — 1 operation(s) for upc.
+- [Casey's General Stores Fuel Prices API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-fuel-prices-api/) — The Fuel Prices API from Casey's General Stores — 1 operation(s) for fuel prices.
+- [Casey's General Stores Graph QL API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-graph-ql-api/) — The Graph QL API from Casey's General Stores — 1 operation(s) for graph ql.
+- [Casey's General Stores Open API](https://apis.io/apis/caseys-general-stores/caseys-general-stores-open-api-api/) — The Open API API from Casey's General Stores — 2 operation(s) for open api.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-21
-- **Modified:** 2026-09-05
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### MCP servers (1)
 
-Casey's publishes 21 OpenAPI 3.0.1 contracts (158 operations) through an Azure API Management gateway at `https://esl.caseys.io`, catalogued on a developer portal at https://developer.esl.caseys.io/. Every call is authorised by an APIM subscription key requested per API from that portal; a UAT environment mirrors the estate at `https://uat.esl.caseys.io` / https://developer-uat.esl.caseys.io/.
+Model Context Protocol servers that expose the API to agents.
 
-- **Casey's CasApi** — `https://esl.caseys.io/casapi` — Stores POS Activity Report documents from Casey's point-of-sale estate, implementing the Conexxus POS Back Office Interface / POS Activity Reporting API standard. Publishes report and journal documents and exposes a heartbeat health check and its own OpenAPI document.
-- **Casey's CasGatewayApi** — `https://esl.caseys.io/casgatewayapi` — Gateway for POS POSJournal document management, implementing the Conexxus POS Back Office Interface standard. Accepts journal, report and journal-reconciliation postings and serves individual CPJR documents by store number, report type and document id.
-- **Casey's DevOpsMetricsApi** — `https://esl.caseys.io/devopsmetricsapi` — Internal DevOps metrics API. The publicly exported contract exposes only a v1 heartbeat health check and the OpenAPI document; the metrics operations themselves are not present in the published definition.
-- **Casey's DigitalProductionPlannerApi** — `https://esl.caseys.io/digitalproductionplannerapi` — GraphQL surface for digital production-planner data used by Casey's kitchen and prepared-food production planning. The published REST contract exposes a single POST /graphql operation plus the OpenAPI document; the schema itself requires an authenticated introspection call.
-- **Casey's FuelPriceApi** — `https://esl.caseys.io/fuelpriceapi` — Returns fuel price data for Casey's stores. POST a list of store numbers to /fuelprices to retrieve current fuel pricing per store, with a heartbeat health check.
-- **Casey's ItemApi** — `https://esl.caseys.io/itemapi` — Item Master (Pricebook) API. Returns up-to-date item data for a store, related items by UPC, and an unbuffered variant of the store-items read, alongside a GraphQL endpoint for item data.
-- **Casey's ItsmApi** — `https://esl.caseys.io/itsmapi` — Creates, updates and attaches files to incidents in Casey's IT service management tool, with a v1 heartbeat health check.
-- **Casey's KitchenSupplyOrderingapi** — `https://esl.caseys.io/kitchensupplyorderingapi` — GraphQL surface for kitchen supply ordering data used by Casey's prepared-food kitchens, plus a v1 heartbeat health check.
-- **Casey's OldStoreApi** — `https://esl.caseys.io/oldstoreapi` — Legacy store-information API. Twenty-eight operations cover stores, brands, regions, hours and the organization hierarchy; the v0 surface is explicitly tagged deprecated in the published contract in favour of StoreApi and StoreDetailsApi.
-- **Casey's PowerInventoryApi** — `https://esl.caseys.io/powerinventoryapi` — GraphQL surface for power inventory data, plus a v1 heartbeat health check.
-- **Casey's ProductionPlannerApi** — `https://esl.caseys.io/productionplannerapi` — GraphQL surface for production-planner data driving prepared-food production schedules. The published REST contract exposes POST /graphql and the OpenAPI document only.
-- **Casey's ShelfLabelPrintApi** — `https://esl.caseys.io/shelflabelprintapi` — GraphQL surface for shelf-label print data used to drive in-store shelf label printing, plus a v1 heartbeat health check.
-- **Casey's StoreApi** — `https://esl.caseys.io/storeapi` — The Store API represents key points of information about Casey's stores. Thirty-seven operations cover stores, store hours, amenities, brands, locations, districts, divisions, regions and the wider organizational hierarchy, in both v0 (deprecated) and v1 shapes.
-- **Casey's StoreDetailsApi** — `https://esl.caseys.io/storedetailsapi` — Store detail reads across the Casey's estate — stores, brands, regions, hours and the all-stores organization hierarchy — as a twenty-three operation successor surface to the legacy store API.
-- **Casey's StoreMessagingApi** — `https://esl.caseys.io/storemessagingapi` — Allows services running in a Casey's store to receive messages from external sources. Registers store agents (v1 and v2 registration), lists registered services, sends messages to a store, and carries a deprecated order-fulfilment ticket-printing endpoint.
-- **Casey's StoreNumberApi** — `https://esl.caseys.io/storenumberapi` — The Store Number Generator API returns available store numbers and version/health information for Casey's store-numbering system.
-- **Casey's SupplierApi** — `https://esl.caseys.io/supplierapi` — Returns the list of suppliers for a given store and exposes a GraphQL endpoint for supplier data, plus a v1 heartbeat health check.
-- **Casey's TankLevelApi** — `https://esl.caseys.io/tanklevelapi` — Fuel tank telemetry. Reads the most recent tank level readings and accepts new tank level readings for Casey's fuel sites, with a v1 heartbeat health check.
-- **Casey's TaxApi** — `https://esl.caseys.io/taxapi` — Tax calculation and configuration for Casey's stores: POST /Taxes for tax calculation, plus per-store tax strategies, tax levels and compound taxes.
-- **Casey's TeamMemberApi** — `https://esl.caseys.io/teammemberapi` — Team member information API. The publicly exported contract exposes only the heartbeat health check and the OpenAPI document; the team member reads themselves are not present in the published definition.
-- **Casey's VendorCheckinApi** — `https://esl.caseys.io/vendorcheckinapi` — GraphQL surface for vendor check-in data covering deliveries and vendor visits to Casey's stores, plus a v1 heartbeat health check.
+- [caseys-general-stores-mcp.yml](https://apis.io/servers/caseys-general-stores/caseys-general-stores-mcp-yml/)
 
-Eight of these APIs also expose a `POST /graphql` endpoint. Their schemas are auth-gated (anonymous introspection returns HTTP 401), so no GraphQL SDL is captured here rather than a guessed one.
+#### Overlays (21)
 
-Two further APIM products — `OrderApi_default` and `BagLabelPrintingApi_default` — are published but their contracts are not visible to unauthenticated visitors, so the estate is at least 23 APIs.
+OpenAPI overlays, including conversational phrasing for each operation.
 
-## Common Properties
+- [Caseys General Stores Cas Api Overlay](https://apis.io/overlays/caseys-general-stores/caseys-general-stores-cas-api-overlay/)
+- [Caseys General Stores Cas Gateway Api Overlay](https://apis.io/overlays/caseys-general-stores/caseys-general-stores-cas-gateway-api-overlay/)
+- [Caseys General Stores Devops Metrics Api Overlay](https://apis.io/overlays/caseys-general-stores/caseys-general-stores-devops-metrics-api-overlay/)
+- [Caseys General Stores Digital Production Planner Api Overlay](https://apis.io/overlays/caseys-general-stores/caseys-general-stores-digital-production-planner-api-overlay/)
+- [Caseys General Stores Fuel Price Api Overlay](https://apis.io/overlays/caseys-general-stores/caseys-general-stores-fuel-price-api-overlay/)
+- [Caseys General Stores Item Api Overlay](https://apis.io/overlays/caseys-general-stores/caseys-general-stores-item-api-overlay/)
+- [Caseys General Stores Itsm Api Overlay](https://apis.io/overlays/caseys-general-stores/caseys-general-stores-itsm-api-overlay/)
+- [Caseys General Stores Kitchen Supply Ordering Api Overlay](https://apis.io/overlays/caseys-general-stores/caseys-general-stores-kitchen-supply-ordering-api-overlay/)
+- [Caseys General Stores Old Store Api Overlay](https://apis.io/overlays/caseys-general-stores/caseys-general-stores-old-store-api-overlay/)
+- [Caseys General Stores Power Inventory Api Overlay](https://apis.io/overlays/caseys-general-stores/caseys-general-stores-power-inventory-api-overlay/)
+- [Caseys General Stores Production Planner Api Overlay](https://apis.io/overlays/caseys-general-stores/caseys-general-stores-production-planner-api-overlay/)
+- [Caseys General Stores Shelf Label Print Api Overlay](https://apis.io/overlays/caseys-general-stores/caseys-general-stores-shelf-label-print-api-overlay/)
+- [Caseys General Stores Store Api Overlay](https://apis.io/overlays/caseys-general-stores/caseys-general-stores-store-api-overlay/)
+- [Caseys General Stores Store Details Api Overlay](https://apis.io/overlays/caseys-general-stores/caseys-general-stores-store-details-api-overlay/)
+- [Caseys General Stores Store Messaging Api Overlay](https://apis.io/overlays/caseys-general-stores/caseys-general-stores-store-messaging-api-overlay/)
+- [Caseys General Stores Store Number Api Overlay](https://apis.io/overlays/caseys-general-stores/caseys-general-stores-store-number-api-overlay/)
+- [Caseys General Stores Supplier Api Overlay](https://apis.io/overlays/caseys-general-stores/caseys-general-stores-supplier-api-overlay/)
+- [Caseys General Stores Tank Level Api Overlay](https://apis.io/overlays/caseys-general-stores/caseys-general-stores-tank-level-api-overlay/)
+- [Caseys General Stores Tax Api Overlay](https://apis.io/overlays/caseys-general-stores/caseys-general-stores-tax-api-overlay/)
+- [Caseys General Stores Team Member Api Overlay](https://apis.io/overlays/caseys-general-stores/caseys-general-stores-team-member-api-overlay/)
+- [Caseys General Stores Vendor Checkin Api Overlay](https://apis.io/overlays/caseys-general-stores/caseys-general-stores-vendor-checkin-api-overlay/)
 
-- [DomainSecurity](security/caseys-general-stores-domain-security.yml)
-- [LinkedIn](https://www.linkedin.com/company/caseys)
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Caseys General Stores Authentication](https://apis.io/security/caseys-general-stores/caseys-general-stores-authentication/)
+- [Caseys General Stores Domain Security](https://apis.io/security/caseys-general-stores/caseys-general-stores-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Caseys General Stores Plans Pricing](https://apis.io/plans/caseys-general-stores/caseys-general-stores-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Caseys General Stores Rate Limits](https://apis.io/rate-limits/caseys-general-stores/caseys-general-stores-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.caseys.com)
-- [About](https://www.caseys.com/about-caseys)
-- [Careers](https://www.caseys.com/careers)
-- [InvestorRelations](https://investor.caseys.com/)
-- [Rewards](https://www.caseys.com/rewards)
-- [Mobile](https://www.caseys.com/mobile-app)
-- [Contact](https://www.caseys.com/contact-us)
-- [TermsOfService](https://www.caseys.com/terms-of-use)
-- [PrivacyPolicy](https://www.caseys.com/privacy-policy)
-- [Accessibility](https://www.caseys.com/accessibility)
-- [Sitemap](https://www.caseys.com/sitemap)
-- [PressReleases](https://investor.caseys.com/press-releases)
-- [DeveloperPortal](https://developer.esl.caseys.io/)
-- [GettingStarted](https://developer.esl.caseys.io/)
-- [Login](https://developer.esl.caseys.io/signin)
-- [Authentication](authentication/caseys-general-stores-authentication.yml)
-- [Conventions](conventions/caseys-general-stores-conventions.yml)
-- [ErrorCatalog](errors/caseys-general-stores-problem-types.yml)
-- [Lifecycle](lifecycle/caseys-general-stores-lifecycle.yml)
-- [Conformance](conformance/caseys-general-stores-conformance.yml)
-- [DataModel](data-model/caseys-general-stores-data-model.yml)
-- [ToolCrosswalk](mcp/caseys-general-stores-tool-crosswalk.yml)
-- [X-MCPServerCandidate](mcp/caseys-general-stores-mcp.yml)
-- [LLMsTxt](llms/caseys-general-stores-llms.txt)
-- [AgentSkill](skills/_index.yml)
-- [Sandbox](sandbox/caseys-general-stores-sandbox.yml)
-- [Plans](plans/caseys-general-stores-plans-pricing.yml)
-- [RateLimits](rate-limits/caseys-general-stores-rate-limits.yml)
+- [Getting started](https://developer.esl.caseys.io/)
+- [Terms of service](https://www.caseys.com/terms-of-use)
+- [Privacy policy](https://www.caseys.com/privacy-policy)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** API Evangelist
+**Kin Score 38.1** — thin · rubric 0.24.0 · scored 2026-10-17
 
-**Email:** info@apievangelist.com
+| Facet | Score |
+|---|---|
+| Discoverability | 72.3 |
+| Contract quality | 45.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 42.3 |
+| Access clarity | 27.6 |
+
+**Agent readiness 29.7** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 24.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/caseys-general-stores/](https://apis.io/providers/caseys-general-stores/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Casey's General Stores: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/caseys-general-stores/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
